@@ -1,0 +1,175 @@
+# ===================================================================
+# =   SPRING BOOT APPLICATION CONFIGURATION (IMPROVED & RESILIENT)  =
+# ===================================================================
+
+# --- 1. General Application Settings ---
+spring:
+  application:
+    name: notification-service
+
+
+  # --- 2. Database (MySQL) Configuration with HikariCP Optimization ---
+  datasource:
+    url: jdbc:mysql://localhost:3306/notification_db?useSSL=false&serverTimezone=UTC&connectTimeout=30000&socketTimeout=60000&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: ${DB_PASSWORD:} # استخدم متغير البيئة للأمان
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    # HikariCP Connection Pool Settings
+    # HikariCP Connection Pool Settings
+    hikari:
+      # THIS IS THE FIX: Set auto-commit to false
+      auto-commit: false
+      minimum-idle: 5
+      maximum-pool-size: 20
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      leak-detection-threshold: 60000
+      pool-name: NotificationServicePool
+      connection-test-query: SELECT 1
+      validation-timeout: 5000
+      # The 'connection-init-sql' is not strictly necessary but harmless
+      connection-init-sql: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        # Connection handling improvements
+        connection.provider_disables_autocommit: true
+        # Batch processing for better performance
+        jdbc.batch_size: 25
+        order_inserts: true
+        order_updates: true
+        jdbc.batch_versioned_data: true
+        # Reduce database calls
+        cache.use_second_level_cache: false
+        generate_statistics: false
+
+  # --- 3. Configuration Kafka Simplifiée (le reste est géré par KafkaConfig.java) ---
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification_group
+    # La configuration détaillée est maintenant dans KafkaConfig.java
+
+  # --- 4. Service Discovery (Eureka Client) Configuration ---
+  cloud:
+
+    discovery:
+      enabled: true
+    loadbalancer:
+      cache:
+        enabled: false
+      retry:
+        enabled: true
+  config:
+    import: optional:configserver:,optional:file:/app/env/security.env,optional:file:/app/env/notification.env,optional:file:/app/env/eureka.env
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka}
+    # Improved Eureka settings
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 30
+    heartbeat-executor-thread-pool-size: 5
+    cache-refresh-executor-thread-pool-size: 5
+
+  instance:
+    prefer-ip-address: true
+    # Health check settings
+    health-check-url-path: /actuator/health
+    status-page-url-path: /actuator/info
+    # Lease settings
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+
+# --- 5. Server Configuration ---
+server:
+  port: 9000
+  # Connection timeout settings
+  tomcat:
+    # Thread pool settings
+    threads:
+      max: 200
+      min-spare: 10
+    # Connection pool settings
+    max-connections: 8192
+    accept-count: 100
+
+# --- 6. Enhanced Logging Configuration ---
+logging:
+  level:
+    com.eraoui.notificationservice: INFO  # تم تغييرها من DEBUG لتقليل السجلات
+    org.springframework.web: WARN
+    org.hibernate.SQL: WARN              # تم تغييرها لتقليل السجلات
+    org.apache.kafka: WARN
+    com.netflix.discovery: WARN
+    # Specific classes that were causing noise in your logs
+    org.apache.kafka.clients.NetworkClient: ERROR
+    org.apache.kafka.clients.consumer.internals.ConsumerCoordinator: WARN
+    org.apache.kafka.clients.FetchSessionHandler: ERROR
+    com.zaxxer.hikari: WARN
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# ===================================================================
+# = FULL CONFIGURATION WITH RESILIENCE4J (After adding dependencies) =
+# ===================================================================
+
+# --- Management with Enhanced Monitoring ---
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,circuitbreakers,retries"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+    defaults:
+      enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
+# --- Resilience4j Configuration ---
+resilience4j:
+  retry:
+    instances:
+      kafka-producer:
+        max-attempts: 3
+        wait-duration: 1s
+        exponential-backoff-multiplier: 2
+        retry-exceptions:
+          - org.apache.kafka.common.errors.TimeoutException
+          - org.apache.kafka.common.errors.DisconnectException
+      database:
+        max-attempts: 3
+        wait-duration: 500ms
+        exponential-backoff-multiplier: 2
+
+  circuitbreaker:
+    instances:
+      kafka-producer:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        record-exceptions:
+          - org.apache.kafka.common.errors.TimeoutException
+          - org.apache.kafka.common.errors.DisconnectException
+      database:
+        failure-rate-threshold: 60
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 5
