@@ -1,0 +1,38 @@
+{
+  "product": {
+    "product_list": "قائمة المنتجات",
+    "add_product": "إضافة منتج",
+    "new_product": "إضافة منتج",
+    "product_management": "إدارة المنتجات",
+    "product_name": "اسم المنتج",
+    "price": "السعر",
+    "initial_price": "السعر المبدئي",
+    "quantity": "الكمية",
+    "category": "الفئة",
+    "barcode": "الباركود",
+    "product_image": "صورة المنتج",
+    "description": "الوصف",
+    "delete_product_confirm": "هل أنت متأكد من أنك تريد حذف هذا المنتج؟",
+    "no_products_found": "لم يتم العثور على منتجات.",
+    "product_id": "معرف المنتج",
+    "product": "المنتج",
+    "title": "المنتج"
+  },
+
+  "statistics_page": {
+    "sales_returns_title": "إحصائيات مرتجعات المبيعات",
+    "sales_lines_title": "إحصائيات بنود المبيعات",
+
+    "chart_title": "{{title}} حسب {{criteria}}",
+    "by_quantity": "الكمية",
+    "by_value": "القيمة",
+
+    "label_total_quantity": "إجمالي الكمية",
+    "label_total_value": "إجمالي القيمة (€)",
+
+    "button_by_quantity": "حسب الكمية",
+    "button_by_value": "حسب القيمة",
+
+    "no_data_message": "لا توجد بيانات متاحة لعرض الإحصائيات."
+  }
+}

@@ -1,0 +1,249 @@
+/* Lines.module.css - Unified & Enhanced Theme */
+
+/*
+  CSS Custom Properties for Theming
+  Palette inspired by InvoiceDetails for a consistent, professional look.
+*/
+:root {
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-primary-dark: #1a1a2e; /* From InvoiceDetails */
+    --bg-secondary: #f8f9fa;
+    --bg-secondary-dark: #2c2c3e; /* From InvoiceDetails */
+    --bg-gradient-header: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    --bg-gradient-header-dark: linear-gradient(135deg, #1a1a2e 0%, #2c2c3e 100%);
+
+    /* Text */
+    --text-primary: #2d3748; /* From InvoiceDetails */
+    --text-primary-dark: #e2e8f0; /* From InvoiceDetails */
+    --text-secondary: #6c757d;
+    --text-secondary-dark: #a0aec0; /* From InvoiceDetails */
+
+    /* Borders */
+    --border-color: #e9ecef;
+    --border-color-dark: #2c2c3e; /* From InvoiceDetails */
+    --border-color-strong: #dee2e6;
+    --border-color-strong-dark: #3a4155;
+
+    /* Accents & Focus */
+    --accent-primary: #3b82f6; /* Focus color */
+    --accent-primary-hover: #2563eb;
+    --accent-danger: #dc3545;
+    --accent-danger-hover: #c82333;
+
+    /* Shadows */
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Main Container */
+.linesContainer {
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.linesContainer.dark {
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.linesContainer.dark .header {
+    border-bottom-color: var(--border-color-dark);
+}
+
+.headerControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Form Controls (Inputs & Selects) */
+.themedInput,
+.themedSelect {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color-strong);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.themedInput:focus,
+.themedSelect:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.linesContainer.dark .themedInput,
+.linesContainer.dark .themedSelect {
+    background-color: var(--bg-secondary-dark);
+    color: var(--text-primary-dark);
+    border-color: var(--border-color-dark);
+}
+
+.linesContainer.dark .themedSelect {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e2e8f0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.linesContainer.dark .themedInput:focus,
+.linesContainer.dark .themedSelect:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    background-color: #384256; /* Slightly lighter for focus */
+}
+
+/* Table Styles */
+.tableContainer {
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.linesContainer.dark .tableContainer {
+    border-color: var(--border-color-dark);
+}
+
+/* Table Header */
+.table th {
+    background: var(--bg-gradient-header);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color-strong);
+}
+
+.linesContainer.dark .table th {
+    background: var(--bg-gradient-header-dark);
+    color: var(--text-primary-dark);
+    border-bottom: 2px solid var(--border-color-dark);
+}
+
+/* Table Rows */
+.table td {
+    border-top: 1px solid var(--border-color);
+    padding: 12px 16px;
+    vertical-align: middle;
+}
+
+.linesContainer.dark .table td {
+    border-top-color: var(--border-color-dark);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+.linesContainer.dark .table-hover tbody tr:hover {
+    background-color: var(--bg-secondary-dark);
+}
+
+/* Action Buttons Dropdown */
+.actionsWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.dotsButton {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.dotsButton:hover {
+    color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.linesContainer.dark .dotsButton {
+    color: var(--text-secondary-dark);
+}
+
+.linesContainer.dark .dotsButton:hover {
+    color: var(--text-primary-dark);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownMenu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 8px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    min-width: 160px;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.linesContainer.dark .dropdownMenu {
+    background-color: var(--bg-primary-dark);
+    border-color: var(--border-color-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.dropdownItem {
+    padding: .6rem 1.2rem;
+    text-align: left;
+    border: none;
+    background: none;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dropdownItem:hover {
+    background-color: var(--bg-secondary);
+}
+
+.linesContainer.dark .dropdownItem {
+    color: var(--text-primary-dark);
+}
+
+.linesContainer.dark .dropdownItem:hover {
+    background-color: var(--bg-secondary-dark);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
