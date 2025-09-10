@@ -7,12 +7,11 @@ spring:
   application:
     name: notification-service
 
-
   # --- 2. Database (MySQL) Configuration with HikariCP Optimization ---
   datasource:
-    url: jdbc:mysql://localhost:3306/notification_db?useSSL=false&serverTimezone=UTC&connectTimeout=30000&socketTimeout=60000&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: ${DB_PASSWORD:} # استخدم متغير البيئة للأمان
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/notification_db}?useSSL=false&serverTimezone=UTC&connectTimeout=30000&socketTimeout=60000&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:} # استخدم متغير البيئة للأمان
     driver-class-name: com.mysql.cj.jdbc.Driver
 
     # HikariCP Connection Pool Settings
@@ -68,6 +67,8 @@ spring:
         enabled: true
   config:
     import: optional:configserver:,optional:file:/app/env/security.env,optional:file:/app/env/notification.env,optional:file:/app/env/eureka.env
+  profiles:
+    include: security,notification,eureka
 
 eureka:
   client:
