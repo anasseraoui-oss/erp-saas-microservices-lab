@@ -55,7 +55,11 @@ public class PaymentService {
                 });
 
         // Update amounts
-        paymentToSave.setTotalAmount(totalAmount);
+        double dff =0;
+        if (totalAmount != paymentToSave.getTotalAmount()) {
+            dff = paymentToSave.getTotalAmount()-totalAmount;
+            paymentToSave.setTotalAmount(totalAmount);
+        }
         // We add the new amount paid to the existing amount
         paymentToSave.setAmountPaid(paymentToSave.getAmountPaid() + amount);
         paymentToSave.setUserExecutor(userId);
@@ -66,9 +70,9 @@ public class PaymentService {
         // Update borrowing amount if a payment was made
         if(amount > 0) {
             if ("sales".equals(paymentToSave.getOrderType())) {
-                feignSupplierClient.updateBorrowing(paymentToSave.getSupplierClientId(), amount, "sales");
+                feignSupplierClient.updateBorrowing(paymentToSave.getSupplierClientId(), amount, "sales",dff);
             } else if ("purchases".equals(paymentToSave.getOrderType())) {
-                feignSupplierClient.updateBorrowing(paymentToSave.getSupplierClientId(), amount, "purchases");
+                feignSupplierClient.updateBorrowing(paymentToSave.getSupplierClientId(), amount, "purchases",dff);
             }
 
             // Create a record for this specific payment transaction
@@ -120,7 +124,7 @@ public class PaymentService {
             feignSales.updateStatus(payment.getOrderId(), newPaymentStatus);
         } else if ("purchases".equalsIgnoreCase(payment.getOrderType())) {
             // Note: Be careful with Math.toIntExact if orderId can exceed Integer.MAX_VALUE
-            feignPurch.updateStatus(Math.toIntExact(payment.getOrderId()), newPaymentStatus);
+            feignPurch.updateStatus(payment.getOrderId(), newPaymentStatus);
         }
         return newPaymentStatus;
     }

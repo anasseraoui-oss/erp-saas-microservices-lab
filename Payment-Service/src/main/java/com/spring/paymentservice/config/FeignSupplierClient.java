@@ -8,5 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "SupplierClient-Service" ,path = "/SupplierClients")
 public interface FeignSupplierClient {
     @PutMapping("/Borrowing/{id}")
-    public   void updateBorrowing(@PathVariable("id") Long SupplierClientId, @RequestParam double amountPaid, @RequestParam String orderType);
+    void updateBorrowing(@PathVariable("id") Long SupplierClientId, @RequestParam double amountPaid, @RequestParam String orderType ,@RequestParam double dff);
+    @PutMapping("/BorrowingByDelete/{id}")
+    void updateBorrowingByDeleteDataPaidDate(@PathVariable("id") Long SupplierClientId, @RequestParam double amountPaid, @RequestParam String orderType);
 }

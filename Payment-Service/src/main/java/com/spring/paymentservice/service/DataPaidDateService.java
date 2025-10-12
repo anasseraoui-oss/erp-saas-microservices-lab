@@ -8,6 +8,7 @@ import com.spring.paymentservice.repository.DataPaidDateRepository;
 import com.spring.paymentservice.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -27,17 +28,37 @@ public class DataPaidDateService {
     public DataPaidDate getById(Long id) {
         return dataPaidDateRepository.findById(id).get();
     }
+    @Transactional
     public void deleteById(Long id) {
-        DataPaidDate dataPaidDate = dataPaidDateRepository.findById(id).get();
-        Payment payment = dataPaidDate.getPayment();
-        if (payment != null) {
-            payment.setAmountPaid(payment.getAmountPaid() - dataPaidDate.getAmountPaid());
-            paymentService.updateOrderStatusViaFeign(payment);
-            paymentRepository.save(payment);
+        // 1. Find the entity to be deleted
+        DataPaidDate dataPaidDateToDelete = dataPaidDateRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("DataPaidDate not found with id: " + id));
 
+        // 2. Get the parent payment
+        Payment payment = dataPaidDateToDelete.getPayment();
+
+        // 3. If a parent exists, update its state before deleting the child
+        if (payment != null) {
+            // Remove the child from the parent's collection to keep the object model consistent
+            payment.getPaidDates().remove(dataPaidDateToDelete);
+
+            // Manually recalculate the amount from the now-consistent collection
+            double newAmountPaid = payment.getPaidDates().stream()
+                    .filter(detail -> detail.getPaymentScheduleStatus() == PaymentScheduleStatus.PAID)
+                    .mapToDouble(DataPaidDate::getAmountPaid)
+                    .sum();
+            payment.setAmountPaid(newAmountPaid);
+
+            // Update the order status via Feign
+            paymentService.updateOrderStatusViaFeign(payment);
+
+            // The payment entity is managed and will be saved at the end of the transaction.
         }
-        dataPaidDateRepository.deleteById(id);
+
+        // 4. Finally, delete the entity.
+        dataPaidDateRepository.delete(dataPaidDateToDelete);
     }
+    @Transactional
     public DataPaidDate create(DataPaidDateDto dto) {
         // 1. Find the parent Payment entity
         Payment parentPayment = paymentRepository.findById(dto.getPaymentId()) // Assuming DTO has parent ID
@@ -49,12 +70,14 @@ public class DataPaidDateService {
         // 3. Map the DTO to the new entity
         mapDtoToEntity(dto, newDataPaidDate, parentPayment);
 
-        // 4. Recalculate totals for the parent payment
-        if(dto.getPaymentScheduleStatus() == PaymentScheduleStatus.PAID) {
-            paymentService.recalculateAndUpdatePaymentTotals(parentPayment.getId());
-        }
-        // 5. Save and return the new entity
-        return dataPaidDateRepository.save(newDataPaidDate);
+        // 4. Save the new entity first to make it visible for recalculation
+        DataPaidDate savedDataPaidDate = dataPaidDateRepository.save(newDataPaidDate);
+
+        // 5. Recalculate totals for the parent payment, which now includes the new data
+        paymentService.recalculateAndUpdatePaymentTotals(parentPayment.getId());
+
+        // 6. Return the newly created and saved entity
+        return savedDataPaidDate;
     }
         // THIS IS THE NEW UPDATE METHOD
         public DataPaidDate update(Long id, DataPaidDateDto dto) {

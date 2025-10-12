@@ -54,13 +54,18 @@ public class SupplierClientService {
         clientRepository.save(oldClient);
     }
     @Transactional
-    public void updateBorrowingAmount(Long supplierClientId, double amountPaid, String orderType) {
+    public void updateBorrowingAmount(Long supplierClientId, double amountPaid, String orderType, String isByDelete,double dff) {
         SupplierClient client = supplierClientRepository.findById(supplierClientId)
                 .orElseThrow(() -> new RuntimeException("Client/Supplier not found with id: " + supplierClientId));
+        if (isByDelete.equals("ByDelete")) {
+            amountPaid = -amountPaid;
+        }
         if ("sales".equalsIgnoreCase(orderType)) {
-            client.setBorrowingPriceSales(client.getBorrowingPricePurchase() - amountPaid);
+            client.setBorrowingPriceSales(client.getBorrowingPriceSales() - amountPaid - dff);
+            if (dff != 0) client.setTotalSales(client.getTotalSales() - dff);
         } else if ("purchases".equalsIgnoreCase(orderType)) {
-            client.setBorrowingPricePurchase(client.getBorrowingPricePurchase() - amountPaid);
+            client.setBorrowingPricePurchase(client.getBorrowingPricePurchase() - amountPaid - dff);
+            if (dff != 0) client.setTotalePurchase(client.getTotalePurchase() - dff);
         } else {
             throw new IllegalArgumentException("Invalid order type: " + orderType);
         }

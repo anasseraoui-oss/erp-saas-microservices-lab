@@ -88,8 +88,18 @@ public class SupplierClientController {
     public ResponseEntity<Void> updateBorrowing(
             @PathVariable("id") Long supplierClientId,      // 4. يطابق @PathVariable("id")
             @RequestParam("amountPaid") double amountPaid,  // 5. يطابق @RequestParam double amountPaid
+            @RequestParam("orderType") String orderType,     // 6. يطابق @RequestParam String orderType
+            @RequestParam("dff") double dff
+    ) {
+        clientSupplierService.updateBorrowingAmount(supplierClientId, amountPaid, orderType,"NotByDelete",dff);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/BorrowingByDelete/{id}")
+    public ResponseEntity<Void> updateBorrowingByDelete(
+            @PathVariable("id") Long supplierClientId,      // 4. يطابق @PathVariable("id")
+            @RequestParam("amountPaid") double amountPaid,  // 5. يطابق @RequestParam double amountPaid
             @RequestParam("orderType") String orderType) {  // 6. يطابق @RequestParam String orderType
-        clientSupplierService.updateBorrowingAmount(supplierClientId, amountPaid, orderType);
+        clientSupplierService.updateBorrowingAmount(supplierClientId, amountPaid, orderType,"ByDelete",0);
         return ResponseEntity.ok().build();
     }
 }

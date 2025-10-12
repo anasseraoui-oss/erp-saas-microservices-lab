@@ -22,12 +22,6 @@ public class PurchaseInvoiceDto {
     private Long userExecutor;
     private Long userCreator;
     private PaymentStatus paymentStatus;
-    /*@ToString.Exclude
-    @JsonManagedReference("invoice-lines")
-    private List<PurchaseLineDto> purchaseLines;
-    @ToString.Exclude
-    @JsonManagedReference("invoice-return-lines")
-    private List<LineReturnDto> lineReturns = new ArrayList<>();*/
     private List<PurchaseLineDto> purchaseLines;
     private List<LineReturnDto> lineReturns;
 }

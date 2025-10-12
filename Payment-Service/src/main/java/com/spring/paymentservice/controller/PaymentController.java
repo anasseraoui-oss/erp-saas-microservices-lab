@@ -1,7 +1,10 @@
 // PaymentController.java (Corrected)
 package com.spring.paymentservice.controller;
 
+import com.spring.paymentservice.config.FeignSupplierClient;
+import com.spring.paymentservice.model.DataPaidDate;
 import com.spring.paymentservice.model.Payment;
+import com.spring.paymentservice.service.DataPaidDateService;
 import com.spring.paymentservice.service.PaymentService;
 import com.spring.paymentservice.service.PaymentStatusCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +24,11 @@ public class PaymentController {
     private PaymentService paymentService;
     @Autowired
     private PaymentStatusCheckService paymentStatusCheckService;
+    @Autowired
+    private DataPaidDateService dataPaidDateService;
+    @Autowired
+    private FeignSupplierClient supplierClient;
     // The POST endpoint for addPayment is REMOVED.
-
     // This is now the single endpoint for adding/updating a payment.
     @PutMapping("/update/{orderType}/{orderId}")
     public ResponseEntity<Payment> updatePaymentOrder(
@@ -41,7 +47,6 @@ public class PaymentController {
     }
 
     // --- GETTER ENDPOINTS REMAIN THE SAME ---
-
     @GetMapping("/{orderType}/{id}")
     public ResponseEntity<Payment> getPaymentById(@PathVariable("orderType") String orderType, @PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentId(orderType, Math.toIntExact(id));
@@ -67,6 +72,31 @@ public class PaymentController {
             paymentService.updatePayOrder(OrderType, OrderId, amount, status,"","", supplierClientId, 0L, totalAmount, null);
         }
     }
+
+    @DeleteMapping("/delete/partial-payment/{dataPaidDateId}")
+    public ResponseEntity<Void> deletePartialPayment(
+            @PathVariable Long dataPaidDateId,
+            @RequestParam Long supplierClientId,
+            @RequestParam String orderType) {
+
+        // 1. Get the partial payment amount
+        DataPaidDate dataPaidDate = dataPaidDateService.getById(dataPaidDateId);
+        if (dataPaidDate == null) {
+            return ResponseEntity.notFound().build();
+        }
+        double amount = dataPaidDate.getAmountPaid();
+        Payment payment = dataPaidDate.getPayment();
+        paymentService.recalculateAndUpdatePaymentTotals(payment.getId());
+
+        // 2. Call SupplierClient to update borrowing with a positive amount for debugging
+        supplierClient.updateBorrowingByDeleteDataPaidDate(supplierClientId, amount, orderType);
+
+        // 3. Delete the partial payment record
+        dataPaidDateService.deleteById(dataPaidDateId);
+
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/trigger-checks")
     public void triggerChecks() {
         paymentStatusCheckService.performInitialCheck();

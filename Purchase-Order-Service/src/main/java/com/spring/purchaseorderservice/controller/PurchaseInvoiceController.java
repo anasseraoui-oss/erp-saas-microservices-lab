@@ -53,6 +53,7 @@ public class PurchaseInvoiceController {
     public PurchaseInvoice updatePurchaseInvoice(@PathVariable Long id, @RequestBody PurchaseInvoiceDto purchaseInvoiceDto) throws Exception {
         return purchaseInvoiceService.updatePurchaseInvoice(id, purchaseInvoiceDto);
     }
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/status/{id}")
     public void updateStatus(@PathVariable("id") Long id, @RequestParam("status") String status){
         PurchaseInvoice purchaseInvoice = purchaseInvoiceService.getPurchaseInvoiceById(id);

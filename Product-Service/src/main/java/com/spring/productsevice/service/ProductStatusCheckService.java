@@ -96,7 +96,7 @@ public class ProductStatusCheckService {
         );
 
         return NotificationProductPayload.builder()
-                .subject("Alert: Stock")
+                .subject("Alert: Stock for product " + product.getName())
                 .message(message)
                 .type(NotificationType.LOW_STOCK)
                 .timestamp(Instant.now())
@@ -113,7 +113,7 @@ public class ProductStatusCheckService {
         );
 
         return NotificationProductPayload.builder()
-                .subject("Warning: Expiration")
+                .subject("Warning: Expiration for product " + product.getName())
                 .message(message)
                 .type(NotificationType.EXPIRATION)
                 .timestamp(Instant.now())

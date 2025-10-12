@@ -33,6 +33,7 @@ public class PaymentStatusCheckService {
     private final ObjectMapper objectMapper;
 
     @PostConstruct
+    @Transactional(readOnly = true)
     public void performInitialCheck() {
         log.info("Performing initial checks on application startup...");
         checkForDueDate();
@@ -48,7 +49,7 @@ public class PaymentStatusCheckService {
         try {
             LocalDate today = LocalDate.now();
             LocalDateTime startOfDay = today.atStartOfDay(); // e.g., 2025-08-15T00:00:00
-            LocalDateTime endOfDay = today.atTime(LocalTime.MAX);   // e.g., 2025-08-15T23:59:59.999...            Optional<List<Payment>> dueToday = paymentRepository.findPaymentsByDueDate(today);
+            LocalDateTime endOfDay = today.atTime(LocalTime.MAX);   // e.g., 2025-08-15T23:59:59.999...            
             Date startOfDayDate = Date.from(startOfDay.atZone(ZoneId.systemDefault()).toInstant());
             Date endOfDayDate = Date.from(endOfDay.atZone(ZoneId.systemDefault()).toInstant());
             Optional<List<Payment>> dueToday = paymentRepository.findPaymentsByDueDateBetween(startOfDayDate, endOfDayDate);
