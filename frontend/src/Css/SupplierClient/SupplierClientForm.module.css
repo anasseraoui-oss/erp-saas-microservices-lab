@@ -1,0 +1,169 @@
+/* src/Css/SupplierClient/SupplierClientForm.module.css - Modernized & Integrated */
+
+/*
+  This file is designed to integrate seamlessly within a modal or another container.
+  It uses CSS variables defined in `SupplierClientList.module.css` for a consistent theme.
+*/
+
+/* --- FORM CONTAINER --- */
+.formContainer {
+    /* No background, padding, or shadow here to allow the parent modal to control it */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg, 1.5rem);
+}
+
+/* --- FORM SECTIONS --- */
+.formSection {
+    background: var(--bg-tertiary, #f8f9fa);
+    padding: var(--space-lg, 1.5rem);
+    border-radius: var(--border-radius-lg, 12px);
+    border: 1px solid var(--border-primary, #e5e5e5);
+    transition: all var(--transition-normal, 0.3s ease);
+}
+
+:global(html[data-theme="dark"]) .formSection {
+    background: var(--bg-tertiary, #252a3a);
+    border-color: var(--border-secondary, #4a5568);
+}
+
+.formSection h3 {
+    margin: 0 0 var(--space-md, 1rem) 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary, #1d1d1f);
+    padding-bottom: var(--space-sm, 0.75rem);
+    border-bottom: 1px solid var(--border-primary, #e5e5e5);
+}
+
+/* --- FORM GRID & GROUPS --- */
+.formRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md, 1rem);
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs, 0.5rem);
+}
+
+.formGroup label {
+    font-weight: 600;
+    color: var(--text-secondary, #6c6c70);
+    font-size: 0.875rem;
+}
+
+/* --- INPUT STYLES --- */
+.input {
+    padding: var(--space-sm, 0.75rem) var(--space-md, 1rem);
+    border-radius: var(--border-radius, 8px);
+    border: 1px solid var(--border-secondary, #dee2e6);
+    width: 100%;
+    font-size: 0.95rem;
+    background-color: var(--bg-secondary, #ffffff);
+    color: var(--text-primary, #1d1d1f);
+    transition: all var(--transition-fast, 0.2s ease);
+    box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent-primary, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.input:disabled {
+    background-color: var(--bg-active, #e9ecef);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+:global(html[data-theme="dark"]) .input {
+    background-color: var(--dark-bg-secondary, #2c3344);
+    color: var(--dark-text-primary, #e0e0e0);
+    border-color: var(--dark-border-secondary, #4a5568);
+}
+
+:global(html[data-theme="dark"]) .input:focus {
+    border-color: var(--accent-primary, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+:global(html[data-theme="dark"]) .input::placeholder {
+    color: var(--dark-text-tertiary, #8e8e93);
+}
+
+/* --- ERROR MESSAGE --- */
+.error {
+    padding: var(--space-md, 1rem);
+    border-radius: var(--border-radius, 8px);
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--accent-danger, #ef4444);
+    border: 1px solid var(--border-error, rgba(239, 68, 68, 0.3));
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: var(--space-md, 1rem);
+}
+
+/* --- BUTTONS --- */
+.buttonGroup {
+    display: flex;
+    gap: var(--space-md, 1rem);
+    margin-top: var(--space-md, 1rem);
+    justify-content: flex-end;
+}
+
+.submitBtn,
+.cancelBtn {
+    padding: var(--space-sm, 0.75rem) var(--space-lg, 1.5rem);
+    border: none;
+    border-radius: var(--border-radius, 8px);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.2s ease);
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.submitBtn {
+    background: linear-gradient(135deg, var(--accent-success, #10b981), var(--green-600, #059669));
+    color: white;
+}
+
+.submitBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.15));
+}
+
+.submitBtn:disabled {
+    background: var(--text-tertiary, #8e8e93);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.cancelBtn {
+    background-color: transparent;
+    color: var(--text-secondary, #6c6c70);
+    border: 1px solid var(--border-secondary, #dee2e6);
+    box-shadow: none;
+}
+
+.cancelBtn:hover:not(:disabled) {
+    background-color: var(--bg-active, #e9ecef);
+    color: var(--text-primary, #1d1d1f);
+    border-color: var(--border-secondary, #dee2e6);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .formRow {
+        grid-template-columns: 1fr;
+    }
+
+    .buttonGroup {
+        flex-direction: column-reverse;
+        gap: var(--space-sm, 0.75rem);
+    }
+}

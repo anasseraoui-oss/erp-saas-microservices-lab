@@ -1,0 +1,292 @@
+{
+  "global": {
+    "search": "Rechercher",
+    "search_placeholder": "Rechercher par nom, email, ou rôle...",
+    "submit": "Soumettre",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "view": "Voir",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "loading": "Chargement...",
+    "no_results": "Aucun résultat trouvé.",
+    "error_occurred": "Une erreur est survenue. Veuillez réessayer.",
+    "actions": "Actions",
+    "yes": "Oui",
+    "no": "Non",
+    "retry": "Réessayer",
+    "success": "Succès",
+    "warning": "Avertissement",
+    "info": "Information",
+    "go_to_page": "Aller à la page"
+  },
+  "navigation": {
+      "dashboard": "Tableau de bord",
+      "accounts": "Comptes", 
+      "products": "Produits",
+      "orders": "Commandes",
+      "invoices": "Factures",
+      "settings": "Paramètres",
+      "logout": "Déconnexion",
+      "sales": "Ventes",
+      "purchases": "Achats",
+      "statistics": "Statistiques",
+      "notifications": "Notifications",
+      "management": "Gestion",
+      "general": "Général",
+      "security": "Sécurité",
+      "notificationHistory": "Historique des notifications",
+      "salesInvoices": "Factures de vente",
+      "addSalesInvoice": "Ajouter facture de vente", 
+      "salesLines": "Lignes de vente",
+      "purchaseInvoices": "Factures d'achat",
+      "addPurchaseInvoice": "Ajouter facture d'achat",
+      "purchaseLines": "Lignes d'achat",
+      "salesOrders": "Commandes de vente",
+      "addSalesOrder": "Ajouter commande de vente",
+      "salesLinesOrders": "Lignes commandes de vente",
+      "purchaseOrders": "Commandes d'achat", 
+      "addPurchaseOrder": "Ajouter commande d'achat",
+      "purchaseLinesOrders": "Lignes commandes d'achat",
+      "addProducts": "Ajouter produits",
+      "customers": "Clients",
+      "suppliers": "Fournisseurs", 
+      "expiredProductsList": "Liste produits expirés",
+      "users": "Utilisateurs",
+      "addUser": "Ajouter utilisateur"
+    },
+  "account": {
+    "dashboard_title": "Tableau de bord des comptes",
+    "dashboard_subtitle": "Centre de gestion des utilisateurs, rôles et activité du système.",
+    "account_list": "Liste des comptes",
+    "create_account": "Créer un compte",
+    "role_management": "Gestion des rôles",
+    "activity_stats": "Statistiques d'activité",
+    "manage_users": "Gérer les utilisateurs",
+    "user_details": "Détails de l'utilisateur",
+    "full_name": "Nom complet",
+    "email": "Email",
+    "password": "Mot de passe",
+    "password_confirm": "Confirmer le mot de passe",
+    "roles": "Rôles",
+    "assign_roles": "Assigner des rôles",
+    "search_users_roles": "Rechercher utilisateurs et rôles",
+    "delete_user_confirm": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?",
+    "active": "Actif",
+    "disabled": "Désactivé"
+  },
+  "product": {
+    "product_list": "Liste des produits",
+    "add_product": "Ajouter un produit",
+    "product_name": "Nom du produit",
+    "price": "Prix",
+    "initial_price": "Prix initial",
+    "quantity": "Quantité",
+    "category": "Catégorie",
+    "barcode": "Code-barres",
+    "product_image": "Image du produit",
+    "delete_product_confirm": "Êtes-vous sûr de vouloir supprimer ce produit ?",
+    "no_products_found": "Aucun produit trouvé."
+  },
+  "order_invoice": {
+    "order_details": "Détails de la commande",
+    "invoice_details": "Détails de la facture",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "total_amount": "Montant total",
+    "paid_amount": "Montant payé",
+    "sold_amount": "Montant vendu",
+    "payment_status": "Statut du paiement",
+    "order_status": "Statut de la commande",
+    "date": "Date",
+    "line_items": "Lignes d'articles",
+    "payment_history": "Historique des paiements",
+    "delivery_info": "Informations de livraison",
+    "status": {
+      "paid": "Payé",
+      "unpaid": "Non payé",
+      "partpaid": "Partiellement payé",
+      "pending": "En attente",
+      "confirmed": "Confirmé",
+      "shipped": "Expédié",
+      "delivered": "Livré",
+      "canceled": "Annulé"
+    }
+  },
+  "form": {
+    "required_field": "Ce champ est obligatoire.",
+    "invalid_email": "Veuillez saisir une adresse email valide.",
+    "password_mismatch": "Les mots de passe ne correspondent pas.",
+    "leave_blank_to_keep": "Laisser vide pour conserver l'actuel"
+  },
+  "stats": {
+    "total_users": "Utilisateurs totaux",
+    "total_activities": "Activités totales",
+    "most_active_user": "Utilisateur le plus actif",
+    "most_common_activity": "Activité la plus courante",
+    "sales_vs_purchases": "Ratio Ventes vs Achats"
+  },
+    "supplierClient": {
+        "title": "Fournisseurs & Clients",
+        "new_client_supplier": "Nouveau Client/Fournisseur",
+        "show_analytics": "Afficher les analyses",
+        "show_list": "Afficher la liste",
+        "search_placeholder": "Rechercher par nom...",
+        "clear_search": "Clear search",
+        "all_creators": "All Creators",
+        "all_executors": "All Executors",
+        "filter_by_creator": "Filter by creator",
+        "filter_by_executor": "Filter by executor",
+        "showing_results": "Showing {{count}} of {{total}} clients",
+        "in_category": "in \"{{category}}\"",
+        "no_clients_match": "No clients match the current filters.",
+        
+        "name": "Name",
+        "email": "Email",
+        "phone_number": "Phone Number",
+        
+        "view_details": "View Details",
+        "update": "Update",
+        "delete_confirm": "Are you sure you want to delete this client?",
+        
+        "total_partners": "Total Partners",
+        "total_sales_value": "Total Sales Value",
+        "total_purchases_value": "Total Purchases Value",
+        "total_sales_credit": "Total Sales Credit",
+        "total_purchase_debt": "Total Purchase Debt",
+        
+        "basic_information": "Basic Information",
+        "financial_information": "Financial Information",
+
+        "name_required": "Name *",
+        "email_required": "Email *",
+        "phone_required": "Phone Number *",
+        "category_required": "Category *",
+        "category_placeholder": "e.g., Supplier, Client, Both",
+        "description": "Description",
+        "description_placeholder": "Additional details about the client/supplier...",
+        "borrowing_price_purchase": "Borrowing Price (Purchase)",
+        "borrowing_price_sales": "Borrowing Price (Sales)",
+        "total_purchase": "Total Purchases",
+        "total_sales": "Total Sales",
+        "customer_credit_cap": "Customer Credit Cap (Optional)",
+        "credit_cap_placeholder": "Leave blank for no credit limit",
+        
+        "add_client_supplier": "Add Client/Supplier",
+        "update_client_supplier": "Update Client/Supplier",
+        "saving": "Saving...",
+        
+        "valid_email_required": "Please enter a valid email address.",
+        "valid_phone_required": "Please enter a valid phone number.",
+        "positive_number_required": "{{field}} must be a valid positive number.",
+        "client_exists": "A client with this name or email already exists.",
+        "invalid_data": "Invalid data provided. Please check your inputs.",
+        "server_error": "Server error. Please try again later.",
+        "operation_failed": "Operation failed. Please try again.",
+        
+        "sales_vs_purchases": "Sales vs Purchases Ratio",
+        "sales": "Sales",
+        "purchases": "Purchases",
+        "amount_dh": "Amount (DH)",
+        
+        "edit_client_supplier": "Edit Client/Supplier",
+        "add_client_supplier_modal": "Add Client/Supplier",
+        "category_label": "Category: {{category}}",
+        
+        "loading_state": "Loading...",
+        "error_loading": "Failed to load suppliers/clients. Please try again.",
+        "error_deleting": "Failed to delete the client."
+    },
+  "doc": {
+    "title": "Documentation de l'Application",
+    "subtitle": "Un guide des pages et des fonctionnalités de l'application.",
+    "stats_link": {
+        "name": "Tableau de Bord",
+        "description": "Fournit un aperçu complet de votre activité avec des statistiques et des analyses clés.",
+        "details": "Le tableau de bord principal fournit un aperçu complet de votre activité avec des statistiques et des analyses clés. Suivez les ventes, les achats, les statuts de paiement et d'autres métriques importantes en temps réel."
+    },
+    "products": {
+        "name": "Produits",
+        "description": "Le hub central pour votre catalogue de produits.",
+        "details": "# Gestion des Produits\n\n## Aperçu\n\nLa page de **Gestion des Produits** est votre centre de commande pour tout ce qui concerne votre inventaire. Elle offre une interface riche et interactive pour visualiser, rechercher et gérer tous les produits que vous vendez.\n\n### Fonctionnalités Clés\n\n- **Grille de Produits :** Une grille visuellement attrayante qui affiche tous vos produits sous forme de cartes. Chaque carte fournit un aperçu rapide du produit.\n- **Recherche & Filtre Avancés :**\n    - Utilisez la barre de recherche principale pour trouver instantanément des produits par **nom** ou **code-barres**.\n    - Un **explorateur de catégories** sophistiqué vous permet de naviguer et de filtrer la liste de produits à une catégorie ou sous-catégorie spécifique.\n- **Actions Principales :**\n    - **Ajouter un Produit :** Ouvre un formulaire modal pour créer un nouveau produit à partir de zéro.\n    - **Voir les Détails :** Cliquez sur n'importe quelle carte de produit pour ouvrir une modale avec une vue détaillée en lecture seule des informations du produit.\n    - **Modifier le Produit :** Vous permet de modifier les informations d'un produit existant.\n    - **Supprimer le Produit :** Supprime définitivement un produit du système. Une confirmation vous assure de ne pas supprimer quelque chose par accident.\n- **Rapports Pertinents :**\n    - **Analyse des Performances :** Accédez à une vue dédiée avec des graphiques et des statistiques pour analyser les performances des produits, vous montrant les meilleures ventes et les tendances d'achat.\n    - **Rapport d'Activité :** Obtenez des informations sur votre efficacité opérationnelle en consultant les statistiques sur la date de création et de dernière mise à jour des produits."
+    },
+    "add_products": {
+        "name": "Ajouter un Produit",
+        "description": "Utilisez ce formulaire pour ajouter de nouveaux produits à votre catalogue.",
+        "details": "# Formulaire d'Ajout/Modification de Produit\n\n## Aperçu\n\nLe formulaire **Ajouter/Modifier un Produit** est un outil polyvalent pour gérer les détails principaux de vos produits. Que vous ajoutiez un nouvel article à votre inventaire ou que vous mettiez à jour un article existant, ce formulaire fournit tous les champs nécessaires.\n\n### Champs du Formulaire\n\n- **Nom du Produit :** Le nom principal du produit, visible par l'utilisateur.\n- **Prix Initial :** Le coût du produit lorsque vous l'avez acheté (le prix de revient).\n- **Prix :** Le prix auquel vous vendez le produit aux clients (le prix de vente).\n- **Quantité :** Le niveau de stock actuel pour ce produit.\n- **Quantité Presque Épuisée :** Un seuil qui, une fois atteint, déclenchera un avertissement de stock bas.\n- **Code-barres :** Le code-barres du produit pour une lecture facile avec un lecteur de code-barres.\n- **Catégorie :** La catégorie à laquelle le produit appartient (par ex., `Électronique > Ordinateurs portables`). Cela aide à organiser vos produits.\n\n### Gestion des Images\n\nLe formulaire offre deux manières pratiques d'ajouter une image à votre produit :\n1.  **Automatique :** Si vous ne téléchargez pas d'image, le système récupérera automatiquement une image pertinente d'un service en ligne en fonction du nom du produit. Cela vous fait gagner du temps.\n2.  **Téléchargement Manuel :** Vous avez la possibilité de télécharger votre propre fichier image personnalisé pour le produit, vous donnant un contrôle total sur sa présentation."
+    },
+    "sales_invoices": {
+        "name": "Factures de Vente",
+        "description": "Gérez toutes les factures liées aux ventes des clients.",
+        "details": "# Gestion des Ventes & Achats (Factures & Commandes)\n\n## Aperçu\n\nIl s'agit d'un composant puissant et riche en fonctionnalités pour afficher et gérer des listes de **factures** et de **commandes**. Il est hautement configurable et sert de colonne vertébrale pour le suivi des ventes et des achats, offrant des capacités de filtrage et de recherche étendues.\n\n### Fonctionnalités Clés\n\n- **Interface Unifiée :** Une interface unique et cohérente est utilisée pour afficher les listes de factures ou de commandes, tant pour les ventes que pour les achats.\n- **Filtrage Avancé :** Vous permet de filtrer précisément la liste par :\n    - **Plage de Dates**\n    - **Client** ou **Fournisseur**\n    - Un **Produit** spécifique (pour voir toutes les transactions impliquant ce produit)\n    - L'utilisateur qui a **Créé** la transaction\n    - L'utilisateur qui a **Exécuté** la transaction\n    - **Statut de la Commande** (par ex., En attente, Expédié, Livré)\n- **Recherche Globale :** Une barre de recherche puissante pour trouver rapidement des articles par ID, nom de client/fournisseur, montant ou statut de paiement.\n- **Vue Détaillée en Modale :** Cliquer sur une ligne ouvre une modale avec une vue complète de la facture ou de la commande sélectionnée, affichant tous les articles, l'historique des paiements, et plus encore.\n- **Actions Rapides :** Chaque élément de la liste dispose d'un menu avec des actions pour le **Modifier** ou le **Supprimer**.\n- **Badges de Statut :** Des badges clairs et colorés pour le **Statut de Paiement** (par ex., Payé, Non payé) et le **Statut de la Commande** facilitent la compréhension de l'état de chaque transaction en un coup d'œil.\n- **Compatible Mode Sombre :** L'ensemble du composant est magnifiquement stylé pour une expérience fluide en mode sombre."
+    },
+    "purchase_invoices": {
+        "name": "Factures d'Achat",
+        "description": "Gérez toutes les factures de vos fournisseurs.",
+        "details": "# Gestion des Ventes & Achats (Factures & Commandes)\n\n## Aperçu\n\nIl s'agit d'un composant puissant et riche en fonctionnalités pour afficher et gérer des listes de **factures** et de **commandes**. Il est hautement configurable et sert de colonne vertébrale pour le suivi des ventes et des achats, offrant des capacités de filtrage et de recherche étendues.\n\n### Fonctionnalités Clés\n\n- **Interface Unifiée :** Une interface unique et cohérente est utilisée pour afficher les listes de factures ou de commandes, tant pour les ventes que pour les achats.\n- **Filtrage Avancé :** Vous permet de filtrer précisément la liste par :\n    - **Plage de Dates**\n    - **Client** ou **Fournisseur**\n    - Un **Produit** spécifique (pour voir toutes les transactions impliquant ce produit)\n    - L'utilisateur qui a **Créé** la transaction\n    - L'utilisateur qui a **Exécuté** la transaction\n    - **Statut de la Commande** (par ex., En attente, Expédié, Livré)\n- **Recherche Globale :** Une barre de recherche puissante pour trouver rapidement des articles par ID, nom de client/fournisseur, montant ou statut de paiement.\n- **Vue Détaillée en Modale :** Cliquer sur une ligne ouvre une modale avec une vue complète de la facture ou de la commande sélectionnée, affichant tous les articles, l'historique des paiements, et plus encore.\n- **Actions Rapides :** Chaque élément de la liste dispose d'un menu avec des actions pour le **Modifier** ou le **Supprimer**.\n- **Badges de Statut :** Des badges clairs et colorés pour le **Statut de Paiement** (par ex., Payé, Non payé) et le **Statut de la Commande** facilitent la compréhension de l'état de chaque transaction en un coup d'œil.\n- **Compatible Mode Sombre :** L'ensemble du composant est magnifiquement stylé pour une expérience fluide en mode sombre."
+    },
+    "sales_orders": {
+        "name": "Commandes de Vente",
+        "description": "Suivez les commandes des clients avant qu'elles ne deviennent des factures.",
+        "details": "# Gestion des Ventes & Achats (Factures & Commandes)\n\n## Aperçu\n\nIl s'agit d'un composant puissant et riche en fonctionnalités pour afficher et gérer des listes de **factures** et de **commandes**. Il est hautement configurable et sert de colonne vertébrale pour le suivi des ventes et des achats, offrant des capacités de filtrage et de recherche étendues.\n\n### Fonctionnalités Clés\n\n- **Interface Unifiée :** Une interface unique et cohérente est utilisée pour afficher les listes de factures ou de commandes, tant pour les ventes que pour les achats.\n- **Filtrage Avancé :** Vous permet de filtrer précisément la liste par :\n    - **Plage de Dates**\n    - **Client** ou **Fournisseur**\n    - Un **Produit** spécifique (pour voir toutes les transactions impliquant ce produit)\n    - L'utilisateur qui a **Créé** la transaction\n    - L'utilisateur qui a **Exécuté** la transaction\n    - **Statut de la Commande** (par ex., En attente, Expédié, Livré)\n- **Recherche Globale :** Une barre de recherche puissante pour trouver rapidement des articles par ID, nom de client/fournisseur, montant ou statut de paiement.\n- **Vue Détaillée en Modale :** Cliquer sur une ligne ouvre une modale avec une vue complète de la facture ou de la commande sélectionnée, affichant tous les articles, l'historique des paiements, et plus encore.\n- **Actions Rapides :** Chaque élément de la liste dispose d'un menu avec des actions pour le **Modifier** ou le **Supprimer**.\n- **Badges de Statut :** Des badges clairs et colorés pour le **Statut de Paiement** (par ex., Payé, Non payé) et le **Statut de la Commande** facilitent la compréhension de l'état de chaque transaction en un coup d'œil.\n- **Compatible Mode Sombre :** L'ensemble du composant est magnifiquement stylé pour une expérience fluide en mode sombre."
+    },
+    "purchase_orders": {
+        "name": "Commandes d'Achat",
+        "description": "Suivez les commandes que vous avez passées auprès de vos fournisseurs.",
+        "details": "# Gestion des Ventes & Achats (Factures & Commandes)\n\n## Aperçu\n\nIl s'agit d'un composant puissant et riche en fonctionnalités pour afficher et gérer des listes de **factures** et de **commandes**. Il est hautement configurable et sert de colonne vertébrale pour le suivi des ventes et des achats, offrant des capacités de filtrage et de recherche étendues.\n\n### Fonctionnalités Clés\n\n- **Interface Unifiée :** Une interface unique et cohérente est utilisée pour afficher les listes de factures ou de commandes, tant pour les ventes que pour les achats.\n- **Filtrage Avancé :** Vous permet de filtrer précisément la liste par :\n    - **Plage de Dates**\n    - **Client** ou **Fournisseur**\n    - Un **Produit** spécifique (pour voir toutes les transactions impliquant ce produit)\n    - L'utilisateur qui a **Créé** la transaction\n    - L'utilisateur qui a **Exécuté** la transaction\n    - **Statut de la Commande** (par ex., En attente, Expédié, Livré)\n- **Recherche Globale :** Une barre de recherche puissante pour trouver rapidement des articles par ID, nom de client/fournisseur, montant ou statut de paiement.\n- **Vue Détaillée en Modale :** Cliquer sur une ligne ouvre une modale avec une vue complète de la facture ou de la commande sélectionnée, affichant tous les articles, l'historique des paiements, et plus encore.\n- **Actions Rapides :** Chaque élément de la liste dispose d'un menu avec des actions pour le **Modifier** ou le **Supprimer**.\n- **Badges de Statut :** Des badges clairs et colorés pour le **Statut de Paiement** (par ex., Payé, Non payé) et le **Statut de la Commande** facilitent la compréhension de l'état de chaque transaction en un coup d'œil.\n- **Compatible Mode Sombre :** L'ensemble du composant est magnifiquement stylé pour une expérience fluide en mode sombre."
+    },
+    "add_sales_invoice": {
+        "name": "Créer une Facture de Vente",
+        "description": "Générez une nouvelle facture pour une vente client.",
+        "details": "# Créer une Facture/Commande de Vente\n\n## Aperçu\n\nCe formulaire dynamique est utilisé pour créer une nouvelle **transaction de vente** (facture ou commande). Le processus est conçu pour être rapide et efficace.\n\n### Processus\n\n1.  **Sélectionnez un Client :** Commencez par choisir un client dans votre liste. Vous pouvez également **ajouter un nouveau client** à la volée s'il n'existe pas dans le système.\n2.  **Ajoutez des Produits :** Recherchez et ajoutez des produits à la liste de transaction.\n3.  **Spécifiez la Quantité & le Prix :** Pour chaque produit, vous pouvez spécifier la quantité et le prix de vente.\n4.  **Gestion des Stocks :** Le formulaire vérifie automatiquement le stock disponible pour les produits que vous ajoutez et vous avertira si vous essayez de vendre plus que ce que vous avez.\n5.  **Gérez les Paiements :** Vous pouvez enregistrer les paiements effectués pour la facture.\n6.  **Détails de Livraison :** Pour les commandes de vente, vous pouvez ajouter et gérer les informations de livraison."
+    },
+    "add_purchase_invoice": {
+        "name": "Créer une Facture d'Achat",
+        "description": "Enregistrez une nouvelle facture reçue d'un fournisseur.",
+        "details": "# Créer une Facture/Commande d'Achat\n\n## Aperçu\n\nCe formulaire sert à enregistrer une nouvelle **transaction d'achat** (facture ou commande) auprès d'un fournisseur. Il vous aide à suivre votre stock entrant et vos dépenses.\n\n### Processus\n\n1.  **Sélectionnez un Fournisseur :** Choisissez le fournisseur auprès duquel vous effectuez l'achat. Vous pouvez également **ajouter un nouveau fournisseur** directement depuis ce formulaire.\n2.  **Ajoutez des Produits :** Ajoutez les produits que vous avez achetés, en spécifiant la quantité et le prix d'achat.\n3.  **Gestion des Dates d'Expiration :** Lors de la création d'une facture d'achat, le système vous invitera à saisir les **dates d'expiration** des produits que vous recevez. C'est une fonctionnalité essentielle pour la gestion des stocks, en particulier pour les denrées périssables.\n4.  **Création à la Volée :** Vous pouvez ajouter de nouveaux produits au système directement depuis ce formulaire s'ils n'existent pas déjà dans votre catalogue."
+    },
+    "add_sales_order": {
+        "name": "Créer une Commande de Vente",
+        "description": "Créez une nouvelle commande pour un client.",
+        "details": "# Créer une Facture/Commande de Vente\n\n## Aperçu\n\nCe formulaire dynamique est utilisé pour créer une nouvelle **transaction de vente** (facture ou commande). Le processus est conçu pour être rapide et efficace.\n\n### Processus\n\n1.  **Sélectionnez un Client :** Commencez par choisir un client dans votre liste. Vous pouvez également **ajouter un nouveau client** à la volée s'il n'existe pas dans le système.\n2.  **Ajoutez des Produits :** Recherchez et ajoutez des produits à la liste de transaction.\n3.  **Spécifiez la Quantité & le Prix :** Pour chaque produit, vous pouvez spécifier la quantité et le prix de vente.\n4.  **Gestion des Stocks :** Le formulaire vérifie automatiquement le stock disponible pour les produits que vous ajoutez et vous avertira si vous essayez de vendre plus que ce que vous avez.\n5.  **Gérez les Paiements :** Vous pouvez enregistrer les paiements effectués pour la facture.\n6.  **Détails de Livraison :** Pour les commandes de vente, vous pouvez ajouter et gérer les informations de livraison."
+    },
+    "add_purchase_order": {
+        "name": "Créer une Commande d'Achat",
+        "description": "Créez une nouvelle commande à envoyer à un fournisseur.",
+        "details": "# Créer une Facture/Commande d'Achat\n\n## Aperçu\n\nCe formulaire sert à enregistrer une nouvelle **transaction d'achat** (facture ou commande) auprès d'un fournisseur. Il vous aide à suivre votre stock entrant et vos dépenses.\n\n### Processus\n\n1.  **Sélectionnez un Fournisseur :** Choisissez le fournisseur auprès duquel vous effectuez l'achat. Vous pouvez également **ajouter un nouveau fournisseur** directement depuis ce formulaire.\n2.  **Ajoutez des Produits :** Ajoutez les produits que vous avez achetés, en spécifiant la quantité et le prix d'achat.\n3.  **Gestion des Dates d'Expiration :** Lors de la création d'une facture d'achat, le système vous invitera à saisir les **dates d'expiration** des produits que vous recevez. C'est une fonctionnalité essentielle pour la gestion des stocks, en particulier pour les denrées périssables.\n4.  **Création à la Volée :** Vous pouvez ajouter de nouveaux produits au système directement depuis ce formulaire s'ils n'existent pas déjà dans votre catalogue."
+    },
+    "supplarclient_list": {
+        "name": "Fournisseurs & Clients",
+        "description": "Un répertoire de tous vos partenaires commerciaux.",
+        "details": "Un répertoire de tous vos partenaires commerciaux. Gérez les informations de contact, les conditions de paiement et l'historique des transactions pour vos fournisseurs et vos clients."
+    },
+    "accounts": {
+        "name": "Comptes Utilisateur",
+        "description": "Gérez les utilisateurs qui ont accès à l'application.",
+        "details": "Gérez les utilisateurs qui ont accès à l'application. Vous pouvez créer de nouveaux comptes utilisateur, modifier les comptes existants et attribuer des rôles et des autorisations."
+    },
+    "security": {
+        "name": "Accueil Sécurité",
+        "description": "Le tableau de bord principal pour toutes les configurations liées à la sécurité.",
+        "details": "Le tableau de bord principal pour toutes les configurations liées à la sécurité. Gérez les rôles des utilisateurs, les autorisations et surveillez l'accès et l'activité du système."
+    },
+    "settings": {
+        "name": "Paramètres",
+        "description": "Configurez les paramètres globaux de l'application.",
+        "details": "Configurez les paramètres globaux de l'application, tels que les préférences de langue, le thème (sombre/clair) et d'autres paramètres opérationnels."
+    },
+    "expired_products": {
+        "name": "Produits Expirés",
+        "description": "Obtenez un aperçu clair de tous les produits qui ont dépassé leur date d'expiration.",
+        "details": "Obtenez un aperçu clair de tous les produits qui ont dépassé leur date d'expiration. Cela aide à gérer les stocks et à prévenir le gaspillage."
+    },
+    "notifications_link": {
+        "name": "Notifications",
+        "description": "Consultez l'historique de toutes les notifications et alertes du système.",
+        "details": "Consultez l'historique de toutes les notifications et alertes du système. Cela inclut les événements importants, les avertissements et autres messages d'information."
+    }
+  }
+}

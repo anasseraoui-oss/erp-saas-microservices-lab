@@ -1,0 +1,10 @@
+{
+  "more_actions": "More actions",
+  "send_test_notification": "Send Test Notification",
+  "webSocketTestPanel": "WebSocket Test Panel",
+  "testNotificationSystem": "Test notification system",
+  "status": "Status:",
+  "testPing": "Test Ping",
+  "sendTest": "Send Test",
+  "connectToWebSocketToEnableTesting": "⚠️ Connect to WebSocket to enable testing"
+}

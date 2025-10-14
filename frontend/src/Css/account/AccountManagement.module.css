@@ -1,0 +1,403 @@
+/* src/Css/account/AccountManagement.module.css */
+
+/* --- Variables for easy theming --- */
+:root {
+    --primary-color: #4f46e5;
+    --secondary-color: #6b7280;
+    --danger-color: #ef4444;
+    --background-color-light: #f9fafb;
+    --text-color-light: #111827;
+    --border-color-light: #e5e7eb;
+    --card-background-light: #ffffff;
+    --input-background-light: #ffffff;
+    --pill-background-light: #eef2ff;
+    --pill-text-light: #4338ca;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+
+    /* Dark mode variables - now properly scoped */
+    --background-color-dark: #111827;
+    --text-color-dark: #f9fafb;
+    --border-color-dark: #374151;
+    --card-background-dark: #1f2937;
+    --input-background-dark: #374151;
+    --pill-background-dark: #3730a3;
+    --pill-text-dark: #e0e7ff;
+}
+
+/*
+===========================================================
+  MODAL STRUCTURE STYLES
+  (This makes the component behave like a modal popup)
+===========================================================
+*/
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100; /* Higher than CreateAccountModal's backdrop */
+    padding: 2rem;
+    overflow: hidden;
+    font-family: var(--font-sans), serif;
+}
+
+/* This is the main container for the modal content */
+.manageRolesPage {
+    width: 100%;
+    max-width: 1100px;
+    height: 90vh; /* Fixed height for the modal */
+    overflow: hidden; /* Hide scrollbars on the container itself */
+    display: flex;
+    flex-direction: column;
+    background: var(--card-background-light);
+    color: var(--text-color-light);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.manageRolesPage.dark {
+    background: var(--card-background-dark);
+    color: var(--text-color-dark);
+    border: 1px solid var(--border-color-dark);
+}
+
+/* The 'X' close button for the modal */
+.closeButton {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s, transform 0.2s;
+    z-index: 10;
+}
+.closeButton:hover {
+    color: #374151;
+    transform: scale(1.1);
+}
+.manageRolesPage.dark .closeButton {
+    color: #9ca3af;
+}
+.manageRolesPage.dark .closeButton:hover {
+    color: #f9fafb;
+}
+
+/* This container holds the actual content and is SCROLLABLE */
+.pageContent {
+    flex-grow: 1;
+    overflow-y: auto; /* IMPORTANT: This makes the content scroll */
+    padding: 1.5rem 2.5rem;
+}
+
+/*
+===========================================================
+  INTERNAL COMPONENT STYLES
+  (Your beautiful styles for tables, forms, etc.)
+===========================================================
+*/
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color-light);
+}
+.manageRolesPage.dark .pageHeader {
+    border-bottom-color: var(--border-color-dark);
+}
+
+.pageHeader h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+}
+
+.contentBox {
+    background-color: transparent; /* No longer needed, container is .manageRolesPage */
+    border: none; /* No longer needed */
+    border-radius: 0;
+    padding: 0; /* Padding is now on .pageContent */
+    box-shadow: none; /* No longer needed */
+}
+
+/* --- Table Styles --- */
+.rolesTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+.rolesTable th,
+.rolesTable td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color-light);
+}
+.manageRolesPage.dark .rolesTable th,
+.manageRolesPage.dark .rolesTable td {
+    border-bottom-color: var(--border-color-dark);
+}
+.rolesTable th {
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary-color);
+}
+.rolesTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Permission Pills --- */
+.permissionPills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.permissionPill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background-color: var(--pill-background-light);
+    color: var(--pill-text-light);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: help;
+}
+.manageRolesPage.dark .permissionPill {
+    background-color: var(--pill-background-dark);
+    color: var(--pill-text-dark);
+}
+.noPermissionsText {
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+/* --- Action Buttons --- */
+.actionsCell { text-align: right; }
+.actionButtons { display: flex; justify-content: flex-end; gap: 0.5rem; }
+.actionBtnIcon {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: var(--secondary-color);
+}
+.actionBtnIcon:hover {
+    background-color: #f3f4f6;
+}
+.manageRolesPage.dark .actionBtnIcon:hover {
+    background-color: var(--border-color-dark);
+}
+.editBtn:hover {
+    color: var(--primary-color);
+}
+.deleteBtn:hover {
+    color: var(--danger-color);
+}
+
+/* --- Form Styles --- */
+.formContainer {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.formHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.formHeader h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+.formGroup label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.formInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color-light);
+    border-radius: 0.5rem;
+    background-color: var(--input-background-light);
+    color: var(--text-color-light);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.manageRolesPage.dark .formInput {
+    border-color: var(--border-color-dark);
+    background-color: var(--input-background-dark);
+    color: var(--text-color-dark);
+}
+.formInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* --- Permissions Grid in Form --- */
+.permissionsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.selectAllBtn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+.selectAllBtn:hover {
+    background-color: var(--pill-background-light);
+}
+.manageRolesPage.dark .selectAllBtn:hover {
+    background-color: var(--pill-background-dark);
+}
+.permissionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    border: 1px solid var(--border-color-light);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.manageRolesPage.dark .permissionsGrid {
+    border-color: var(--border-color-dark);
+}
+
+.permissionCheckbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.permissionCheckbox:hover {
+    background-color: #f9fafb;
+}
+.manageRolesPage.dark .permissionCheckbox:hover {
+    background-color: var(--background-color-dark);
+}
+.permissionCheckbox input[type='checkbox'] {
+    margin-top: 0.25rem;
+    height: 1rem;
+    width: 1rem;
+    cursor: pointer;
+}
+.permissionCheckbox .details {
+    display: flex;
+    flex-direction: column;
+}
+.permissionCheckbox .name {
+    font-weight: 500;
+}
+.permissionCheckbox .description {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color-light);
+}
+.manageRolesPage.dark .formActions {
+    border-top-color: var(--border-color-dark);
+}
+
+/* --- Generic Button Styles --- */
+.btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.btnPrimary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+.btnPrimary:hover {
+    background-color: #4338ca;
+}
+.btnSecondary {
+    background-color: var(--card-background-light);
+    color: var(--text-color-light);
+    border: 1px solid var(--border-color-light);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+.manageRolesPage.dark .btnSecondary {
+    background-color: var(--card-background-dark);
+    color: var(--text-color-dark);
+    border-color: var(--border-color-dark);
+}
+.btnSecondary:hover {
+    background-color: #f9fafb;
+}
+.manageRolesPage.dark .btnSecondary:hover {
+    background-color: var(--background-color-dark);
+}
+.backButton {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: var(--secondary-color);
+}
+.backButton:hover {
+    background-color: #f3f4f6;
+    color: var(--text-color-light);
+}
+.manageRolesPage.dark .backButton:hover {
+    background-color: var(--border-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* --- Loading / Error States --- */
+.loadingState, .errorState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    font-size: 1.25rem;
+}
+.errorState {
+    color: var(--danger-color);
+}

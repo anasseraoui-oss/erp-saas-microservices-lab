@@ -1,0 +1,172 @@
+/* SupplierClientCard.module.css - Final Themed Version */
+
+/*
+  ===================================================================
+  ===        MASTER THEME & COLOR PALETTE (STYLE GUIDE)           ===
+  ===================================================================
+*/
+:root {
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-primary-dark: #1a1a2e;
+    --bg-secondary: #f8f9fa;
+    --bg-secondary-dark: #16213e;
+
+    /* Text */
+    --text-primary: #212529;
+    --text-primary-dark: #f7fafc;
+    --text-secondary: #6c757d;
+    --text-secondary-dark: #a0aec0;
+
+    /* Borders & Dividers */
+    --border-color: #e9ecef;
+    --border-color-dark: #4a5568;
+
+    /* Accents */
+    --accent-success: #1abc9c;
+    --accent-success-dark: #2ecc71;
+    --accent-danger: #e74c3c;
+    --accent-danger-dark: #ff7675;
+
+    /* Shadows */
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 1. Base Card Style --- */
+.card {
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    padding: 24px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    transition: all 0.3s ease-in-out;
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid transparent; /* Prepare for dark mode border */
+}
+
+/* --- 2. Card Header --- */
+.header {
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.header h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.header p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* --- 3. Card Body & Stats --- */
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.chartContainer {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.statItem span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.statItem strong {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Applying semantic accent colors via classes */
+.stats .statItem.success strong {
+    color: var(--accent-success);
+}
+.stats .statItem.danger strong {
+    color: var(--accent-danger);
+}
+
+.statItem small {
+    font-size: 0.8rem;
+    color: #adb5bd;
+}
+
+/* ======================================== */
+/* ===       DARK MODE OVERRIDES        === */
+/* ======================================== */
+.card.dark {
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+    border: 1px solid var(--border-color-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.card.dark .header {
+    border-bottom-color: var(--border-color-dark);
+}
+
+.card.dark .header h3 {
+    color: var(--text-primary-dark);
+}
+
+.card.dark .header p {
+    color: var(--text-secondary-dark);
+}
+
+.card.dark .stats {
+    background-color: var(--bg-secondary-dark);
+}
+
+.card.dark .statItem span {
+    color: var(--text-secondary-dark);
+}
+
+.card.dark .statItem strong {
+    color: var(--text-primary-dark);
+}
+
+.card.dark .stats .statItem.success strong {
+    color: var(--accent-success-dark);
+}
+
+.card.dark .stats .statItem.danger strong {
+    color: var(--accent-danger-dark);
+}
+
+.card.dark .statItem small {
+    color: #718096;
+}

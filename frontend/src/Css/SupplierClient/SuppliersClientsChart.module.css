@@ -1,0 +1,125 @@
+/*
+ * SuppliersClientsChart.module.css
+ * Scoped variables to prevent conflicts.
+ */
+
+.chartPageContainer {
+    /* Scoped CSS Variables */
+    --blue-500: #3b82f6;
+    --green-500: #10b981;
+    --yellow-500: #f59e0b;
+    --red-500: #ef4444;
+    --blue-600: #2563eb;
+    --green-600: #059669;
+    --yellow-600: #d97706;
+    --red-600: #dc2626;
+    --background-primary: #ffffff;
+    --background-secondary: #f9fafb;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --tooltip-background: rgba(255, 255, 255, 0.95);
+    --tooltip-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    padding: 2rem;
+    background: var(--background-primary);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chartPageContainer.dark {
+    --background-primary: #1f2937;
+    --background-secondary: #111827;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-color: #374151;
+    --tooltip-background: rgba(31, 41, 55, 0.95);
+    --tooltip-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --blue-600: #60a5fa;
+    --green-600: #34d399;
+    --yellow-600: #fbbf24;
+    --red-600: #f87171;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mainHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.pLead {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+    transition: color 0.3s ease;
+}
+
+.chartContainer {
+    background: var(--background-secondary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 500px;
+    transition: background-color 0.3s ease;
+}
+
+.h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+/* Custom Tooltip Styles */
+.tooltip {
+    background: var(--tooltip-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: var(--tooltip-shadow);
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    transition: all 0.3s ease;
+}
+
+.tooltipName {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 4px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.tooltipRow {
+    margin: 4px 0;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.salesColor { color: var(--blue-600); }
+.purchasesColor { color: var(--green-600); }
+.salesCreditColor { color: var(--yellow-600); }
+.purchaseDebtColor { color: var(--red-600); }
+
+@media (max-width: 768px) {
+    .chartPageContainer { padding: 1rem; margin: 0.5rem 0; }
+    .h2 { font-size: 1.5rem; }
+    .pLead { font-size: 1rem; }
+    .chartContainer { height: 400px; padding: 1rem; }
+    .tooltip { min-width: 150px; font-size: 12px; }
+}

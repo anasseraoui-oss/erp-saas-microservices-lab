@@ -1,0 +1,17 @@
+{
+  "activity_log": {
+    "LOGIN_SUCCESS": "User logged in successfully.",
+    "LOGIN_FAILURE": "User failed to log in.",
+    "LOGOUT": "User logged out.",
+    "USER_CREATED": "Created a new user: {{username}}.",
+    "USER_UPDATED": "Updated user details for: {{username}}.",
+    "USER_DELETED": "Deleted user: {{username}}.",
+    "USER_VIEWED_DETAILS": "Viewed details for user: {{username}}.",
+    "PRODUCT_CREATED": "Created a new product: {{productName}}.",
+    "PRODUCT_UPDATED": "Updated product: {{productName}}.",
+    "PRODUCT_DELETED": "Deleted product: {{productName}}.",
+    "ORDER_CREATED": "Created a new order: #{{orderId}}.",
+    "ORDER_UPDATED": "Updated order: #{{orderId}}.",
+    "ORDER_CANCELED": "Canceled order: #{{orderId}}."
+  }
+}

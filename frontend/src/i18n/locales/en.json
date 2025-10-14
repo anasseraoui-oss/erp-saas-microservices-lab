@@ -1,0 +1,221 @@
+{
+  "global": {
+    "search": "Search",
+    "search_placeholder": "Search by name, email, or role...",
+    "submit": "Submit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "view": "View",
+    "close": "Close",
+    "confirm": "Confirm",
+    "loading": "Loading...",
+    "no_results": "No results found.",
+    "error_occurred": "An error occurred. Please try again.",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No",
+    "retry": "Retry",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "accounts": "Accounts",
+    "products": "Products",
+    "orders": "Orders",
+    "invoices": "Invoices",
+    "settings": "Settings",
+    "logout": "Logout",
+    "sales": "Sales",
+    "purchases": "Purchases",
+    "statistics": "Statistics",
+    "notifications": "Notifications"
+  },
+  "account": {
+    "dashboard_title": "Accounts Dashboard",
+    "dashboard_subtitle": "Central hub for managing users, roles, and system activity.",
+    "account_list": "Account List",
+    "create_account": "Create Account",
+    "role_management": "Role Management",
+    "activity_stats": "Activity Statistics",
+    "manage_users": "Manage Users",
+    "user_details": "User Details",
+    "full_name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "password_confirm": "Confirm Password",
+    "roles": "Roles",
+    "assign_roles": "Assign Roles",
+    "search_users_roles": "Search users and roles",
+    "delete_user_confirm": "Are you sure you want to delete this user?",
+    "active": "Active",
+    "disabled": "Disabled"
+  },
+  "product": {
+    "product_list": "Product List",
+    "add_product": "Add Product",
+    "product_name": "Product Name",
+    "price": "Price",
+    "initial_price": "Initial Price",
+    "quantity": "Quantity",
+    "category": "Category",
+    "barcode": "Barcode",
+    "product_image": "Product Image",
+    "delete_product_confirm": "Are you sure you want to delete this product?",
+    "no_products_found": "No products found."
+  },
+  "order_invoice": {
+    "order_details": "Order Details",
+    "invoice_details": "Invoice Details",
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "total_amount": "Total Amount",
+    "paid_amount": "Paid Amount",
+    "sold_amount": "Sold Amount",
+    "payment_status": "Payment Status",
+    "order_status": "Order Status",
+    "date": "Date",
+    "line_items": "Line Items",
+    "payment_history": "Payment History",
+    "delivery_info": "Delivery Information",
+    "status": {
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "partpaid": "Partially Paid",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "canceled": "Canceled"
+    }
+  },
+  "form": {
+    "required_field": "This field is required.",
+    "invalid_email": "Please enter a valid email address.",
+    "password_mismatch": "Passwords do not match.",
+    "leave_blank_to_keep": "Leave blank to keep current"
+  },
+  "stats": {
+    "total_users": "Total Users",
+    "total_activities": "Total Activities",
+    "most_active_user": "Most Active User",
+    "most_common_activity": "Most Common Activity",
+    "sales_vs_purchases": "Sales vs Purchases Ratio"
+  },
+  "statisticsp_pay": {
+    "chart_title": "{{title}} - Top 15 by {{criteria}}",
+    "payment": {
+      "title": "Payment Statistics",
+      "sales": "Sales",
+      "purchases": "Purchases",
+      "total_paid": "Total Paid",
+      "total_unpaid": "Total Unpaid",
+      "fully_paid_invoices": "Fully Paid Invoices",
+      "partially_paid_invoices": "Partially Paid Invoices",
+      "unpaid_invoices": "Unpaid Invoices",
+      "payment_status_distribution": "Payment Status Distribution",
+      "paid_vs_unpaid_recent": "Paid vs. Unpaid (Recent Invoices)",
+      "paid": "Paid",
+      "partially_paid": "Partially Paid",
+      "unpaid": "Unpaid",
+      "payments_trend_30_days": "Payments Trend (Last 30 Days)",
+      "top_5_outstanding_debts": "Top 5 Outstanding Debts"
+    }
+  },
+  "status_pending": "Pending",
+  "status_sent": "Sent",
+  "status_failed": "Failed",
+  "doc": {
+    "title": "Application Documentation",
+    "subtitle": "A guide to the pages and features of the application.",
+    "stats_link": {
+      "name": "Dashboard",
+      "description": "Provides a comprehensive overview of your business with key statistics and analytics.",
+      "details": "The main dashboard provides a comprehensive overview of your business with key statistics and analytics. Track sales, purchases, payment statuses, and other important metrics in real-time."
+    },
+    "products": {
+      "name": "Products",
+      "description": "The central hub for your product catalog.",
+      "details": "# Product Management\n\n## Overview\n\nThe **Product Management** page is your central command for everything related to your inventory. It provides a rich, interactive interface to view, search, and manage all the products you sell.\n\n### Key Features\n\n- **Product Grid:** A visually appealing grid that displays all your products as cards. Each card provides a quick overview of the product.\n- **Advanced Search & Filter:**\n    - Use the main search bar to instantly find products by **name** or **barcode**.\n    - A sophisticated **category browser** allows you to drill down and filter the product list to a specific category or sub-category.\n- **Core Actions:**\n    - **Add Product:** Opens a modal form to create a new product from scratch.\n    - **View Details:** Click on any product card to open a modal with a detailed, read-only view of the product's information.\n    - **Edit Product:** Allows you to modify the information for an existing product.\n    - **Delete Product:** Permanently removes a product from the system. A confirmation prompt ensures you don't delete something by accident.\n- **Insightful Reports:**\n    - **Performance Analysis:** Access a dedicated view with charts and statistics to analyze product performance, showing you top sellers and purchase trends.\n    - **Activity Report:** Get insights into your operational efficiency by seeing statistics on when products were created and last updated."
+    },
+    "add_products": {
+      "name": "Add Product",
+      "description": "Use this form to add new products to your catalog.",
+      "details": "# Add/Edit Product Form\n\n## Overview\n\nThe **Add/Edit Product** form is a versatile tool for managing the core details of your products. Whether you're adding a new item to your inventory or updating an existing one, this form provides all the necessary fields.\n\n### Form Fields\n\n- **Product Name:** The primary, user-facing name of the product.\n- **Initial Price:** The cost of the product when you purchased it (the cost price).\n- **Price:** The price at which you sell the product to customers (the selling price).\n- **Quantity:** The current stock level for this product.\n- **Quantity Almost Depleted:** A threshold that, when reached, will trigger a low-stock warning.\n- **Barcode:** The product's barcode for easy scanning with a barcode reader.\n- **Category:** The category the product belongs to (e.g., `Electronics > Laptops`). This helps in organizing your products.\n\n### Image Management\n\nThe form offers two convenient ways to add an image to your product:\n1.  **Automatic:** If you don't upload an image, the system will automatically fetch a relevant image from an online service based on the product's name. This saves you time.\n2.  **Manual Upload:** You have the option to upload your own custom image file for the product, giving you full control over its presentation."
+    },
+    "sales_invoices": {
+      "name": "Sales Invoices",
+      "description": "Manage all invoices related to customer sales.",
+      "details": "# Sales & Purchase Management (Invoices & Orders)\n\n## Overview\n\nThis is a powerful and feature-rich component for displaying and managing lists of **invoices** and **orders**. It is highly configurable and serves as the backbone for tracking both sales and purchases, providing extensive filtering and search capabilities.\n\n### Key Features\n\n- **Unified Interface:** A single, consistent interface is used to display lists of invoices or orders, for both sales and purchases.\n- **Advanced Filtering:** Allows you to precisely filter the list by:\n    - **Date Range**\n    - **Customer** or **Supplier**\n    - A specific **Product** (to see all transactions involving that product)\n    - The user who **Created** the transaction\n    - The user who **Executed** the transaction\n    - **Order Status** (e.g., Pending, Shipped, Delivered)\n- **Global Search:** A powerful search bar to quickly find items by ID, customer/supplier name, amount, or payment status.\n- **Detailed Modal View:** Clicking on any row opens a modal with a comprehensive view of the selected invoice or order, showing all line items, payment history, and more.\n- **Quick Actions:** Each item in the list has a menu with actions to **Edit** or **Delete** it.\n- **Status Badges:** Clear, color-coded badges for **Payment Status** (e.g., Paid, Unpaid) and **Order Status** make it easy to understand the state of each transaction at a glance.\n- **Dark Mode Ready:** The entire component is beautifully styled for a seamless experience in dark mode."
+    },
+    "purchase_invoices": {
+      "name": "Purchase Invoices",
+      "description": "Manage all invoices from your suppliers.",
+      "details": "# Sales & Purchase Management (Invoices & Orders)\n\n## Overview\n\nThis is a powerful and feature-rich component for displaying and managing lists of **invoices** and **orders**. It is highly configurable and serves as the backbone for tracking both sales and purchases, providing extensive filtering and search capabilities.\n\n### Key Features\n\n- **Unified Interface:** A single, consistent interface is used to display lists of invoices or orders, for both sales and purchases.\n- **Advanced Filtering:** Allows you to precisely filter the list by:\n    - **Date Range**\n    - **Customer** or **Supplier**\n    - A specific **Product** (to see all transactions involving that product)\n    - The user who **Created** the transaction\n    - The user who **Executed** the transaction\n    - **Order Status** (e.g., Pending, Shipped, Delivered)\n- **Global Search:** A powerful search bar to quickly find items by ID, customer/supplier name, amount, or payment status.\n- **Detailed Modal View:** Clicking on any row opens a modal with a comprehensive view of the selected invoice or order, showing all line items, payment history, and more.\n- **Quick Actions:** Each item in the list has a menu with actions to **Edit** or **Delete** it.\n- **Status Badges:** Clear, color-coded badges for **Payment Status** (e.g., Paid, Unpaid) and **Order Status** make it easy to understand the state of each transaction at a glance.\n- **Dark Mode Ready:** The entire component is beautifully styled for a seamless experience in dark mode."
+    },
+    "sales_orders": {
+      "name": "Sales Orders",
+      "description": "Track customer orders before they become invoices.",
+      "details": "# Sales & Purchase Management (Invoices & Orders)\n\n## Overview\n\nThis is a powerful and feature-rich component for displaying and managing lists of **invoices** and **orders**. It is highly configurable and serves as the backbone for tracking both sales and purchases, providing extensive filtering and search capabilities.\n\n### Key Features\n\n- **Unified Interface:** A single, consistent interface is used to display lists of invoices or orders, for both sales and purchases.\n- **Advanced Filtering:** Allows you to precisely filter the list by:\n    - **Date Range**\n    - **Customer** or **Supplier**\n    - A specific **Product** (to see all transactions involving that product)\n    - The user who **Created** the transaction\n    - The user who **Executed** the transaction\n    - **Order Status** (e.g., Pending, Shipped, Delivered)\n- **Global Search:** A powerful search bar to quickly find items by ID, customer/supplier name, amount, or payment status.\n- **Detailed Modal View:** Clicking on any row opens a modal with a comprehensive view of the selected invoice or order, showing all line items, payment history, and more.\n- **Quick Actions:** Each item in the list has a menu with actions to **Edit** or **Delete** it.\n- **Status Badges:** Clear, color-coded badges for **Payment Status** (e.g., Paid, Unpaid) and **Order Status** make it easy to understand the state of each transaction at a glance.\n- **Dark Mode Ready:** The entire component is beautifully styled for a seamless experience in dark mode."
+    },
+    "purchase_orders": {
+      "name": "Purchase Orders",
+      "description": "Track orders you have placed with your suppliers.",
+      "details": "# Sales & Purchase Management (Invoices & Orders)\n\n## Overview\n\nThis is a powerful and feature-rich component for displaying and managing lists of **invoices** and **orders**. It is highly configurable and serves as the backbone for tracking both sales and purchases, providing extensive filtering and search capabilities.\n\n### Key Features\n\n- **Unified Interface:** A single, consistent interface is used to display lists of invoices or orders, for both sales and purchases.\n- **Advanced Filtering:** Allows you to precisely filter the list by:\n    - **Date Range**\n    - **Customer** or **Supplier**\n    - A specific **Product** (to see all transactions involving that product)\n    - The user who **Created** the transaction\n    - The user who **Executed** the transaction\n    - **Order Status** (e.g., Pending, Shipped, Delivered)\n- **Global Search:** A powerful search bar to quickly find items by ID, customer/supplier name, amount, or payment status.\n- **Detailed Modal View:** Clicking on any row opens a modal with a comprehensive view of the selected invoice or order, showing all line items, payment history, and more.\n- **Quick Actions:** Each item in the list has a menu with actions to **Edit** or **Delete** it.\n- **Status Badges:** Clear, color-coded badges for **Payment Status** (e.g., Paid, Unpaid) and **Order Status** make it easy to understand the state of each transaction at a glance.\n- **Dark Mode Ready:** The entire component is beautifully styled for a seamless experience in dark mode."
+    },
+    "add_sales_invoice": {
+      "name": "Create Sales Invoice",
+      "description": "Generate a new invoice for a customer sale.",
+      "details": "# Create Sales Invoice/Order\n\n## Overview\n\nThis dynamic form is used to create a new **sales transaction** (either an invoice or an order). The workflow is designed to be fast and efficient.\n\n### Workflow\n\n1.  **Select a Customer:** Start by choosing a customer from your list. You can also **add a new customer** on the fly if they don't exist in the system.\n2.  **Add Products:** Search for and add products to the transaction list.\n3.  **Specify Quantity & Price:** For each product, you can specify the quantity and the selling price.\n4.  **Stock Management:** The form automatically checks for available stock for the products you add and will warn you if you try to sell more than you have.\n5.  **Manage Payments:** You can record payments made against the invoice.\n6.  **Delivery Details:** For sales orders, you can add and manage delivery information."
+    },
+    "add_purchase_invoice": {
+      "name": "Create Purchase Invoice",
+      "description": "Record a new invoice received from a supplier.",
+      "details": "# Create Purchase Invoice/Order\n\n## Overview\n\nThis form is for recording a new **purchase transaction** (invoice or order) from a supplier. It helps you keep track of your incoming stock and expenses.\n\n### Workflow\n\n1.  **Select a Supplier:** Choose the supplier you are purchasing from. You can also **add a new supplier** directly from this form.\n2.  **Add Products:** Add the products you purchased, specifying the quantity and the purchase price.\n3.  **Expiration Date Management:** When creating a purchase invoice, the system will prompt you to enter **expiration dates** for the products you are receiving. This is a critical feature for inventory management, especially for perishable goods.\n4.  **On-the-fly Creation:** You can add new products to the system directly from this form if they don't already exist in your catalog."
+    },
+    "add_sales_order": {
+      "name": "Create Sales Order",
+      "description": "Create a new order for a customer.",
+      "details": "# Create Sales Invoice/Order\n\n## Overview\n\nThis dynamic form is used to create a new **sales transaction** (either an invoice or an order). The workflow is designed to be fast and efficient.\n\n### Workflow\n\n1.  **Select a Customer:** Start by choosing a customer from your list. You can also **add a new customer** on the fly if they don't exist in the system.\n2.  **Add Products:** Search for and add products to the transaction list.\n3.  **Specify Quantity & Price:** For each product, you can specify the quantity and the selling price.\n4.  **Stock Management:** The form automatically checks for available stock for the products you add and will warn you if you try to sell more than you have.\n5.  **Manage Payments:** You can record payments made against the invoice.\n6.  **Delivery Details:** For sales orders, you can add and manage delivery information."
+    },
+    "add_purchase_order": {
+      "name": "Create Purchase Order",
+      "description": "Create a new order to send to a supplier.",
+      "details": "# Create Purchase Invoice/Order\n\n## Overview\n\nThis form is for recording a new **purchase transaction** (invoice or order) from a supplier. It helps you keep track of your incoming stock and expenses.\n\n### Workflow\n\n1.  **Select a Supplier:** Choose the supplier you are purchasing from. You can also **add a new supplier** directly from this form.\n2.  **Add Products:** Add the products you purchased, specifying the quantity and the purchase price.\n3.  **Expiration Date Management:** When creating a purchase invoice, the system will prompt you to enter **expiration dates** for the products you are receiving. This is a critical feature for inventory management, especially for perishable goods.\n4.  **On-the-fly Creation:** You can add new products to the system directly from this form if they don't already exist in your catalog."
+    },
+    "supplarclient_list": {
+      "name": "Suppliers & Clients",
+      "description": "A directory of all your business partners.",
+      "details": "A directory of all your business partners. Manage contact information, payment terms, and transaction history for both your suppliers and your clients."
+    },
+    "accounts": {
+      "name": "User Accounts",
+      "description": "Manage the users who have access to the application.",
+      "details": "Manage the users who have access to the application. You can create new user accounts, edit existing ones, and assign roles and permissions."
+    },
+    "security": {
+      "name": "Security Home",
+      "description": "The main dashboard for all security-related configurations.",
+      "details": "The main dashboard for all security-related configurations. Manage user roles, permissions, and monitor system access and activity."
+    },
+    "settings": {
+      "name": "Settings",
+      "description": "Configure global settings for the application.",
+      "details": "Configure global settings for the application, such as language preferences, theme (dark/light), and other operational settings."
+    },
+    "expired_products": {
+      "name": "Expired Products",
+      "description": "Get a clear overview of all products that are past their expiration date.",
+      "details": "Get a clear overview of all products that are past their expiration date. This helps with inventory management and prevents waste."
+    },
+    "notifications_link": {
+      "name": "Notifications",
+      "description": "View a history of all system notifications and alerts.",
+      "details": "View a history of all system notifications and alerts. This includes important events, warnings, and other informational messages."
+    }
+  }
+}

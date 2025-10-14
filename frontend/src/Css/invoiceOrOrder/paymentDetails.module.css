@@ -1,0 +1,523 @@
+/* InvoiceDetails.module.css - Fixed Dark Mode Implementation */
+
+/* Modal Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    backdrop-filter: blur(4px);
+}
+
+/* Modal Container */
+.modalContainer {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 550px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modalContainer.dark {
+    background: #161a28;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 15px rgba(99, 102, 241, 0.1);
+    border: 1px solid #2d3748;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal Header */
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modalHeader.dark {
+    border-bottom: 1px solid #2d3748;
+}
+
+.modalTitle {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.modalTitle.dark {
+    color: #e5e7eb;
+}
+
+.closeButton {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+    color: #111827;
+    background-color: #f3f4f6;
+    transform: rotate(90deg);
+}
+
+.closeButton.dark {
+    color: #9ca3af;
+}
+
+.closeButton.dark:hover {
+    color: #ffffff;
+    background-color: #374151;
+}
+
+/* Modal Body */
+.modalBody {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 24px;
+}
+
+.modalBody.dark {
+    /* Dark mode specific styles for modal body if needed */
+}
+
+/* Form Row Layout */
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.formRow:last-child {
+    border-bottom: none;
+}
+
+.modalBody.dark .formRow {
+    border-bottom-color: #2d3748;
+}
+
+/* Form Labels */
+.formLabel {
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+    flex-basis: 40%;
+}
+
+.formLabel.dark {
+    color: #d1d5db;
+}
+
+/* Form Values (Read-only) */
+.formValue {
+    font-weight: 500;
+    color: #111827;
+    font-size: 0.9rem;
+    flex-basis: 50%;
+    text-align: right;
+}
+
+.formValue.dark {
+    color: #e5e7eb;
+}
+
+/* Form Select */
+.formSelect {
+    flex-basis: 50%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    color: #111827;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.formSelect:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.formSelect.dark {
+    background-color: #1f2937;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+.formSelect.dark:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+/* Modal Footer */
+.modalFooter {
+    padding: 16px 24px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.modalFooter.dark {
+    border-top: 1px solid #2d3748;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btnSecondary {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.btnSecondary:hover {
+    background-color: #d1d5db;
+}
+
+.btnSecondary.dark {
+    background-color: #374151;
+    color: #e5e7eb;
+}
+
+.btnSecondary.dark:hover {
+    background-color: #4b5563;
+}
+
+.btnSuccess {
+    background-color: #4f46e5;
+    color: #ffffff;
+}
+
+.btnSuccess:hover {
+    background-color: #4338ca;
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modalContainer {
+        width: 95%;
+        max-width: none;
+    }
+
+    .modalHeader,
+    .modalBody,
+    .modalFooter {
+        padding: 16px 20px;
+    }
+
+    .formRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 0;
+    }
+
+    .formLabel {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    .formValue,
+    .formSelect {
+        flex-basis: auto;
+        width: 100%;
+        text-align: left;
+    }
+
+    .modalFooter {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .modalContainer {
+        width: 98%;
+        max-height: 95vh;
+    }
+
+    .modalHeader {
+        padding: 16px;
+    }
+
+    .modalBody {
+        padding: 12px 16px;
+    }
+
+    .modalFooter {
+        padding: 12px 16px;
+    }
+
+    .modalTitle {
+        font-size: 1.125rem;
+    }
+}
+
+/* Focus States for Accessibility */
+.closeButton:focus,
+.formSelect:focus,
+.btn:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .modalOverlay {
+        position: static;
+        background: none;
+        backdrop-filter: none;
+    }
+
+    .modalContainer {
+        box-shadow: none;
+        border: 1px solid #000;
+        width: 100%;
+        max-width: none;
+        max-height: none;
+    }
+
+    .closeButton {
+        display: none;
+    }
+}
+.paymentSectionContainer {
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.paymentSectionContainer.dark {
+    background-color: #2c3154;
+}
+
+.historyBody {
+    background-color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.dark .historyBody {
+    background-color: #222639;
+    box-shadow: none;
+}
+
+.paymentList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.paymentItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.paymentItem:hover {
+    background-color: #f8f9fa;
+}
+
+.dark .paymentItem {
+    border-bottom: 1px solid #3d4057;
+}
+
+.dark .paymentItem:hover {
+    background-color: #303551;
+}
+
+.paymentItem:last-child {
+    border-bottom: none;
+}
+
+.paymentText {
+    color: #495057;
+}
+
+.dark .paymentText {
+    color: #cdd5e0;
+}
+
+.paymentText strong {
+    color: #212529;
+    font-weight: 600;
+}
+
+.dark .paymentText strong {
+    color: #ffffff;
+}
+
+.noPaymentsText {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: #6c757d;
+}
+
+.dark .noPaymentsText {
+    color: #8f96b3;
+}
+
+.addPaymentContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0 0.5rem;
+}
+
+.amountInputWrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.amountInputWrapper:focus-within {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.dark .amountInputWrapper {
+    background-color: #343a40;
+    border: 1px solid #4a4e6b;
+}
+
+.dark .amountInputWrapper:focus-within {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.2);
+}
+
+.currencySymbol {
+    padding: 0.5rem 0.75rem;
+    color: #495057;
+    background-color: #dde1e5;
+    border-right: 1px solid #ced4da;
+}
+
+.dark .currencySymbol {
+    color: #cdd5e0;
+    background-color: #4a4e6b;
+    border-right: 1px solid #4a4e6b;
+}
+
+.amountInput {
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+    color: #212529;
+    padding: 0.75rem;
+    width: 100%;
+    -moz-appearance: textfield;
+}
+
+.amountInput::-webkit-outer-spin-button,
+.amountInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.amountInput:focus {
+    outline: none;
+}
+
+.dark .amountInput {
+    color: #ffffff;
+}
+
+.addButton {
+    padding: 0.75rem 1.5rem;
+    background-color: #198754;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.addButton:hover {
+    background-color: #157347;
+}
+
+.addButton:active {
+    transform: scale(0.98);
+}
+
+.dark .addButton {
+    background-color: #28a745;
+}
+
+.dark .addButton:hover {
+    background-color: #218838;
+}
+
+.paidAmountValue {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #198754;
+    text-align: right;
+    padding: 8px;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+}
+
+.dark .paidAmountValue {
+    color: #28a745;
+    background-color: #2c3e38;
+}

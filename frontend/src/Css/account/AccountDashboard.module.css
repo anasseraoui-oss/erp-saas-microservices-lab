@@ -1,0 +1,570 @@
+/* src/Css/account/AccountDashboard.module.css - Corrected Dark Mode Version */
+
+/*
+  ===================================================================
+  ===        MASTER THEME & COLOR PALETTE (STYLE GUIDE)           ===
+  ===================================================================
+*/
+:root {
+    /* Light Theme Variables */
+    --bg-primary: #f8f9fa;
+    --bg-element: #ffffff;
+    --bg-element-hover: #f1f3f5;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #e9ecef;
+    --accent-primary: #0d6efd;
+    --accent-primary-hover: #0b5ed7;
+    --accent-success: #198754;
+    --accent-warning: #ffc107;
+    --accent-danger: #dc3545;
+    --shadow-light: 0 4px 15px rgba(0,0,0,0.06);
+    --shadow-hover-light: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Dark Theme Variables - Applied when html has .dark-mode class */
+html.dark-mode,
+.dark-mode,
+[data-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-element: #16213e;
+    --bg-element-hover: #2c2c3e;
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --border-color: #2c2c3e;
+    --accent-primary: #60a5fa;
+    --accent-primary-hover: #3b82f6;
+    --accent-success: #48bb78;
+    --accent-warning: #ed8936;
+    --accent-danger: #f56565;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-hover-light: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 1. Main Container --- */
+.dashboardContainer {
+    padding: 3rem 4rem;
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+/* Dark mode container with animated background pattern */
+html.dark-mode .dashboardContainer,
+.dark-mode .dashboardContainer,
+[data-theme="dark"] .dashboardContainer {
+    background-color: #1a1a2e !important;
+    background-image:
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: panBackground 40s linear infinite;
+    color: #e2e8f0 !important;
+}
+
+@keyframes panBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: -400px 400px; }
+}
+
+/* --- 2. Header & Search Bar --- */
+.dashboardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+
+.headerContent h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+/* Dark mode header with subtle glow effect */
+html.dark-mode .headerContent h1,
+.dark-mode .headerContent h1,
+[data-theme="dark"] .headerContent h1 {
+    color: #e2e8f0 !important;
+    text-shadow: 0 0 20px rgba(226, 232, 240, 0.3);
+}
+
+.headerContent p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 450px;
+    transition: color 0.3s ease;
+}
+
+html.dark-mode .headerContent p,
+.dark-mode .headerContent p,
+[data-theme="dark"] .headerContent p {
+    color: #a0aec0 !important;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-element);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    padding: 0.5rem;
+    min-width: 400px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+/* Dark mode search bar with enhanced styling */
+html.dark-mode .searchBar,
+.dark-mode .searchBar,
+[data-theme="dark"] .searchBar {
+    background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%) !important;
+    border: 1px solid #2c2c3e !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.searchIcon {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin: 0 0.75rem;
+    transition: color 0.3s ease;
+}
+
+html.dark-mode .searchIcon,
+.dark-mode .searchIcon,
+[data-theme="dark"] .searchIcon {
+    color: #a0aec0 !important;
+}
+
+.searchBar input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+html.dark-mode .searchBar input,
+.dark-mode .searchBar input,
+[data-theme="dark"] .searchBar input {
+    color: #e2e8f0 !important;
+}
+
+.searchBar input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+html.dark-mode .searchBar input::placeholder,
+.dark-mode .searchBar input::placeholder,
+[data-theme="dark"] .searchBar input::placeholder {
+    color: #a0aec0 !important;
+}
+
+.searchBar button {
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.searchBar button:hover {
+    background-color: var(--accent-primary-hover);
+}
+
+.searchBar button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- 3. Search Results --- */
+.searchResultsSection {
+    background-color: var(--bg-element);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+/* Dark mode search results with gradient background */
+html.dark-mode .searchResultsSection,
+.dark-mode .searchResultsSection,
+[data-theme="dark"] .searchResultsSection {
+    background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%) !important;
+    border: 1px solid #2c2c3e !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.searchResultsSection h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+html.dark-mode .searchResultsSection h2,
+.dark-mode .searchResultsSection h2,
+[data-theme="dark"] .searchResultsSection h2 {
+    color: #e2e8f0 !important;
+    border-bottom-color: #2c2c3e !important;
+}
+
+.errorMessage {
+    color: var(--accent-danger);
+    font-weight: 500;
+}
+
+.resultsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.resultsList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--bg-element-hover);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+/* Dark mode results list items with hover effects */
+html.dark-mode .resultsList li,
+.dark-mode .resultsList li,
+[data-theme="dark"] .resultsList li {
+    background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%) !important;
+    border: 1px solid #2c2c3e !important;
+}
+
+.resultsList li:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+    border-color: var(--border-color);
+}
+
+html.dark-mode .resultsList li:hover,
+.dark-mode .resultsList li:hover,
+[data-theme="dark"] .resultsList li:hover {
+    border-color: #4a5568 !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+    background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%) !important;
+}
+
+.resultName {
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+html.dark-mode .resultName,
+.dark-mode .resultName,
+[data-theme="dark"] .resultName {
+    color: #e2e8f0 !important;
+}
+
+.resultRoles {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.roleBadge {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+}
+
+/* Dark mode role badges */
+html.dark-mode .roleBadge,
+.dark-mode .roleBadge,
+[data-theme="dark"] .roleBadge {
+    background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%) !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #4a5568;
+}
+
+/* --- 4. Main Action Cards Grid --- */
+.actionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.actionCard {
+    background: var(--bg-element);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark mode action cards with enhanced styling */
+html.dark-mode .actionCard,
+.dark-mode .actionCard,
+[data-theme="dark"] .actionCard {
+    background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%) !important;
+    border: 1px solid #2c2c3e !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enhanced sheen effect for dark mode */
+.actionCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.04), transparent);
+    transition: left 0.6s ease;
+}
+
+html.dark-mode .actionCard::before,
+.dark-mode .actionCard::before,
+[data-theme="dark"] .actionCard::before {
+    background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.08), transparent);
+}
+
+.actionCard:hover::before {
+    left: 100%;
+}
+
+.actionCard:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover-light);
+}
+
+/* Dark mode action card hover with enhanced effects */
+html.dark-mode .actionCard:hover,
+.dark-mode .actionCard:hover,
+[data-theme="dark"] .actionCard:hover {
+    border-color: #4a5568 !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+    background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%) !important;
+}
+
+.cardIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.actionCard h3 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+html.dark-mode .actionCard h3,
+.dark-mode .actionCard h3,
+[data-theme="dark"] .actionCard h3 {
+    color: #e2e8f0 !important;
+}
+
+.actionCard p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+html.dark-mode .actionCard p,
+.dark-mode .actionCard p,
+[data-theme="dark"] .actionCard p {
+    color: #a0aec0 !important;
+}
+
+.cardAction {
+    font-weight: 600;
+    color: var(--accent-primary);
+    transition: all 0.2s ease;
+}
+
+.actionCard:hover .cardAction {
+    text-decoration: underline;
+    color: var(--accent-primary-hover);
+}
+
+/* Card Specific Colors - Enhanced for dark mode */
+.accounts .cardIcon {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+}
+.accounts:hover {
+    border-color: #60a5fa;
+}
+
+html.dark-mode .accounts:hover,
+.dark-mode .accounts:hover,
+[data-theme="dark"] .accounts:hover {
+    border-color: #60a5fa !important;
+    box-shadow: 0 15px 35px rgba(96, 165, 250, 0.2) !important;
+}
+
+.create .cardIcon {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+}
+.create:hover {
+    border-color: #48bb78;
+}
+
+html.dark-mode .create:hover,
+.dark-mode .create:hover,
+[data-theme="dark"] .create:hover {
+    border-color: #48bb78 !important;
+    box-shadow: 0 15px 35px rgba(72, 187, 120, 0.2) !important;
+}
+
+.roles .cardIcon {
+    background: linear-gradient(135deg, #ed8936, #dd6b20);
+}
+.roles:hover {
+    border-color: #ed8936;
+}
+
+html.dark-mode .roles:hover,
+.dark-mode .roles:hover,
+[data-theme="dark"] .roles:hover {
+    border-color: #ed8936 !important;
+    box-shadow: 0 15px 35px rgba(237, 137, 54, 0.2) !important;
+}
+
+.stats .cardIcon {
+    background: linear-gradient(135deg, #f56565, #e53e3e);
+}
+.stats:hover {
+    border-color: #f56565;
+}
+
+html.dark-mode .stats:hover,
+.dark-mode .stats:hover,
+[data-theme="dark"] .stats:hover {
+    border-color: #f56565 !important;
+    box-shadow: 0 15px 35px rgba(245, 101, 101, 0.2) !important;
+}
+
+/* ================================================= */
+/* ============= RESPONSIVE DESIGN ================= */
+/* ================================================= */
+
+@media (max-width: 1024px) {
+    .dashboardContainer {
+        padding: 2rem;
+    }
+
+    .dashboardHeader {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .searchBar {
+        min-width: 100%;
+    }
+
+    .actionsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboardContainer {
+        padding: 1rem;
+    }
+
+    .headerContent h1 {
+        font-size: 2rem;
+    }
+
+    .headerContent p {
+        font-size: 1rem;
+    }
+
+    .actionCard {
+        padding: 1.5rem;
+    }
+
+    .cardIcon {
+        font-size: 2rem;
+        padding: 0.6rem;
+    }
+
+    .actionCard h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* ================================================= */
+/* ========== ACCESSIBILITY IMPROVEMENTS =========== */
+/* ================================================= */
+
+.actionCard:focus,
+.resultsList li:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+html.dark-mode .actionCard:focus,
+html.dark-mode .resultsList li:focus,
+.dark-mode .actionCard:focus,
+.dark-mode .resultsList li:focus,
+[data-theme="dark"] .actionCard:focus,
+[data-theme="dark"] .resultsList li:focus {
+    outline-color: #60a5fa;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .actionCard,
+    .resultsList li,
+    .searchBar,
+    .searchResultsSection {
+        transition: none;
+    }
+
+    .actionCard:hover {
+        transform: none;
+    }
+
+    .resultsList li:hover {
+        transform: none;
+    }
+
+    html.dark-mode .dashboardContainer,
+    .dark-mode .dashboardContainer,
+    [data-theme="dark"] .dashboardContainer {
+        animation: none;
+    }
+}

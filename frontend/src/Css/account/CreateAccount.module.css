@@ -1,0 +1,83 @@
+/* src/Css/account/CreateAccount.module.css */
+.backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex; justify-content: center; align-items: center; z-index: 1000;
+}
+.create-account-container {
+    background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 100%; max-width: 650px; max-height: 90vh;
+    display: flex; flex-direction: column; overflow: hidden;
+}
+.create-account-form { display: flex; flex-direction: column; height: 100%; }
+.form-header {
+    padding: 1.25rem 1.75rem; border-bottom: 1px solid #e9ecef;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.form-header h2 { margin: 0; font-size: 1.5rem; color: #2c3e50; }
+.close-btn {
+    background: none; border: none; font-size: 2rem; line-height: 1;
+    color: #adb5bd; cursor: pointer; padding: 0;
+}
+.form-body { padding: 1.75rem; overflow-y: auto; flex-grow: 1; }
+.form-error-banner {
+    background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;
+    border-radius: 5px; padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.9rem;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label { margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #495057; }
+.form-group input {
+    padding: 0.75rem 1rem; border: 1px solid #ced4da;
+    border-radius: 5px; font-size: 1rem;
+}
+.roles-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e9ecef; }
+.roles-section h3 { margin-top: 0; margin-bottom: 1.25rem; font-size: 1.2rem; }
+.roles-checklist { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+.role-checkbox { display: flex; align-items: center; }
+.role-checkbox input { margin-right: 0.75rem; width: 18px; height: 18px; }
+.no-roles-message, .manage-roles-link { margin-top: 1.5rem; }
+.form-actions {
+    padding: 1.25rem 1.75rem; border-top: 1px solid #e9ecef;
+    display: flex; justify-content: flex-end; gap: 1rem; background-color: #f8f9fa;
+}
+.btn {
+    padding: 0.6rem 1.2rem; border-radius: 5px; font-size: 1rem;
+    font-weight: 600; cursor: pointer; border: none;
+}
+.btn-primary { background-color: #007bff; color: white; }
+.btn-primary:disabled { background-color: #a0c7f0; cursor: not-allowed; }
+.btn-secondary { background-color: #6c757d; color: white; }
+
+/* Styles for Loading/Error State */
+.initialization-state, .initialization-state-error { padding: 3rem 2rem; text-align: center; font-size: 1.2rem; }
+.initialization-state-error { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.error-title { color: #e74c3c; margin: 0; }
+.error-message { margin: 0; color: #495057; }
+.error-actions { margin-top: 1rem; display: flex; gap: 1rem; }
+
+/* Dark Mode */
+.create-account-container.dark { background-color: #2d3748; color: #e2e8f0; }
+.dark .form-header, .dark .form-actions, .dark .roles-section { border-color: #4a5568; }
+.dark .form-header h2 { color: #fff; }
+.dark .form-actions { background-color: #1a202c; }
+.dark .form-group label { color: #a0aec0; }
+.dark .form-group input { background-color: #1a202c; border-color: #4a5568; color: #e2e8f0; }
+.dark .form-error-banner { background-color: #5d2429; color: #fed7d7; border-color: #e53e3e; }
+.dark .error-message { color: #a0aec0; }
+.manage-roles-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+}
+
+.manage-roles-link:hover {
+    text-decoration: underline;
+}
