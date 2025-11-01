@@ -1,0 +1,409 @@
+/* ... الأنماط السابقة تبقى كما هي ... */
+
+
+/*
+ * ===============================================
+ *  Appointments Component Styles
+ * ===============================================
+ * These styles are for the form and list within the Appointments view.
+ */
+.appointmentsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* Space between the form and the list */
+}
+
+.formSection, .listSection {
+    width: 100%;
+}
+
+.sectionTitle {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.appointmentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px; /* Limit form width for better readability */
+}
+
+.formInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.formButton {
+    align-self: flex-start; /* Button doesn't stretch full width */
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.formButton:hover {
+    background-color: #2563eb; /* Darker blue */
+    transform: translateY(-2px);
+}
+
+/*
+ * ===============================================
+ *  Appointments List Item States
+ * ===============================================
+ * We reuse .notificationList and .notificationItem, but add a modifier.
+ */
+
+.itemCompleted {
+    border-left-color: var(--chart-green); /* Use green for completed status */
+    background-color: rgba(16, 185, 129, 0.05); /* Very subtle green background */
+}
+
+.itemPending {
+    /* The default .notificationItem style with blue accent color works well for pending */
+}/*
+ * ===============================================
+ *  Main Container & Theming
+ * ===============================================
+ * This component uses CSS variables for theming,
+ * which are set globally by the useGlobalDarkMode hook.
+ */
+.centerContainer {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 2rem;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contentArea {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+/*
+ * ===============================================
+ *  Header & Control Panel
+ * ===============================================
+ */
+.centerHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.centerHeader h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.controlPanel {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 12px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+/*
+ * ===============================================
+ *  Control Buttons
+ * ===============================================
+ */
+.controlButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+
+.controlButton:hover {
+    color: var(--text-primary);
+    background-color: var(--hover-bg);
+}
+
+.controlButton.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.controlButton.active:hover {
+    background-color: #2563eb; /* A slightly darker blue for hover on active */
+}
+
+/*
+ * ===============================================
+ *  Notification History Specifics (if needed)
+ * ===============================================
+ * These styles will be applied to the child component.
+ */
+
+.historyContainer {
+    /* Styles for the history component can be scoped here if needed */
+}
+
+.historyTitle {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.notificationList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notificationItem {
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notificationItem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+
+.itemSubject {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.itemMessage {
+    margin: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.itemTime {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    text-align: right;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+}
+.appointmentsContainer {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.sectionTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--accent-color);
+}
+
+.appointmentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+}
+
+.formInput {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--color-info-bg);
+}
+
+.formButton {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: white;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.formButton:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.viewToggleButtons {
+    display: flex;
+    gap: 0.5rem;
+    border: 1px solid var(--border-color);
+    padding: 0.25rem;
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+}
+
+.toggleButton {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggleButton.active {
+    background-color: var(--bg-secondary);
+    color: var(--accent-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.dateHeader {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--bg-hover);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-radius: 8px 8px 0 0;
+}
+
+.appointmentCard {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.appointmentCard:hover {
+    background-color: var(--bg-hover);
+}
+
+.statusIndicator {
+    width: 6px;
+    height: 50px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.appointmentDetails {
+    flex: 1;
+    min-width: 0;
+}
+
+.appointmentSubject {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.appointmentMessage {
+    margin: 0.25rem 0;
+    color: var(--text-secondary);
+}
+
+.appointmentTime {
+    text-align: right;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.statusBadge {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+/* Modifier classes for status */
+.pending .statusIndicator { background-color: var(--color-warning); }
+.pending .statusBadge { background-color: var(--color-warning-bg); color: var(--color-warning); }
+
+.sent .statusIndicator { background-color: var(--color-success); }
+.sent .statusBadge { background-color: var(--color-success-bg); color: var(--color-success); }
+.sent .appointmentSubject, .sent .appointmentMessage { text-decoration: line-through; color: var(--text-secondary); }
+
+.failed .statusIndicator { background-color: var(--color-danger); }
+.failed .statusBadge { background-color: var(--color-danger-bg); color: var(--color-danger); }
+
+.emptyState {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: var(--bg-primary);
+    border: 2px dashed var(--border-color);
+    border-radius: 16px;
+    margin-top: 2rem;
+}

@@ -1,0 +1,370 @@
+:root {
+    --modal-bg-light: rgba(245, 245, 247, 0.7);
+    --modal-bg-dark: rgba(15, 15, 25, 0.8);
+    --content-bg-light: #ffffff;
+    --content-bg-dark: #1a1a2e;
+    --content-bg-gradient-dark: linear-gradient(145deg, #1f2937, #111827);
+    --text-primary-light: #2d3748;
+    --text-primary-dark: #e2e8f0;
+    --text-secondary-light: #4a5568;
+    --text-secondary-dark: #a0aec0;
+    --border-light: rgba(229, 229, 229, 0.8);
+    --border-dark: rgba(55, 65, 81, 0.6);
+    --shadow-light: 0 15px 50px rgba(0, 0, 0, 0.12);
+    --shadow-dark: 0 20px 60px rgba(0, 0, 0, 0.5);
+    --accent-blue: #3b82f6;
+    --accent-blue-dark: #60a5fa;
+    --surface-light: #f3f4f6;
+    --surface-dark: #374151;
+}
+
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1050;
+    display: flex;
+    /* UPDATED: Center the modal by default. The user can drag it if needed. */
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--modal-bg-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.modalBackdrop.dark {
+    background-color: var(--modal-bg-dark);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modalContent {
+    background-color: var(--content-bg-light);
+    border-radius: 16px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-light);
+    width: 100%;
+    max-width: 700px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.modalContent.dark {
+    background: var(--content-bg-gradient-dark);
+    color: var(--text-primary-dark);
+    box-shadow: var(--shadow-dark);
+    border: 1px solid var(--border-dark);
+}
+
+/* NEW: Style for the draggable header area */
+.modalDragHandle {
+    cursor: grab;
+}
+.modalDragHandle:active {
+    cursor: grabbing;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    flex-shrink: 0;
+    transition: border-color 0.3s ease;
+}
+
+.modalHeader.dark {
+    border-bottom-color: var(--border-dark);
+}
+
+.modalTitle {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary-light);
+    transition: color 0.3s ease;
+}
+
+.modalTitle.dark {
+    color: var(--text-primary-dark);
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-secondary-light);
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: grid;
+    place-items: center;
+}
+
+.closeButton:hover {
+    color: var(--text-primary-light);
+    background: rgba(0, 0, 0, 0.05);
+    transform: rotate(90deg);
+}
+
+.closeButton.dark {
+    color: var(--text-secondary-dark);
+}
+
+.closeButton.dark:hover {
+    color: var(--text-primary-dark);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.filterBar {
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--surface-light);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.filterBar.dark {
+    border-bottom-color: var(--border-dark);
+    background-color: #1f2937;
+}
+
+.filterTab {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: var(--surface-light);
+    color: var(--text-secondary-light);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.filterTab:hover {
+    transform: translateY(-2px);
+    background-color: #e5e7eb;
+    color: var(--text-primary-light);
+}
+
+.filterTab.dark {
+    background-color: var(--surface-dark);
+    color: var(--text-secondary-dark);
+}
+
+.filterTab.dark:hover {
+    background-color: #4b5563;
+    color: var(--text-primary-dark);
+}
+
+.activeFilterTab {
+    background: var(--accent-blue);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.activeFilterTab.dark {
+    background: var(--accent-blue-dark);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.25);
+}
+
+.scrollableResults {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+    background-color: var(--content-bg-light);
+    transition: background-color 0.3s ease;
+}
+
+.scrollableResults.dark {
+    background-color: var(--content-bg-dark);
+}
+
+.scrollableResults::-webkit-scrollbar { width: 8px; }
+.scrollableResults::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+.scrollableResults.dark::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+.scrollableResults::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.2); border-radius: 4px; }
+.scrollableResults.dark::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.2); }
+
+.draggableGroup { margin-bottom: 1.5rem; }
+
+.resultsGroupTitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.resultsGroupTitle:active { cursor: grabbing; }
+
+.resultsGroupTitle.dark {
+    color: var(--text-secondary-dark);
+    border-bottom-color: var(--border-dark);
+}
+
+.dragHandle {
+    margin-right: 0.75rem;
+    color: var(--text-secondary-light);
+    transition: color 0.2s ease;
+}
+
+.resultsGroupTitle.dark .dragHandle {
+    color: var(--text-secondary-dark);
+}
+
+.resultsGroupTitle:hover .dragHandle { color: var(--accent-blue); }
+.resultsGroupTitle.dark:hover .dragHandle { color: var(--accent-blue-dark); }
+
+.resultItemClickable {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: var(--surface-light);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.resultItemClickable:hover {
+    transform: translateX(5px);
+    border-color: var(--accent-blue);
+    background-color: #fff;
+}
+
+.resultItemClickable.dark {
+    background-color: var(--surface-dark);
+}
+
+.resultItemClickable.dark:hover {
+    border-color: var(--accent-blue-dark);
+    background-color: #2b3546;
+}
+
+.resultItemClickable p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary-light);
+    transition: color 0.3s ease;
+}
+
+.resultItemClickable.dark p {
+    color: var(--text-primary-dark);
+}
+
+.noResults {
+    text-align: center;
+    color: var(--text-secondary-light);
+    font-size: 1.1rem;
+    padding: 3rem 1rem;
+}
+
+.noResults.dark {
+    color: var(--text-secondary-dark);
+}
+
+.modalContentContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.modalBody {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+.detailsText {
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: var(--surface-light);
+    border: 1px solid var(--border-light);
+    width: 100%;
+    max-width: 500px;
+}
+
+.detailsText.dark {
+    background-color: var(--surface-dark);
+    border-color: var(--border-dark);
+}
+
+.detailsText h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary-light);
+}
+.detailsText.dark h3 {
+    color: var(--text-primary-dark);
+}
+.detailsText p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary-light);
+    line-height: 1.6;
+}
+.detailsText.dark p {
+    color: var(--text-secondary-dark);
+}
+.detailsText p strong {
+    color: var(--text-primary-light);
+}
+.detailsText.dark p strong {
+    color: var(--text-primary-dark);
+}
+
+/* Styles for DetailRenderer */
+.detailRenderer {
+    padding: 1.5rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    height: 100%;
+    background-color: var(--content-bg-light);
+}
+
+.detailRenderer.dark {
+    background-color: var(--content-bg-dark);
+}
+
+.inline-user-container,
+.invoiceDetails,
+.orderDetails {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}

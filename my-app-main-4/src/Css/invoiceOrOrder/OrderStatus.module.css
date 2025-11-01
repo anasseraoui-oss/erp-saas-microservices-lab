@@ -1,0 +1,84 @@
+/* src/Css/invoiceOrOrder/OrderStatus.module.css */
+
+.statusBadge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 0.85em;
+    text-transform: capitalize;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+/* Base colors using RGBA for semi-transparency */
+.pending {
+    background-color: rgba(108, 117, 125, 0.15);
+    color: #6c757d;
+    border-color: rgba(108, 117, 125, 0.2);
+}
+
+.confirmed {
+    background-color: rgba(0, 123, 255, 0.15);
+    color: #007bff;
+    border-color: rgba(0, 123, 255, 0.2);
+}
+
+.shipped {
+    background-color: rgba(23, 162, 184, 0.15);
+    color: #17a2b8;
+    border-color: rgba(23, 162, 184, 0.2);
+}
+
+.delivered {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+    border-color: rgba(40, 167, 69, 0.2);
+}
+
+.canceled {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+    border-color: rgba(220, 53, 69, 0.2);
+}
+
+.returned {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border-color: rgba(255, 193, 7, 0.2);
+}
+
+.default {
+    background-color: rgba(52, 58, 64, 0.1);
+    color: #343a40;
+}
+
+
+/* --- Dark Mode Adjustments --- */
+/* These will be applied when the .darkMode class is on the parent */
+.darkMode.pending {
+    color: #adb5bd;
+}
+
+.darkMode.confirmed {
+    color: #4dabf7;
+}
+
+.darkMode.shipped {
+    color: #3bc9db;
+}
+
+.darkMode.delivered {
+    color: #51cf66;
+}
+
+.darkMode.canceled {
+    color: #ff8787;
+}
+
+.darkMode.returned {
+    color: #ffd43b;
+}
+
+.darkMode.default {
+    color: #ced4da;
+}

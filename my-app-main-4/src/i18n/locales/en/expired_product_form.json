@@ -1,0 +1,15 @@
+{
+  "title": "Add Expired Products Information",
+  "description": "Add expiry information for products that may expire soon or are already expired.",
+  "product_id": "Product ID",
+  "purchased_qty": "Purchased Qty",
+  "expiry_date_label": "Expiry Date",
+  "expired_qty_label": "Expired Quantity",
+  "lot_number_label": "Lot Number (Optional)",
+  "lot_number_placeholder": "Enter lot number",
+  "sub_barcode_label": "Sub Barcode (Optional)",
+  "sub_barcode_placeholder": "Enter sub barcode",
+  "skip_button": "Skip",
+  "saving_button": "Saving...",
+  "save_button": "Save Expired Products"
+}

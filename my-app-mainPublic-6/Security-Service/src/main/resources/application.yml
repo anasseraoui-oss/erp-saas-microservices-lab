@@ -1,0 +1,14 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: "REDACTED_GOOGLE_CLIENT_ID"
+            client-secret: "REDACTED_GOOGLE_CLIENT_SECRET"
+            scope:
+              - "https://www.googleapis.com/auth/drive.file"
+              - "openid"
+              - "email"
+              - "profile"
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}" # Spring يتعامل مع هذا تلقائيًا

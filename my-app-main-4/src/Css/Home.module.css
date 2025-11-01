@@ -1,0 +1,394 @@
+/* Home.module.css - Enhanced with InvoiceDetails Dark Mode Styling */
+
+/* =================================================================== */
+/* ===         FUTURISTIC UI THEME - PRO EDITION (ENHANCED)      === */
+/* =================================================================== */
+
+/* --- 1. Root Variables & Page Container --- */
+.homepageContainer {
+    padding: 2.5rem;
+    padding-top: calc(70px + 2rem);
+    min-height: 100vh;
+    transition: background-color 0.4s ease;
+    background-color: #f5f5f7;
+    box-sizing: border-box;
+}
+
+.dark {
+    background-color: #1a1a2e;
+    background-image:
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: panBackground 40s linear infinite;
+}
+
+@keyframes panBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: -400px 400px; }
+}
+
+/* --- 2. Page Header --- */
+.homepageHeader {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    color: #1d1d1f;
+}
+
+.dark .homepageHeader {
+    color: #e2e8f0;
+}
+
+.homepageHeader h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.dark .homepageHeader h1 {
+    color: #e2e8f0;
+    text-shadow: 0 0 20px rgba(226, 232, 240, 0.3);
+}
+
+.homepageHeader p {
+    font-size: 1.2rem;
+    color: #6c6c70;
+}
+
+.dark .homepageHeader p {
+    color: #a0aec0;
+}
+
+/* --- 3. Main Grid & Section Cards --- */
+.homepageGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.menuSection {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dark .menuSection {
+    background: #16213e;
+    border: 1px solid #2c2c3e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menuSection:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.dark .menuSection:hover {
+    border-color: #4a5568;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+}
+
+/* --- Enhanced Sheen Effect --- */
+.menuSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.04), transparent);
+    transition: left 0.6s ease;
+}
+
+.dark .menuSection::before {
+    background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.08), transparent);
+}
+
+.menuSection:hover::before {
+    left: 100%;
+}
+
+/* --- 4. Section Header & Title --- */
+.menuSectionHeader {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid #e5e5e5;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    transition: all 0.2s ease;
+}
+
+.dark .menuSectionHeader {
+    border-bottom: 1px solid #2c2c3e;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.menuSection:hover .menuSectionHeader {
+    background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+}
+
+.dark .menuSection:hover .menuSectionHeader {
+    background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%);
+}
+
+.sectionTitle {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .sectionTitle {
+    color: #e2e8f0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 5. Collapsible Menu List & Staggered Animation --- */
+.menuList {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+    background: #ffffff;
+}
+
+.dark .menuList {
+    background: #16213e;
+}
+
+/* Only expand when the specific section has the 'open' class (JavaScript controlled) */
+.menuSection.open .menuList {
+    max-height: 500px;
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+.menuItem {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Only show items when the specific section has the 'open' class */
+.menuSection.open .menuItem {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered animation delays only for the open section */
+.menuSection.open .menuItem:nth-child(1) { transition-delay: 0.1s; }
+.menuSection.open .menuItem:nth-child(2) { transition-delay: 0.15s; }
+.menuSection.open .menuItem:nth-child(3) { transition-delay: 0.2s; }
+.menuSection.open .menuItem:nth-child(4) { transition-delay: 0.25s; }
+.menuSection.open .menuItem:nth-child(5) { transition-delay: 0.3s; }
+
+/* --- 6. Menu Items & Icons --- */
+.menuLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #4a5568;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.dark .menuLink {
+    color: #a0aec0;
+}
+
+.menuLink::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.dark .menuLink::before {
+    background: linear-gradient(135deg, #2c2c3e 0%, #1a1a2e 100%);
+}
+
+.menuItem:hover .menuLink::before {
+    transform: scaleX(1);
+}
+
+.menuItem:hover .menuLink {
+    color: #2d3748;
+    transform: translateX(4px);
+}
+
+.dark .menuItem:hover .menuLink {
+    color: #e2e8f0;
+}
+
+.iconContainer {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    margin-right: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.menuItem:hover .iconContainer {
+    background: rgba(59, 130, 246, 0.1);
+    transform: scale(1.1);
+}
+
+.dark .menuItem:hover .iconContainer {
+    background: rgba(96, 165, 250, 0.15);
+}
+
+.menuIcon {
+    font-size: 1.5rem;
+    color: #4a5568;
+    transition: all 0.3s ease;
+}
+
+.dark .menuIcon {
+    color: #a0aec0;
+}
+
+.menuItem:hover .menuIcon {
+    color: #3b82f6;
+    transform: scale(1.1);
+}
+
+.dark .menuItem:hover .menuIcon {
+    color: #60a5fa;
+}
+
+.menuName {
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.menuItem:hover .menuName {
+    font-weight: 600;
+}
+
+/* --- Additional Enhancements --- */
+.menuSection {
+    animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add staggered animation for grid items */
+.menuSection:nth-child(1) { animation-delay: 0.1s; }
+.menuSection:nth-child(2) { animation-delay: 0.2s; }
+.menuSection:nth-child(3) { animation-delay: 0.3s; }
+.menuSection:nth-child(4) { animation-delay: 0.4s; }
+.menuSection:nth-child(5) { animation-delay: 0.5s; }
+.menuSection:nth-child(6) { animation-delay: 0.6s; }
+
+/* Enhanced focus states for accessibility */
+.menuLink:focus,
+.menuSectionHeader:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.dark .menuLink:focus,
+.dark .menuSectionHeader:focus {
+    outline-color: #60a5fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .homepageContainer {
+        padding: 1.5rem;
+        padding-top: calc(70px + 1rem);
+    }
+
+    .homepageGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .homepageHeader h1 {
+        font-size: 2.2rem;
+    }
+
+    .homepageHeader p {
+        font-size: 1rem;
+    }
+
+    .menuSectionHeader {
+        padding: 1rem 1.25rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .homepageContainer {
+        padding: 1rem;
+        padding-top: calc(70px + 0.5rem);
+    }
+
+    .homepageHeader {
+        margin-bottom: 2rem;
+    }
+
+    .homepageHeader h1 {
+        font-size: 1.8rem;
+    }
+
+    .menuSection:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+
+    .menuLink {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .iconContainer {
+        width: 35px;
+        height: 35px;
+        margin-right: 0.8rem;
+    }
+
+    .menuIcon {
+        font-size: 1.3rem;
+    }
+
+    .menuName {
+        font-size: 1rem;
+    }
+}

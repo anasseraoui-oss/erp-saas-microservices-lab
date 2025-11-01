@@ -1,0 +1,13 @@
+{
+  "lines_page": {
+    "service_type_sales": "Ventes",
+    "service_type_purchases": "Achats",
+    "stats_modal_title_lines": "Statistiques des Lignes de {{serviceType}}",
+    "stats_modal_title_returns": "Statistiques des Retours de {{serviceType}}",
+    "table_header_invoice_id": "ID Facture",
+    "table_header_order_id": "ID Commande",
+    "empty_state_lines": "Aucune ligne trouvée pour ce service.",
+    "empty_state_returns": "Aucun retour trouvé pour ce service.",
+    "action_restore": "Restaurer"
+  }
+}

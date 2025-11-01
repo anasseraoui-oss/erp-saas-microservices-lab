@@ -1,0 +1,297 @@
+/* src/Css/invoiceOrOrder/InvoiceForm.module.css (Final Version with Alignment & Button Fixes) */
+
+/* ... (all previous styles up to .container remain the same) ... */
+
+.container {
+    padding: 1.5rem;
+    background-color: #ffffff;
+    color: #212529;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- MODIFIED: formWrapper --- */
+.formWrapper {
+    display: grid; /* Use grid for better alignment control */
+    grid-template-columns: 1fr 3fr; /* Sidebar takes 1 part, main form takes 3 */
+    gap: 2rem;
+    align-items: start; /* Align items to the top */
+    height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
+.mainForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make the main form area fill the available grid height */
+    overflow-y: auto;
+    padding-right: 1.5rem;
+}
+
+.pageTitle {
+    /* The page title is now part of the scrollable mainForm, so no changes needed here */
+    font-weight: 600;
+    color: #0d6efd;
+    margin-bottom: 2rem;
+    margin-top: 0; /* Remove top margin to align with sidebar */
+}
+
+/* --- MODIFIED: bottomActionsWrapper --- */
+.bottomActionsWrapper {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #dee2e6;
+}
+
+/* --- NEW: Small action button style --- */
+.actionButtonSmall {
+    width: auto; /* Let the button size itself */
+    padding: 8px 16px; /* Smaller padding */
+    font-size: 0.95rem;
+}
+
+/* ... (all other styles for sidebar, line items, modals, etc., remain the same) ... */
+.sectionTitle, .sidebarTitle {
+    font-weight: 500;
+    color: #495057;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+.sectionTitle {
+    border-bottom: 1px solid #dee2e6;
+}
+.sidebarTitle {
+    border-bottom: none;
+    margin-top: 0;
+}
+
+.categorySidebar {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    height: 100%; /* Make the sidebar fill the available grid height */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dee2e6;
+}
+
+.categoryList { list-style-type: none; padding: 0; }
+
+.categoryItem, .subCategoryItem {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 500;
+}
+
+.categoryItem:hover { background-color: #e9ecef; }
+.categoryItem.active { background-color: #0d6efd; color: white; }
+
+.subCategoryList {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-top: 5px;
+    border-left: 2px solid #e9ecef;
+}
+
+.subCategoryItem {
+    padding: 6px 12px;
+    font-size: 0.9em;
+    color: #495057;
+}
+.subCategoryItem:hover { background-color: #e9ecef; }
+.subCategoryItem.active { background-color: #6ea8fe; color: white; font-weight: 500; }
+
+.sidebarActions {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.actionButton {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    text-align: left;
+}
+.lineItemRow {
+    display: grid;
+    grid-template-columns: 4fr 1.5fr 1.5fr 1fr;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+
+.productInputWrapper { position: relative; }
+
+.suggestionsList {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0 0 5px 5px;
+    z-index: 1000;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    margin-top: -1px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.suggestionItem { padding: 10px 15px; cursor: pointer; }
+.suggestionItem:hover { background-color: #f1f3f5; }
+
+.quantityError { color: #dc3545; font-size: 0.8em; margin-top: 4px; }
+.warningMessage {
+    color: #e67e22;
+    background-color: rgba(230, 126, 34, 0.1);
+    border: 1px solid rgba(230, 126, 34, 0.2);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+.modalBackdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex; justify-content: center; align-items: center; z-index: 1050;
+}
+.modalContent {
+    background: white; padding: 2rem; border-radius: 8px; width: 90%; max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.closeBtn {
+    position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d;
+}
+
+/* --- NEW: Scrollbar styles --- */
+.mainForm::-webkit-scrollbar,
+.categorySidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mainForm::-webkit-scrollbar-track,
+.categorySidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.mainForm::-webkit-scrollbar-thumb,
+.categorySidebar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.mainForm::-webkit-scrollbar-thumb:hover,
+.categorySidebar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* --- NEW: Expired Product Form styles --- */
+.expiredProductForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the form takes up the modal's height */
+    max-height: 70vh; /* Or a fixed height like 500px */
+}
+
+.scrollableProductList {
+    flex-grow: 1;
+    overflow-y: auto; /* This is the key to make it scrollable */
+    padding: 1rem;
+    margin: -1rem; /* Counteract padding for full-width scrollbar */
+}
+
+
+/* ================== DARK MODE STYLES ================== */
+.darkMode {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+.darkMode .pageTitle { color: #4da8ff; }
+.darkMode .sectionTitle, .darkMode .form-label, .darkMode .sidebarTitle {
+    color: #a0a0b8;
+}
+.darkMode .sectionTitle, .darkMode .bottomActionsWrapper { border-top-color: #3a3a4d; }
+
+.inputDark {
+    background-color: #2c2c3e;
+    color: #e0e0e0;
+    border-color: #4a4a6a;
+}
+.inputDark:focus {
+    background-color: #2c2c3e;
+    color: #e0e0e0;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    outline: 0;
+}
+.inputDark::placeholder { color: #7a7a8c; }
+.darkMode select.inputDark {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23a0a0b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.darkMode .categorySidebar { background-color: #161625; border-color: #2c2c3e; }
+.darkMode .categoryItem:hover { background-color: #2c2c3e; }
+.darkMode .categoryItem.active { background-color: #007bff; }
+.darkMode .subCategoryList { border-left-color: #3a3a4d; }
+.darkMode .subCategoryItem { color: #a0a0b8; }
+.darkMode .subCategoryItem:hover { background-color: #2c2c3e; }
+.darkMode .subCategoryItem.active { background-color: #3a3a4d; color: #fff; }
+.darkMode .sidebarActions { border-top-color: #3a3a4d; }
+
+.darkMode .lineItemRow { background-color: #2c2c3e; border-color: #3a3a4d; }
+
+.darkMode .suggestionsList { background-color: #2c2c3e; border-color: #4a4a6a; }
+.darkMode .suggestionItem:hover { background-color: #3a3a4d; }
+.darkMode .suggestionItem .text-muted { color: #7a7a8c !important; }
+
+.darkMode .modalContent { background: #1e1e2f; border: 1px solid #3a3a4d; }
+.darkMode .modalContent h3, .darkMode .modalContent .form-label { color: #e0e0e0; }
+.darkMode .closeBtn { color: #a0a0b8; }
+
+.darkMode .btn-outline-danger {
+    color: #ff8787; border-color: #ff8787;
+}
+.darkMode .btn-outline-danger:hover {
+    background-color: #ff8787; color: #1a1a2e;
+}
+
+.darkMode hr { border-top: 1px solid #3a3a4d; }
+
+/* --- NEW: Dark mode scrollbar styles --- */
+.darkMode .mainForm::-webkit-scrollbar-track,
+.darkMode .categorySidebar::-webkit-scrollbar-track,
+.darkMode .scrollableProductList::-webkit-scrollbar-track {
+    background: #2c3e50;
+}
+
+.darkMode .mainForm::-webkit-scrollbar-thumb,
+.darkMode .categorySidebar::-webkit-scrollbar-thumb,
+.darkMode .scrollableProductList::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+.darkMode .mainForm::-webkit-scrollbar-thumb:hover,
+.darkMode .categorySidebar::-webkit-scrollbar-thumb:hover,
+.darkMode .scrollableProductList::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}

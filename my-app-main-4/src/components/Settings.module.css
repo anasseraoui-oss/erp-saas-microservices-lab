@@ -1,0 +1,133 @@
+/* Settings.module.css */
+
+.settingsPage {
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Light mode background - slightly darker */
+  font-family: sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.settingsPage.dark {
+  background-color: #0b1120; /* Dark mode background - darker */
+  color: #e2e8f0;
+}
+
+.container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1rem;
+}
+
+.contentWrapper {
+  background-color: #ffffff;
+  backdrop-filter: blur(8px);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.dark .contentWrapper {
+  background-color: rgba(20, 29, 47, 0.85);
+  border-color: #334155;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+}
+
+.section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dark .section {
+  border-color: #334155;
+}
+
+.sectionHeader {
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.75rem; /* Larger title */
+  font-weight: 700;   /* Bolder */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1e293b;
+}
+
+.dark .sectionTitle {
+  color: #ffffff; /* Brighter white */
+}
+
+.sectionDescription {
+  font-size: 0.9rem;
+  color: #475569;
+  margin-top: 0.5rem;
+}
+
+.dark .sectionDescription {
+  color: #94a3b8;
+}
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  min-height: 4rem;
+  border: 1px solid transparent;
+}
+
+.settingRow:hover {
+  background-color: #eff6ff;
+  transform: translateY(-2px);
+  border-color: #bfdbfe;
+}
+
+.dark .settingRow {
+  background-color: #1e293b;
+}
+
+.dark .settingRow:hover {
+  background-color: #334155;
+  border-color: #475569;
+}
+
+.settingRowInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.settingRowText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.settingTitle { font-size: 1rem; font-weight: 500; color: #1e293b; }
+.dark .settingTitle { color: #f8fafc; }
+.settingDescription { font-size: 0.875rem; color: #64748b; }
+.dark .settingDescription { color: #94a3b8; }
+
+.settingIcon {
+  width: 2.25rem; /* Larger icon container */
+  height: 2.25rem;
+  border-radius: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+
+.dark .settingIcon {
+  background-color: rgba(99, 102, 241, 0.15); /* More visible */
+  color: #c7d2fe; /* Brighter icon color */
+}

@@ -1,0 +1,13 @@
+{
+  "lines_page": {
+    "service_type_sales": "المبيعات",
+    "service_type_purchases": "المشتريات",
+    "stats_modal_title_lines": "إحصائيات سطور {{serviceType}}",
+    "stats_modal_title_returns": "إحصائيات مرتجعات {{serviceType}}",
+    "table_header_invoice_id": "رقم الفاتورة",
+    "table_header_order_id": "رقم الطلب",
+    "empty_state_lines": "لا توجد سطور لهذا القسم.",
+    "empty_state_returns": "لا توجد مرتجعات لهذا القسم.",
+    "action_restore": "استعادة"
+  }
+}

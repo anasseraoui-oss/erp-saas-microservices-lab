@@ -1,0 +1,23 @@
+{
+  "create_title": "Create {{serviceType}} {{orderType}}",
+  "service_sales": "Sales",
+  "service_purchases": "Purchase",
+  "type_invoice": "Invoice",
+  "type_order": "Order",
+  "create_button": "Create {{orderType}}",
+  "delivery_price": "Delivery Price:",
+  "description_label": "Description:",
+  "delivery_date_label": "Delivery Date:",
+  "delivery_location": "Delivery Location:",
+  "send_delivery_info": "Send Delivery Info",
+  "sidebar_new_product": "New Product",
+  "sidebar_new_customer": "New Customer",
+  "sidebar_new_supplier": "New Supplier",
+  "sidebar_add_delivery": "Add Delivery",
+  "sidebar_edit_delivery": "Edit Delivery",
+  "delivery_form_title_add": "Add Delivery Details",
+  "delivery_form_title_edit": "Edit Delivery Details",
+  "delivery_form_price": "Delivery Price",
+  "delivery_form_description": "Description",
+  "delivery_form_location": "Delivery Location"
+}
