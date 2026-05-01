@@ -1,297 +1,234 @@
-/* src/Css/invoiceOrOrder/InvoiceForm.module.css (Final Version with Alignment & Button Fixes) */
-
-/* ... (all previous styles up to .container remain the same) ... */
+/* === InvoiceForm.module.css - Redesigned for a High-End Visual Experience === */
 
 .container {
-    padding: 1.5rem;
-    background-color: #ffffff;
-    color: #212529;
-    transition: background-color 0.3s, color 0.3s;
+    @apply min-h-screen px-6 py-10 transition-colors duration-500;
+    padding-top: calc(72px + 2rem);
+    background-color: hsl(var(--background));
 }
 
-/* --- MODIFIED: formWrapper --- */
 .formWrapper {
-    display: grid; /* Use grid for better alignment control */
-    grid-template-columns: 1fr 3fr; /* Sidebar takes 1 part, main form takes 3 */
-    gap: 2rem;
-    align-items: start; /* Align items to the top */
-    height: calc(100vh - 120px);
-    overflow: hidden;
+    @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 max-w-7xl mx-auto h-[calc(100vh-140px)];
 }
 
 .mainForm {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Make the main form area fill the available grid height */
-    overflow-y: auto;
-    padding-right: 1.5rem;
+    @apply flex flex-col h-full overflow-y-auto pr-4 gap-8;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+    transition: transform 220ms cubic-bezier(.2,.9,.2,1), height 220ms ease, width 220ms ease;
+    will-change: transform, height, width;
 }
 
 .pageTitle {
-    /* The page title is now part of the scrollable mainForm, so no changes needed here */
-    font-weight: 600;
-    color: #0d6efd;
-    margin-bottom: 2rem;
-    margin-top: 0; /* Remove top margin to align with sidebar */
+    @apply text-3xl font-black tracking-tighter mb-2;
+    background: linear-gradient(to bottom right, hsl(var(--foreground)), hsla(var(--foreground), 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* --- MODIFIED: bottomActionsWrapper --- */
-.bottomActionsWrapper {
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center the buttons horizontally */
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #dee2e6;
-}
-
-/* --- NEW: Small action button style --- */
-.actionButtonSmall {
-    width: auto; /* Let the button size itself */
-    padding: 8px 16px; /* Smaller padding */
-    font-size: 0.95rem;
-}
-
-/* ... (all other styles for sidebar, line items, modals, etc., remain the same) ... */
-.sectionTitle, .sidebarTitle {
-    font-weight: 500;
-    color: #495057;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-}
-.sectionTitle {
-    border-bottom: 1px solid #dee2e6;
-}
-.sidebarTitle {
-    border-bottom: none;
-    margin-top: 0;
-}
-
+/* === Sidebar Styling === */
 .categorySidebar {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-    height: 100%; /* Make the sidebar fill the available grid height */
+    @apply glass p-6 rounded-3xl flex flex-col h-full border-indigo-500/5 transition-all duration-300;
+    position: sticky;
+    top: 72px;
+    overflow: auto;
+    max-height: calc(100vh - 96px);
+}
+
+.sidebarTitle {
+    @apply text-xs font-black uppercase tracking-widest mb-6 opacity-60 text-indigo-500;
+}
+
+.categoryList {
+    @apply flex flex-col gap-2 list-none p-0 m-0;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #dee2e6;
+    max-height: calc(100vh - 220px);
 }
 
-.categoryList { list-style-type: none; padding: 0; }
-
-.categoryItem, .subCategoryItem {
-    cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    transition: background-color 0.2s, color 0.2s;
-    font-weight: 500;
+.categoryItem {
+    @apply px-4 py-3 rounded-xl font-bold text-sm transition-all duration-200 cursor-pointer border border-transparent;
+    color: hsl(var(--muted-foreground));
 }
 
-.categoryItem:hover { background-color: #e9ecef; }
-.categoryItem.active { background-color: #0d6efd; color: white; }
-
-.subCategoryList {
-    list-style-type: none;
-    padding-left: 20px;
-    margin-left: 10px;
-    margin-top: 5px;
-    border-left: 2px solid #e9ecef;
+.categoryItem:hover {
+    @apply bg-indigo-500/5 text-indigo-500;
 }
 
-.subCategoryItem {
-    padding: 6px 12px;
-    font-size: 0.9em;
-    color: #495057;
+.categoryItem.active {
+    @apply bg-indigo-500 text-white shadow-xl shadow-indigo-500/20 scale-[1.02];
 }
-.subCategoryItem:hover { background-color: #e9ecef; }
-.subCategoryItem.active { background-color: #6ea8fe; color: white; font-weight: 500; }
 
-.sidebarActions {
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid #dee2e6;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+/* === Section & Line Items === */
+.sectionTitle {
+    @apply text-lg font-black tracking-tight mb-6 pb-2 border-b;
+    border-color: hsla(var(--border), 0.5);
+    color: hsl(var(--foreground));
+}
+
+.lineItemRow {
+    @apply grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_auto] gap-4 p-5 rounded-2xl border mb-4;
+    background-color: hsla(var(--card), 0.5);
+    border-color: hsla(var(--border), 0.3);
+    align-items: center;
+    min-height: 64px;
+    transition: box-shadow 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1), border-color 180ms ease;
+    will-change: transform, box-shadow;
+}
+
+.lineItemRow:hover {
+    box-shadow: 0 10px 30px -12px rgba(59,130,246,0.12);
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.25);
+}
+
+/* === Inputs & Controls === */
+
+.formControl,
+.formSelect {
+    @apply w-full px-4 py-2.5 rounded-xl border transition-all duration-200 outline-none;
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+}
+
+.formControl:focus,
+.formSelect:focus {
+    @apply ring-2 ring-indigo-500/20 border-indigo-500;
+}
+
+/* Dark mode - overrides Bootstrap white inputs */
+.inputDark,
+.inputDark.form-control,
+.inputDark.form-select {
+    background-color: hsl(var(--input-bg)) !important;
+    border-color: hsl(var(--border)) !important;
+    color: hsl(var(--foreground)) !important;
+}
+
+.inputDark::placeholder {
+    color: hsl(var(--muted-foreground)) !important;
+}
+
+/* Dark-mode using global selector so theme toggle applies across modules */
+:global(.dark) .container {
+    background-color: hsl(var(--background));
+}
+
+:global(.dark) .lineItemRow {
+    background-color: hsla(var(--card), 0.7);
+    border-color: hsla(var(--border), 0.5);
+}
+
+:global(.dark) .suggestionsList {
+    background-color: hsla(var(--card), 0.95);
+    border-color: hsla(var(--border), 0.5);
+}
+
+:global(.dark) .suggestionItem {
+    color: hsl(var(--foreground));
+}
+
+/* === Actions === */
+.bottomActionsWrapper {
+    @apply flex items-center justify-center gap-4 mt-8 pt-8 border-t;
+    border-color: hsla(var(--border), 0.5);
 }
 
 .actionButton {
+    @apply btn-premium shadow-xl hover:shadow-2xl transition-all duration-300;
+}
+
+.actionButtonSmall {
+    @apply px-4 py-2 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-200;
+}
+
+/* === Suggestions List === */
+.suggestionsList {
+    @apply absolute top-full left-0 right-0 mt-2 glass rounded-2xl shadow-2xl z-[1000] p-2 max-h-[250px] overflow-y-auto;
+    transition: opacity 180ms ease, transform 180ms ease;
+    transform-origin: top center;
+}
+
+/* Modal styles used by inline modals inside this form (Delivery, ExpiredProducts, PaymentDetails) */
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    width: 100%;
-    text-align: left;
-}
-.lineItemRow {
-    display: grid;
-    grid-template-columns: 4fr 1.5fr 1.5fr 1fr;
-    gap: 1rem;
-    align-items: flex-start;
+    justify-content: center;
+    background: rgba(0,0,0,0.45);
+    z-index: var(--z-modal);
     padding: 1rem;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    background-color: #fff;
 }
 
-.productInputWrapper { position: relative; }
-
-.suggestionsList {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ced4da;
-    border-radius: 0 0 5px 5px;
-    z-index: 1000;
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-    list-style-type: none;
-    padding: 0;
-    margin-top: -1px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.suggestionItem { padding: 10px 15px; cursor: pointer; }
-.suggestionItem:hover { background-color: #f1f3f5; }
-
-.quantityError { color: #dc3545; font-size: 0.8em; margin-top: 4px; }
-.warningMessage {
-    color: #e67e22;
-    background-color: rgba(230, 126, 34, 0.1);
-    border: 1px solid rgba(230, 126, 34, 0.2);
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 0.85em;
-    margin-top: 5px;
-}
-
-.modalBackdrop {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex; justify-content: center; align-items: center; z-index: 1050;
-}
 .modalContent {
-    background: white; padding: 2rem; border-radius: 8px; width: 90%; max-width: 600px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-.closeBtn {
-    position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d;
-}
-
-/* --- NEW: Scrollbar styles --- */
-.mainForm::-webkit-scrollbar,
-.categorySidebar::-webkit-scrollbar {
-    width: 8px;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border) / 0.6);
+    color: hsl(var(--foreground));
+    border-radius: var(--radius);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    max-width: 980px;
+    width: 100%;
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+    padding: 1rem 1.25rem;
 }
 
-.mainForm::-webkit-scrollbar-track,
-.categorySidebar::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.mainForm::-webkit-scrollbar-thumb,
-.categorySidebar::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-}
-
-.mainForm::-webkit-scrollbar-thumb:hover,
-.categorySidebar::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-/* --- NEW: Expired Product Form styles --- */
-.expiredProductForm {
+.closeBtn,
+.closeBtnNoTitle {
     display: flex;
-    flex-direction: column;
-    height: 100%; /* Ensure the form takes up the modal's height */
-    max-height: 70vh; /* Or a fixed height like 500px */
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+    color: hsl(var(--muted-foreground));
 }
 
-.scrollableProductList {
-    flex-grow: 1;
-    overflow-y: auto; /* This is the key to make it scrollable */
-    padding: 1rem;
-    margin: -1rem; /* Counteract padding for full-width scrollbar */
+.closeBtn:hover,
+.closeBtnNoTitle:hover {
+    background: rgba(220,38,38,0.06);
+    color: hsl(var(--danger));
 }
 
-
-/* ================== DARK MODE STYLES ================== */
-.darkMode {
-    background-color: #1a1a2e;
-    color: #e0e0e0;
-}
-.darkMode .pageTitle { color: #4da8ff; }
-.darkMode .sectionTitle, .darkMode .form-label, .darkMode .sidebarTitle {
-    color: #a0a0b8;
-}
-.darkMode .sectionTitle, .darkMode .bottomActionsWrapper { border-top-color: #3a3a4d; }
-
-.inputDark {
-    background-color: #2c2c3e;
-    color: #e0e0e0;
-    border-color: #4a4a6a;
-}
-.inputDark:focus {
-    background-color: #2c2c3e;
-    color: #e0e0e0;
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    outline: 0;
-}
-.inputDark::placeholder { color: #7a7a8c; }
-.darkMode select.inputDark {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23a0a0b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+.suggestionItem {
+    @apply px-4 py-3 rounded-xl cursor-pointer transition-all duration-200 font-bold text-sm;
 }
 
-.darkMode .categorySidebar { background-color: #161625; border-color: #2c2c3e; }
-.darkMode .categoryItem:hover { background-color: #2c2c3e; }
-.darkMode .categoryItem.active { background-color: #007bff; }
-.darkMode .subCategoryList { border-left-color: #3a3a4d; }
-.darkMode .subCategoryItem { color: #a0a0b8; }
-.darkMode .subCategoryItem:hover { background-color: #2c2c3e; }
-.darkMode .subCategoryItem.active { background-color: #3a3a4d; color: #fff; }
-.darkMode .sidebarActions { border-top-color: #3a3a4d; }
-
-.darkMode .lineItemRow { background-color: #2c2c3e; border-color: #3a3a4d; }
-
-.darkMode .suggestionsList { background-color: #2c2c3e; border-color: #4a4a6a; }
-.darkMode .suggestionItem:hover { background-color: #3a3a4d; }
-.darkMode .suggestionItem .text-muted { color: #7a7a8c !important; }
-
-.darkMode .modalContent { background: #1e1e2f; border: 1px solid #3a3a4d; }
-.darkMode .modalContent h3, .darkMode .modalContent .form-label { color: #e0e0e0; }
-.darkMode .closeBtn { color: #a0a0b8; }
-
-.darkMode .btn-outline-danger {
-    color: #ff8787; border-color: #ff8787;
-}
-.darkMode .btn-outline-danger:hover {
-    background-color: #ff8787; color: #1a1a2e;
+.suggestionItem:hover {
+    @apply bg-indigo-500/10 text-indigo-500;
 }
 
-.darkMode hr { border-top: 1px solid #3a3a4d; }
-
-/* --- NEW: Dark mode scrollbar styles --- */
-.darkMode .mainForm::-webkit-scrollbar-track,
-.darkMode .categorySidebar::-webkit-scrollbar-track,
-.darkMode .scrollableProductList::-webkit-scrollbar-track {
-    background: #2c3e50;
+/* Normalize card sizes inside sidebar and content to avoid jumping layout */
+.categorySidebar, .card {
+    min-height: 120px;
 }
 
-.darkMode .mainForm::-webkit-scrollbar-thumb,
-.darkMode .categorySidebar::-webkit-scrollbar-thumb,
-.darkMode .scrollableProductList::-webkit-scrollbar-thumb {
-    background: #555;
+/* === Responsive === */
+@media (max-width: 1024px) {
+    .formWrapper {
+        @apply grid-cols-1 h-auto overflow-visible;
+    }
+
+    .categorySidebar {
+        @apply h-auto mb-8;
+    }
+
+    .mainForm {
+        @apply pr-0 h-auto overflow-visible;
+    }
 }
 
-.darkMode .mainForm::-webkit-scrollbar-thumb:hover,
-.darkMode .categorySidebar::-webkit-scrollbar-thumb:hover,
-.darkMode .scrollableProductList::-webkit-scrollbar-thumb:hover {
-    background: #777;
+/* RTL Adjustments */
+[dir="rtl"] .pageTitle {
+    @apply tracking-normal;
+}
+
+[dir="rtl"] .mainForm {
+    @apply pr-0 pl-4;
+}
+
+[dir="rtl"] .suggestionsList {
+    @apply text-right;
 }

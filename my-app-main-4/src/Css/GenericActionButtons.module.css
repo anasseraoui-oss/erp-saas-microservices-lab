@@ -1,37 +1,15 @@
 /* GenericActionButtons.module.css - Themed and Enhanced */
 
-/* 1. تعريف متغيرات CSS لتوحيد الألوان */
-:root {
-    --bg-element: #ffffff;
-    --bg-element-dark: #2d3748;
-    --bg-hover: #f1f3f5;
-    --bg-hover-dark: #4a5568;
+/* Global variables are defined in index.css */
+/* We map local usage to global variables for consistency */
 
-    --text-primary: #2d3748;
-    --text-primary-dark: #e2e8f0;
-    --text-secondary: #6c757d;
-    --text-secondary-dark: #a0aec0;
-
-    --border-color: #dee2e6;
-    --border-color-dark: #4a5568;
-
-    --shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.3);
-
-    --color-primary: #3182ce;
-    --color-danger: #e53e3e;
-    --color-warning: #dd6b20;
-    --color-success: #38a169;
-    --color-secondary: #718096;
-}
-
-/* 2. الحاوية الرئيسية */
+/* 2. Container */
 .actionsWrapper {
     position: relative;
     display: inline-block;
 }
 
-/* 3. زر النقاط الثلاث */
+/* 3. Three Dots Button */
 .dotsButton {
     background: transparent;
     border: 1px solid transparent;
@@ -41,7 +19,7 @@
     width: 36px;
     height: 36px;
     line-height: 1;
-    color: var(--text-secondary);
+    color: hsl(var(--muted-foreground));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -50,34 +28,36 @@
 }
 
 .dotsButton:hover {
-    background-color: var(--bg-hover);
-    color: var(--text-primary);
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
 }
 
 .dotsButton.dark {
-    color: var(--text-secondary-dark);
+    color: hsl(var(--muted-foreground));
 }
 
 .dotsButton.dark:hover {
-    background-color: var(--bg-hover-dark);
-    color: var(--text-primary-dark);
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
 }
 
-/* 4. القائمة المنسدلة */
+/* 4. Dropdown Menu */
 .dropdownMenu {
     position: absolute;
-    top: calc(100% + 5px); /* Position below the button with a small gap */
-    left: 0; /* Align to the left of the wrapper */
+    top: calc(100% + 5px);
+    /* Position below the button with a small gap */
+    left: 0;
+    /* Align to the left of the wrapper */
     right: auto;
-    background-color: var(--bg-element);
-    border: 1px solid var(--border-color);
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
     border-radius: 8px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     z-index: 1050;
     padding: 0.5rem 0;
     min-width: 180px;
 
-    /* إعدادات الأنيميشن */
+    /* Animation Settings */
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
@@ -85,19 +65,19 @@
 }
 
 .dropdownMenu.dark {
-    background-color: var(--bg-element-dark);
-    border-color: var(--border-color-dark);
-    box-shadow: var(--shadow-dark);
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
 }
 
-/* إظهار القائمة عند إضافة كلاس .open */
+/* Show menu when .open class is added */
 .dropdownMenu.open {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
 
-/* 5. عناصر القائمة (الأزرار) */
+/* 5. Menu Items (Buttons) */
 .dropdownItem {
     width: 100%;
     padding: 0.75rem 1.25rem;
@@ -106,22 +86,22 @@
     background: none;
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--text-primary);
+    color: hsl(var(--foreground));
     cursor: pointer;
     transition: background-color 0.15s ease-in-out;
     white-space: nowrap;
 }
 
 .dropdownMenu.dark .dropdownItem {
-    color: var(--text-primary-dark);
+    color: hsl(var(--foreground));
 }
 
 .dropdownItem:hover {
-    background-color: var(--bg-hover);
+    background-color: hsl(var(--muted));
 }
 
 .dropdownMenu.dark .dropdownItem:hover {
-    background-color: var(--bg-hover-dark);
+    background-color: hsl(var(--muted));
 }
 
 .dropdownItem:disabled {
@@ -130,13 +110,27 @@
     background-color: transparent !important;
 }
 
-/* 6. الألوان المختلفة للأزرار */
-.variantPrimary { color: var(--color-primary) !important; }
-.variantDanger  { color: var(--color-danger) !important; }
-.variantWarning { color: var(--color-warning) !important; }
-.variantSuccess { color: var(--color-success) !important; }
-.variantSecondary { color: var(--color-secondary) !important; }
+/* 6. Variant Colors */
+.variantPrimary {
+    color: hsl(var(--primary)) !important;
+}
+
+.variantDanger {
+    color: hsl(var(--destructive)) !important;
+}
+
+.variantWarning {
+    color: hsl(var(--warning)) !important;
+}
+
+.variantSuccess {
+    color: hsl(var(--success)) !important;
+}
+
+.variantSecondary {
+    color: hsl(var(--muted-foreground)) !important;
+}
 
 .dropdownMenu.dark .variantSecondary {
-    color: var(--text-secondary-dark) !important;
+    color: hsl(var(--muted-foreground)) !important;
 }

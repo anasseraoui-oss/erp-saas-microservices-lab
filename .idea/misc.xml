@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/model-Entities-Library/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Eureka-Server/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/security-core/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Gateway-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Notification-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/SupplierClient-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Security-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Product-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Payment-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Purchase-Order-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/my-app-mainPublic-6/Sales-Order-Service/pom.xml" />
+      </list>
+    </option>
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="25" project-jdk-type="JavaSDK" />
 </project>

@@ -13,8 +13,8 @@ import { Order } from '../../../classe/Order';
 import { ClientSupplier } from "../../../classe/ClientSupplier";
 import { Product } from "../../../classe/Product";
 import { User } from "../../../classe/types";
-import {OrderType} from "../../../api/OrderInvoiceService";
-import {ServiceType} from "../../../api/lineApiService";
+import { OrderType } from "../../../api/OrderInvoiceService";
+import { ServiceType } from "../../../api/lineApiService";
 import DynamicReportSummary from "./invoiceOrOrderDetails/Rapports/DynamicReportSummary";
 import { useTranslation } from 'react-i18next';
 import { generateAndDownloadInvoicePdf } from './invoicePdf';
@@ -280,12 +280,12 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
     };
     const totalAmount = calculateTotalAmount(filteredInvoices).toFixed(2);
     return (
-        <div className={`${styles.listContainer} ${isDarkMode ? styles.darkMode : ''}`}>
+        <div className={styles.listContainer}>
             {/* Dynamic Report Summary */}
             <DynamicReportSummary items={filteredInvoices} />
-            <div className={`${styles.cardHeader} ${isDarkMode ? styles.cardHeaderDark : ''}`}>
+            <div className={styles.cardHeader}>
                 <div className={styles.inputGroup}>
-                    <span className={`${styles.inputGroupText} ${isDarkMode ? styles.inputGroupTextDark : ''}`}>
+                    <span className={styles.inputGroupText}>
                         <i className="fas fa-search"></i>
                     </span>
                     <input
@@ -293,17 +293,17 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
                         placeholder="Search by ID, Customer/Supplier, Amount..."
                         value={searchQuery}
                         onChange={(e) => handleSearch(e.target.value)}
-                        className={`${styles.formControl} ${isDarkMode ? styles.formControlDark : ''}`}
+                        className={styles.formControl}
                     />
                 </div>
             </div>
 
-            <div className={`${styles.cardBody} ${isDarkMode ? styles.cardBodyDark : ''}`}>
+            <div className={styles.cardBody}>
                 <div className={styles.filtersGrid}>
                     <div className={styles.formGroup}>
-                        <label className={`${styles.formLabel} ${isDarkMode ? styles.formLabelDark : ''}`}>Filter by Date:</label>
+                        <label className={styles.formLabel}>Filter by Date:</label>
                         <input
-                            className={`${styles.formControl} ${isDarkMode ? styles.formControlDark : ''}`}
+                            className={styles.formControl}
                             type="date"
                             value={selectedDate}
                             onChange={(e) => setSelectedDate(e.target.value)}
@@ -311,13 +311,13 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={`${styles.formLabel} ${isDarkMode ? styles.formLabelDark : ''}`}>
+                        <label className={styles.formLabel}>
                             {ServiceType === 'sales' ? 'Filter by Customer:' : 'Filter by Supplier:'}
                         </label>
                         <select
                             value={selectedPartyType}
                             onChange={(e) => setSelectedPartyType(e.target.value)}
-                            className={`${styles.formSelect} ${isDarkMode ? styles.formSelectDark : ''}`}
+                            className={styles.formSelect}
                         >
                             <option value="">{ServiceType === 'sales' ? 'All Customers' : 'All Suppliers'}</option>
                             {(ServiceType === 'sales' ? customers : suppliers).map(({ id, name, email }) => (
@@ -329,11 +329,11 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={`${styles.formLabel} ${isDarkMode ? styles.formLabelDark : ''}`}>Filter by Product:</label>
+                        <label className={styles.formLabel}>Filter by Product:</label>
                         <select
                             value={selectedProductType}
                             onChange={(e) => setSelectedProductType(Number(e.target.value))}
-                            className={`${styles.formSelect} ${isDarkMode ? styles.formSelectDark : ''}`}
+                            className={styles.formSelect}
                         >
                             <option value={0}>All Products</option>
                             {products.map(({ id, name, quantity }) => (
@@ -345,11 +345,11 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={`${styles.formLabel} ${isDarkMode ? styles.formLabelDark : ''}`}>Filter by Created By:</label>
+                        <label className={styles.formLabel}>Filter by Created By:</label>
                         <select
                             value={selectedCreatedBy}
                             onChange={(e) => setSelectedCreatedBy(e.target.value)}
-                            className={`${styles.formSelect} ${isDarkMode ? styles.formSelectDark : ''}`}
+                            className={styles.formSelect}
                         >
                             <option value="">All Users</option>
                             {users.map(({ id, fullName }) => (
@@ -361,11 +361,11 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={`${styles.formLabel} ${isDarkMode ? styles.formLabelDark : ''}`}>Filter by Executed By:</label>
+                        <label className={styles.formLabel}>Filter by Executed By:</label>
                         <select
                             value={selectedExecutedBy}
                             onChange={(e) => setSelectedExecutedBy(e.target.value)}
-                            className={`${styles.formSelect} ${isDarkMode ? styles.formSelectDark : ''}`}
+                            className={styles.formSelect}
                         >
                             <option value="">All Users</option>
                             {users.map(({ id, fullName }) => (
@@ -378,11 +378,11 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
 
                     {OrderType === 'Order' && (
                         <div className={styles.formGroup}>
-                            <label className={`${styles.formLabel} ${isDarkMode ? styles.formLabelDark : ''}`}>Filter by Order Status:</label>
+                            <label className={styles.formLabel}>Filter by Order Status:</label>
                             <select
                                 value={selectedOrderStatus}
                                 onChange={(e) => setSelectedOrderStatus(e.target.value)}
-                                className={`${styles.formSelect} ${isDarkMode ? styles.formSelectDark : ''}`}
+                                className={styles.formSelect}
                             >
                                 <option value="">All Statuses</option>
                                 <option value="PENDING">Pending</option>
@@ -396,7 +396,7 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
 
                     <div className={styles.formGroupAuto}>
                         <button
-                            className={`${styles.btnOutline} ${isDarkMode ? styles.btnOutlineDark : ''}`}
+                            className={styles.btnOutline}
                             onClick={resetAllFilters}
                         >
                             Clear All Filters
@@ -405,98 +405,97 @@ const InvoiceOrOrderList: React.FC<InvoiceOrOrderListProps> = ({ ServiceType, Or
                 </div>
 
                 <div className={styles.tableResponsive}>
-                    <table className={`${styles.invoiceTable} ${isDarkMode ? styles.invoiceTableDark : ''}`}>
-                        <thead className={isDarkMode ? styles.tableHeadDark : ''}>
-                        <tr>
-                            <th className={isDarkMode ? styles.tableHeaderDark : ''}>ID</th>
-                            <th className={isDarkMode ? styles.tableHeaderDark : ''}>
-                                {ServiceType === 'sales' ? "Customer" : "Supplier"}
-                            </th>
-                            <th className={isDarkMode ? styles.tableHeaderDark : ''}>Total Amount</th>
-                            <th className={isDarkMode ? styles.tableHeaderDark : ''}>Payment Status</th>
-                            <th className={isDarkMode ? styles.tableHeaderDark : ''}>Date</th>
-                            <th className={isDarkMode ? styles.tableHeaderDark : ''}>Created By</th>
-                            <th className={isDarkMode ? styles.tableHeaderDark : ''}>Executed By</th>
-                            {OrderType === 'Order' && <th className={isDarkMode ? styles.tableHeaderDark : ''}>Sold Amount</th>}
-                            {OrderType === 'Order' && <th className={isDarkMode ? styles.tableHeaderDark : ''}>Order Status</th>}
-                            <th className={`${styles.actionsHeader} ${isDarkMode ? styles.tableHeaderDark : ''}`}>Actions</th>
-                        </tr>
+                    <table className={styles.invoiceTable}>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>
+                                    {ServiceType === 'sales' ? "Customer" : "Supplier"}
+                                </th>
+                                <th>Total Amount</th>
+                                <th>Payment Status</th>
+                                <th>Date</th>
+                                <th>Created By</th>
+                                <th>Executed By</th>
+                                {OrderType === 'Order' && <th>Sold Amount</th>}
+                                {OrderType === 'Order' && <th>Order Status</th>}
+                                <th className={styles.actionsHeader}>Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {filteredInvoices.map((invoice) => (
-                            <tr key={invoice.id}
-                                className={`${styles.tableRow} ${isDarkMode ? styles.tableRowDark : ''}`}
-                                onClick={() => handleOpenModal(invoice)}>
-                                <td className={isDarkMode ? styles.tableCellDark : ''}>{invoice.id}</td>
-                                <td className={isDarkMode ? styles.tableCellDark : ''}>{getPartyName(invoice)}</td>
-                                <td className={isDarkMode ? styles.tableCellDark : ''}>${invoice.totalAmount.toFixed(2)}</td>
-                                <td className={isDarkMode ? styles.tableCellDark : ''}>{getPaymentStatusBadge(invoice.paymentStatus)}</td>
-                                <td className={isDarkMode ? styles.tableCellDark : ''}>{new Date(invoice.date).toLocaleDateString()}</td>
-                                <td className={isDarkMode ? styles.tableCellDark : ''}>
-                                    {invoice.userCreator}:<span className={`${styles.badge} ${styles.badgeCreator}`}>{getUserName(invoice.userCreator)}</span>
-                                </td>
-                                {invoice.userExecutor && invoice.userCreator !== invoice.userExecutor ? (
-                                    <td className={isDarkMode ? styles.tableCellDark : ''}>
-                                        {invoice.userExecutor}:<span className={`${styles.badge} ${styles.badgeExecutor}`}>{getUserName(invoice.userExecutor)}</span>
+                            {filteredInvoices.map((invoice) => (
+                                <tr key={invoice.id}
+                                    className={styles.tableRow}
+                                    onClick={() => handleOpenModal(invoice)}>
+                                    <td>{invoice.id}</td>
+                                    <td>{getPartyName(invoice)}</td>
+                                    <td>${invoice.totalAmount.toFixed(2)}</td>
+                                    <td>{getPaymentStatusBadge(invoice.paymentStatus)}</td>
+                                    <td>{new Date(invoice.date).toLocaleDateString()}</td>
+                                    <td>
+                                        {invoice.userCreator}:<span className={`${styles.badge} ${styles.badgeCreator}`}>{getUserName(invoice.userCreator)}</span>
                                     </td>
-                                ) : (
-                                    <td className={isDarkMode ? styles.tableCellDark : ''}>-</td>
-                                )}
-                                {OrderType === 'Order' && (
-                                    <td className={isDarkMode ? styles.tableCellDark : ''}>
-                                        {getSoldAmount(invoice) !== null ? `$${getSoldAmount(invoice).toFixed(2)}` : 'N/A'}
-                                    </td>
-                                )}
-                                {OrderType === 'Order' && (
-                                    <td className={isDarkMode ? styles.tableCellDark : ''}>
-                                        {getOrderStatus(invoice) !== null ? getOrderStatusBadge(getOrderStatus(invoice)) : 'N/A'}
-                                    </td>
-                                )}
-                                <td className={`${styles.actionsCell} ${isDarkMode ? styles.tableCellDark : ''}`}
-                                    onClick={(e) => e.stopPropagation()}>
-                                    <button
-                                        className={`${styles.actionsButton} ${isDarkMode ? styles.actionsButtonDark : ''}`}
-                                        onClick={(e) => toggleActionsMenu(e, invoice.id)}>
-                                        <i className="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    {activeActionsMenu === invoice.id && (
-                                        <div className={`${styles.actionsMenu} ${isDarkMode ? styles.actionsMenuDark : ''}`}>
-                                            <button
-                                                className={`${styles.menuButton} ${styles.update} ${isDarkMode ? styles.menuButtonDark : ''}`}
-                                                onClick={() => handleEdit(invoice)}>
-                                                <i className="fas fa-pen"></i> Update
-                                            </button>
-                                            <button
-                                                className={`${styles.menuButton} ${styles.delete} ${isDarkMode ? styles.menuButtonDark : ''}`}
-                                                onClick={() => handleDelete(invoice.id)}>
-                                                <i className="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                            <button
-                                                className={`${styles.menuButton} ${styles.download} ${isDarkMode ? styles.menuButtonDark : ''}`}
-                                                onClick={() => handleDownloadPdf(invoice)}
-                                                disabled={downloadingId === invoice.id}
-                                            >
-                                                {downloadingId === invoice.id ? (
-                                                    <><i className="fas fa-spinner fa-spin"></i> Uploading...</>
-                                                ) : (
-                                                    <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-                                                        <FaFilePdf style={{ marginRight: '4px' }} /> Download PDF
-                                                    </span>
-                                                )}
-                                            </button>
-                                        </div>
+                                    {invoice.userExecutor && invoice.userCreator !== invoice.userExecutor ? (
+                                        <td>
+                                            {invoice.userExecutor}:<span className={`${styles.badge} ${styles.badgeExecutor}`}>{getUserName(invoice.userExecutor)}</span>
+                                        </td>
+                                    ) : (
+                                        <td>-</td>
                                     )}
-                                </td>
-                            </tr>
-                        ))}
+                                    {OrderType === 'Order' && (
+                                        <td>
+                                            {getSoldAmount(invoice) !== null ? `$${getSoldAmount(invoice).toFixed(2)}` : 'N/A'}
+                                        </td>
+                                    )}
+                                    {OrderType === 'Order' && (
+                                        <td>
+                                            {getOrderStatus(invoice) !== null ? getOrderStatusBadge(getOrderStatus(invoice)) : 'N/A'}
+                                        </td>
+                                    )}
+                                    <td className={styles.actionsCell}
+                                        onClick={(e) => e.stopPropagation()}>
+                                        <button
+                                            className={styles.actionsButton}
+                                            onClick={(e) => toggleActionsMenu(e, invoice.id)}>
+                                            <i className="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        {activeActionsMenu === invoice.id && (
+                                            <div className={styles.actionsMenu}>
+                                                <button
+                                                    className={`${styles.menuButton} ${styles.update}`}
+                                                    onClick={() => handleEdit(invoice)}>
+                                                    <i className="fas fa-pen"></i> Update
+                                                </button>
+                                                <button
+                                                    className={`${styles.menuButton} ${styles.delete}`}
+                                                    onClick={() => handleDelete(invoice.id)}>
+                                                    <i className="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                                <button
+                                                    className={`${styles.menuButton} ${styles.download}`}
+                                                    onClick={() => handleDownloadPdf(invoice)}
+                                                    disabled={downloadingId === invoice.id}
+                                                >
+                                                    {downloadingId === invoice.id ? (
+                                                        <><i className="fas fa-spinner fa-spin"></i> Uploading...</>
+                                                    ) : (
+                                                        <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                                                            <FaFilePdf style={{ marginRight: '4px' }} /> Download PDF
+                                                        </span>
+                                                    )}
+                                                </button>
+                                            </div>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <div className={`${styles.cardFooter} ${isDarkMode ? styles.cardFooterDark : ''}`}>
-                <h5 className={isDarkMode ? styles.footerTitleDark : ''}
-                data-no-translate={true}>
+            <div className={styles.cardFooter}>
+                <h5 data-no-translate={true}>
                     {translate("order_invoice.total_amount_for_displayed_items", { amount: totalAmount })}
                 </h5>
             </div>

@@ -30,7 +30,7 @@ const LayoutContent: React.FC<{ routes: RouteCategory[] }> = ({ routes }) => {
             {/* المحتوى الرئيسي */}
             <main className="p-4 transition-all duration-200">
                 {/* محتوى الصفحات مع ترجمة تلقائية */}
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div className="premium-card overflow-hidden">
                     <TranslatedElement
                         element={<Outlet />}
                         skipTranslation={!isEnabled}
@@ -39,7 +39,7 @@ const LayoutContent: React.FC<{ routes: RouteCategory[] }> = ({ routes }) => {
             </main>
 
             {/* Documentation Floating Button */}
-            <Link 
+            <Link
                 to="/documentation"
                 className="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110 z-50"
                 aria-label="Documentation"

@@ -3,6 +3,10 @@ export interface Item {
     productId: number;
     quantity: number;
     price: number;
-    salesInvoiceId: number;
-    salesOrderId: number;
+    salesInvoiceId?: number;
+    salesOrderId?: number;
+    purchaseInvoiceId?: number;
+    purchaseOrderId?: number;
+    returnReason?: string;
+    returnDate?: string | Date;
 }

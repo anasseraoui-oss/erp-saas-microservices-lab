@@ -12,10 +12,11 @@ import { OrderType, ServiceType } from "../../../../api/OrderInvoiceService";
 // Import the new components
 import LineItemsSection from './LineItemsSection';
 import PaymentSection from './PaymentSection';
-import {getUserName} from "../../../../axiosBasec/storagByUser";
-import {getProductNameById} from "../../../../api/product/productService";
-import {getSupplierClientNameById} from "../../../../api/supplierClientService";
-import {useTranslation} from "react-i18next";
+import ReturnItemsSection from './ReturnItemsSection';
+import { getUserName } from "../../../../axiosBasec/storagByUser";
+import { getProductNameById } from "../../../../api/product/productService";
+import { getSupplierClientNameById } from "../../../../api/supplierClientService";
+import { useTranslation } from "react-i18next";
 
 // Mock services for demo - replace with actual API calls
 const getUserInfo = async (userId: string) => {
@@ -23,7 +24,7 @@ const getUserInfo = async (userId: string) => {
     return { fullName: `User ${username}`, email: `${username}@gmail.com` }; // email added for tooltip;
 };
 
-const getEntityName = async (entityId: string) : Promise<string> => {
+const getEntityName = async (entityId: string): Promise<string> => {
     return await getSupplierClientNameById(entityId);
 };
 
@@ -33,7 +34,7 @@ export const getProductName = async (productId: string | number) => {
 
 // Props Interfaces
 interface InvoiceOrOrderDetailsProps {
-    invoiceOrOrder: Invoice | Order | null ;
+    invoiceOrOrder: Invoice | Order | null;
     ServiceType: ServiceType;
     OrderType: OrderType;
     onClose: () => void;
@@ -192,8 +193,8 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
 
     const content = (
         <div className={containerClasses} onClick={(e) => e.stopPropagation()}>
-            <header className={`${styles.modalHeader} ${isDarkMode ? styles.modalHeaderDark : ''}`}>
-                <h2 className={`${styles.modalTitle} ${isDarkMode ? styles.modalTitleDark : ''}`}
+            <header className={styles.modalHeader}>
+                <h2 className={styles.modalTitle}
                     data-no-translate={true}
                 >
                     {translate("order_invoice.details_for_order_type_id", {
@@ -201,16 +202,16 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
                         id: invoiceOrOrder.id
                     })}
                 </h2>
-                <button onClick={onClose} className={`${styles.closeButton} ${isDarkMode ? styles.closeButtonDark : ''}`}>
+                <button onClick={onClose} className={styles.closeButton}>
                     <Icon as={FaTimes} size={20} />
                 </button>
             </header>
 
-            <main className={`${styles.modalBody} ${isDarkMode ? styles.modalBodyDark : ''}`}>
+            <main className={styles.modalBody}>
                 <AccordionItem title="General Information" id="info" activeId={activeAccordion} toggle={toggleAccordion}>
                     <div className={styles.infoGrid}>
                         <div className={styles.infoItem}>
-                            <strong className={isDarkMode ? styles.labelDark : styles.label}>
+                            <strong className={styles.label}>
                                 {ServiceType === 'sales' ? translate("order_invoice.customer") + ':' : translate("order_invoice.supplier") + ':'}
                             </strong>
                             <EntityDisplay
@@ -220,20 +221,20 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
                         </div>
 
                         <div className={styles.infoItem}>
-                            <strong className={isDarkMode ? styles.labelDark : styles.label}>{translate("total_amount")}:</strong>
+                            <strong className={styles.label}>{translate("total_amount")}:</strong>
                             <span className={styles.amountValue}>${invoiceOrOrder.totalAmount?.toFixed(2)}</span>
                         </div>
 
                         <div className={styles.infoItem}>
-                            <strong className={isDarkMode ? styles.labelDark : styles.label}>{translate("payment_status")}:</strong>
+                            <strong className={styles.label}>{translate("payment_status")}:</strong>
                             <span className={`${styles.statusBadge} ${styles[invoiceOrOrder.paymentStatus?.toLowerCase() || 'default']}`}>
                                 {translate(`order_invoice.${invoiceOrOrder.paymentStatus?.toLowerCase() || 'unpaid'}`, invoiceOrOrder.paymentStatus || 'UNPAID')}
                             </span>
                         </div>
 
                         <div className={styles.infoItem}>
-                            <strong className={isDarkMode ? styles.labelDark : styles.label}>{translate("label_date")}:</strong>
-                            <span className={isDarkMode ? styles.textDark : styles.text}>
+                            <strong className={styles.label}>{translate("label_date")}:</strong>
+                            <span className={styles.text}>
                                 {new Date(invoiceOrOrder.date).toLocaleDateString()}
                             </span>
                         </div>
@@ -261,7 +262,7 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
 
                 {showPaymentSection && (
                     <AccordionItem title="Payment History" id="payment" activeId={activeAccordion} toggle={toggleAccordion}>
-                        <PaymentSection invoiceOrOrder={invoiceOrOrder} ServiceType={ServiceType} OrderType={OrderType}/>
+                        <PaymentSection invoiceOrOrder={invoiceOrOrder} ServiceType={ServiceType} OrderType={OrderType} />
                     </AccordionItem>
                 )}
 
@@ -271,16 +272,16 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
                         id="order" activeId={activeAccordion} toggle={toggleAccordion}>
                         {orderInfo && (
                             <div className={styles.orderSection}>
-                                <h5 className={`${styles.sectionTitle} ${isDarkMode ? styles.sectionTitleDark : ''}`}>
+                                <h5 className={styles.sectionTitle}>
                                     Order Details
                                 </h5>
                                 <div className={styles.infoGrid}>
                                     <div className={styles.infoItem}>
-                                        <strong className={isDarkMode ? styles.labelDark : styles.label}>{translate('order_invoice.sold_amount', 'Sold Amount')}:</strong>
+                                        <strong className={styles.label}>{translate('order_invoice.sold_amount', 'Sold Amount')}:</strong>
                                         <span className={styles.amountValue}>${orderInfo.soldAmount?.toFixed(2)}</span>
                                     </div>
                                     <div className={styles.infoItem}>
-                                        <strong className={isDarkMode ? styles.labelDark : styles.label}>
+                                        <strong className={styles.label}>
                                             {translate('order_invoice.current_status', 'Current Status')}:
                                         </strong>
                                         <span className={`${styles.statusBadge} ${styles[orderInfo.orderStatus?.toLowerCase() || 'default']}`}>
@@ -291,12 +292,12 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
 
                                 {OrderType === 'Order' && (
                                     <div className={styles.statusChangeSection}>
-                                        <label htmlFor="order-status-select" className={`${styles.selectLabel} ${isDarkMode ? styles.labelDark : styles.label}`}>
+                                        <label htmlFor="order-status-select" className={styles.selectLabel}>
                                             <strong>{translate('order_invoice.change_order_status', 'Change Order Status')}:</strong>
                                         </label>
                                         <select
                                             id="order-status-select"
-                                            className={`${styles.statusSelect} ${isDarkMode ? styles.statusSelectDark : ''}`}
+                                            className={styles.statusSelect}
                                             value={orderInfo.orderStatus}
                                             onChange={handleStatusChange}
                                         >
@@ -312,23 +313,23 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
 
                         {deliveryInfo && (
                             <div className={styles.deliverySection}>
-                                <h5 className={`${styles.sectionTitle} ${isDarkMode ? styles.sectionTitleDark : ''}`}>
+                                <h5 className={styles.sectionTitle}>
                                     Delivery Details
                                 </h5>
                                 <div className={styles.infoGrid}>
                                     <div className={styles.infoItem}>
-                                        <strong className={isDarkMode ? styles.labelDark : styles.label}>
+                                        <strong className={styles.label}>
                                             {translate('order_invoice.location', 'Location')}:
                                         </strong>
-                                        <span className={isDarkMode ? styles.textDark : styles.text}>
+                                        <span className={styles.text}>
                                             {deliveryInfo.location}
                                         </span>
                                     </div>
                                     <div className={styles.infoItem}>
-                                        <strong className={isDarkMode ? styles.labelDark : styles.label}>
+                                        <strong className={styles.label}>
                                             {translate('order_invoice.date', 'Date')}:
                                         </strong>
-                                        <span className={isDarkMode ? styles.textDark : styles.text}>
+                                        <span className={styles.text}>
                                             {new Date(deliveryInfo.deliveryDate).toLocaleDateString()}
                                         </span>
                                     </div>
@@ -341,6 +342,10 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
                 <AccordionItem title="Items" id="items" activeId={activeAccordion} toggle={toggleAccordion}>
                     <LineItemsSection parentId={invoiceOrOrder.id} ServiceType={ServiceType} OrderType={OrderType} />
                 </AccordionItem>
+
+                <AccordionItem title="Returned Items" id="returns" activeId={activeAccordion} toggle={toggleAccordion}>
+                    <ReturnItemsSection parentId={invoiceOrOrder.id} ServiceType={ServiceType} OrderType={OrderType} />
+                </AccordionItem>
             </main>
         </div>
     );
@@ -350,7 +355,7 @@ const InvoiceOrOrderDetails: React.FC<InvoiceOrOrderDetailsProps> = ({
     }
 
     return (
-        <div className={styles.modalOverlay} onClick={onClose}>
+        <div className={`${styles.modalOverlay} ${isDarkMode ? styles.darkOverlay : ''}`} onClick={onClose}>
             {content}
         </div>
     );

@@ -12,7 +12,7 @@ import { Product } from "../../classe/Product";
 import { allApplicationRoutes } from "../buildMenuHome/y";
 import { ProductChartData } from "../statistics/basec";
 import EnhancedStats from "./EnhancedStats";
-import { getAllLines } from "../../api/lineApiService";
+import { getAllLinesAllContexts } from "../../api/lineApiService";
 
 // Type definitions
 interface ProductListState {
@@ -153,8 +153,7 @@ const ProductList: React.FC = () => {
     });
 
     // Fix the useDarkMode hook usage with proper typing
-    const darkModeContext = useDarkMode() as DarkModeContextType;
-    const isDarkMode = darkModeContext?.isDarkMode || false;
+    const { isDarkMode } = useDarkMode();
 
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
@@ -163,10 +162,10 @@ const ProductList: React.FC = () => {
         const fetchProductLines = async () => {
             try {
                 const [salesLines, purchaseLines, salesReturnLines, purchaseReturnLines] = await Promise.all([
-                    getAllLines('sales', 'line'),
-                    getAllLines('purchases', 'line'),
-                    getAllLines('sales', 'lineReturn'),
-                    getAllLines('purchases', 'lineReturn')
+                    getAllLinesAllContexts('sales', 'line'),
+                    getAllLinesAllContexts('purchases', 'line'),
+                    getAllLinesAllContexts('sales', 'lineReturn'),
+                    getAllLinesAllContexts('purchases', 'lineReturn')
                 ]);
 
                 setProductLinesData({

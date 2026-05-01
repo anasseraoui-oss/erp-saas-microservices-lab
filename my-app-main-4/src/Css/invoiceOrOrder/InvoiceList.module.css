@@ -1,766 +1,257 @@
-/* === CSS Custom Properties === */
-:root {
-    --color-bg-light: #ffffff;
-    --color-bg-gray: #f8f9fa;
-    --color-border-light: #dee2e6;
-    --color-border-subtle: #e9ecef;
-    --color-text-primary: #495057;
-    --color-text-muted: #6c757d;
-    --color-text-dark: #212529;
-    --color-hover-light: #f1f3f5;
+/* === InvoiceList.module.css - Optimized for Premium Experience === */
 
-    --color-dark-bg-primary: #1a1a2e;
-    --color-dark-bg-secondary: #2c2c3e;
-    --color-dark-bg-tertiary: #161625;
-    --color-dark-border: #4a4a5e;
-    --color-dark-border-subtle: #3a3a4d;
-    --color-dark-text-primary: #e0e0e0;
-    --color-dark-text-secondary: #a0a0b8;
-    --color-dark-text-muted: #adb5bd;
-    --color-dark-hover: #2c2c2c;
-
-    --color-success: #155724;
-    --color-success-bg: #d4edda;
-    --color-danger: #721c24;
-    --color-danger-bg: #f8d7da;
-    --color-warning: #856404;
-    --color-warning-bg: #fff3cd;
-    --color-info: #0c5460;
-    --color-info-bg: #d1ecf1;
-    --color-secondary: #383d41;
-    --color-secondary-bg: #e2e3e5;
-
-    /* Spacing & Layout */
-    --space-xs: 0.5rem;
-    --space-sm: 0.75rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 3rem;
-    --border-radius: 8px;
-    --border-radius-lg: 12px;
-
-    --color-dark-success: #27ae60;
-    --color-dark-success-bg: rgba(39, 174, 96, 0.2);
-    --color-dark-danger: #e74c3c;
-    --color-dark-danger-bg: rgba(231, 76, 60, 0.2);
-    --color-dark-warning: #f1c40f;
-    --color-dark-warning-bg: rgba(241, 196, 15, 0.2);
-    --color-dark-info: #3498db;
-    --color-dark-info-bg: rgba(52, 152, 219, 0.2);
-    --color-dark-secondary: #95a5a6;
-    --color-dark-secondary-bg: rgba(149, 165, 166, 0.2);
-}
-
-/* === Main Container - Full Page === */
 .listContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-bg-light);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.3s, color 0.3s;
+    @apply min-h-screen transition-all duration-500 flex flex-col;
+    background-color: hsl(var(--background));
+    padding-top: 72px;
 }
 
-.listContainer.darkMode {
-    background-color: var(--color-dark-bg-primary);
-    color: var(--color-dark-text-primary);
-}
-
-/* === Card Sections === */
+/* === Layout Sections === */
 .cardHeader {
-    background-color: var(--color-bg-light);
-    border-bottom: 1px solid var(--color-border-light);
-    padding: 1.5rem;
-    flex-shrink: 0;
-}
-
-.cardHeaderDark {
-    background-color: var(--color-dark-bg-secondary);
-    border-bottom: 1px solid var(--color-dark-border);
-    color: var(--color-dark-text-primary);
+    @apply px-8 py-8 border-b transition-all duration-300;
+    background-color: hsla(var(--card), 0.5);
+    backdrop-filter: blur(16px);
+    border-color: hsla(var(--border), 0.5);
 }
 
 .cardBody {
-    background-color: var(--color-bg-light);
-    padding: 1.5rem;
-    flex: 1;
-    overflow-y: auto;
-}
-
-.cardBodyDark {
-    background-color: var(--color-dark-bg-primary);
-    color: var(--color-dark-text-primary);
+    @apply flex-1 p-8 transition-all duration-300;
+    background-color: transparent;
 }
 
 .cardFooter {
-    background-color: var(--color-bg-gray);
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--color-border-light);
-    margin: 0;
-    flex-shrink: 0;
+    @apply p-8 border-t mt-auto transition-all duration-300;
+    background-color: hsla(var(--card), 0.3);
+    border-color: hsla(var(--border), 0.5);
 }
 
-.cardFooterDark {
-    background-color: var(--color-dark-bg-tertiary);
-    border-top: 1px solid var(--color-dark-border);
-    color: var(--color-dark-text-primary);
-}
-
-.footerTitleDark {
-    color: var(--color-dark-text-primary);
-}
-
-/* === Form Elements === */
-.inputGroup {
-    display: flex;
-    width: 100%;
-}
-
-.inputGroupText {
-    display: flex;
-    align-items: center;
-    padding: 0.375rem 0.75rem;
-    margin-bottom: 0;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--color-text-muted);
-    text-align: center;
-    white-space: nowrap;
-    background-color: var(--color-bg-gray);
-    border: 1px solid var(--color-border-light);
-    border-right: 0;
-    border-top-left-radius: 0.375rem;
-    border-bottom-left-radius: 0.375rem;
-}
-
-.inputGroupTextDark {
-    background-color: var(--color-dark-bg-secondary);
-    border: 1px solid var(--color-dark-border);
-    border-right: 0;
-    color: var(--color-dark-text-secondary);
-}
-
-.formControl {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--color-text-dark);
-    background-color: var(--color-bg-light);
-    background-clip: padding-box;
-    border: 1px solid var(--color-border-light);
-    border-radius: 0.375rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.formControl:focus {
-    color: var(--color-text-dark);
-    background-color: var(--color-bg-light);
-    border-color: #86b7fe;
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-.formControlDark {
-    background-color: var(--color-dark-bg-secondary);
-    border: 1px solid var(--color-dark-border);
-    color: var(--color-dark-text-primary);
-}
-
-.formControlDark:focus {
-    background-color: var(--color-dark-bg-secondary);
-    border-color: #4dabf7;
-    color: var(--color-dark-text-primary);
-    box-shadow: 0 0 0 0.25rem rgba(77, 171, 247, 0.25);
-}
-
-.formSelect {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--color-text-dark);
-    background-color: var(--color-bg-light);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 16px 12px;
-    border: 1px solid var(--color-border-light);
-    border-radius: 0.375rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    appearance: none;
-}
-
-.formSelect:focus {
-    border-color: #86b7fe;
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-.formSelectDark {
-    background-color: var(--color-dark-bg-secondary);
-    border: 1px solid var(--color-dark-border);
-    color: var(--color-dark-text-primary);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e0e0e0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-}
-
-.formSelectDark:focus {
-    border-color: #4dabf7;
-    box-shadow: 0 0 0 0.25rem rgba(77, 171, 247, 0.25);
-}
-
-.formLabel {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: var(--color-text-primary);
-}
-
-.formLabelDark {
-    color: var(--color-dark-text-primary);
+/* === Filters & Search === */
+.filtersGrid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10;
 }
 
 .formGroup {
-    margin-bottom: 1rem;
+    @apply flex flex-col gap-2;
 }
 
-.formGroupAuto {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: end;
+.formLabel {
+    @apply text-[10px] font-black uppercase tracking-widest opacity-60 ml-1;
+    color: hsl(var(--foreground));
 }
 
-/* === Filters Section === */
-.filtersGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    align-items: end;
-    margin-bottom: 2rem;
+.inputGroup {
+    @apply relative flex items-center max-w-md;
 }
 
-.filterGroup {
-    display: flex;
-    flex-direction: column;
+.inputGroupText {
+    @apply absolute left-4 text-muted-foreground z-10;
 }
 
-.btnClearFilters {
-    background-color: transparent;
-    border: 1px solid var(--color-border-light);
-    color: var(--color-text-muted);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-    width: 100%;
-    height: fit-content;
+.formControl,
+.formSelect {
+    @apply w-full px-4 py-3 rounded-2xl border transition-all duration-300 outline-none font-semibold text-sm;
+    background-color: hsla(var(--card), 0.8);
+    border-color: hsla(var(--border), 0.5);
+    color: hsl(var(--foreground));
 }
 
-.btnClearFilters:hover {
-    background-color: var(--color-bg-gray);
-    border-color: var(--color-text-muted);
-    color: var(--color-text-dark);
+.formControl:focus,
+.formSelect:focus {
+    @apply ring-4 ring-indigo-500/10 border-indigo-500/50 bg-[hsl(var(--card))];
+}
+
+.inputGroup .formControl {
+    @apply pl-12;
 }
 
 .btnOutline {
-    background-color: transparent;
-    border: 1px solid var(--color-border-light);
-    color: var(--color-text-muted);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-    width: 100%;
-    height: fit-content;
+    @apply px-6 py-3 rounded-2xl border font-bold text-xs uppercase tracking-widest transition-all duration-300;
+    border-color: hsla(var(--border), 0.8);
+    color: hsl(var(--foreground));
 }
 
 .btnOutline:hover {
-    background-color: var(--color-bg-gray);
-    border-color: var(--color-text-muted);
-    color: var(--color-text-dark);
+    @apply bg-indigo-500/5 border-indigo-500/30 text-indigo-500 scale-105;
 }
 
-.btnOutlineDark {
-    border: 1px solid var(--color-dark-border);
-    color: var(--color-dark-text-secondary);
-}
-
-.btnOutlineDark:hover {
-    background-color: var(--color-dark-bg-secondary);
-    border-color: var(--color-dark-text-primary);
-    color: var(--color-dark-text-primary);
-}
-
-/* === Table Styles === */
+/* === Specialized Table Styling === */
 .tableResponsive {
-    overflow-x: auto;
-    flex: 1;
+    @apply overflow-hidden rounded-[2rem] border border-indigo-500/10 shadow-2xl transition-all duration-500;
+    background-color: hsla(var(--card), 0.4);
+    backdrop-filter: blur(8px);
 }
 
 .invoiceTable {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-bottom: 0;
-}
-
-.invoiceTableDark {
-    background-color: var(--color-dark-bg-primary);
+    @apply w-full border-collapse text-sm;
 }
 
 .invoiceTable th {
-    background-color: var(--color-bg-gray);
-    font-weight: 600;
-    color: var(--color-text-primary);
-    text-align: left;
-    padding: 16px;
-    border-bottom: 2px solid var(--color-border-light);
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
-.tableHeaderDark {
-    background-color: var(--color-dark-bg-secondary) !important;
-    color: var(--color-dark-text-primary) !important;
-    border-bottom: 2px solid var(--color-dark-border) !important;
-}
-
-.tableHeadDark {
-    background-color: var(--color-dark-bg-secondary);
+    @apply px-6 py-5 text-left font-black uppercase tracking-widest text-[10px] opacity-40 sticky top-0 z-20;
+    background-color: hsla(var(--muted), 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsla(var(--border), 0.5);
 }
 
 .invoiceTable td {
-    padding: 16px;
-    border-bottom: 1px solid var(--color-border-subtle);
-    vertical-align: middle;
-    color: var(--color-text-dark);
-}
-
-.tableCellDark {
-    color: var(--color-dark-text-primary) !important;
-    border-bottom: 1px solid var(--color-dark-border-subtle) !important;
+    @apply px-6 py-5 border-b border-indigo-500/5 align-middle transition-colors duration-200;
+    color: hsl(var(--foreground));
 }
 
 .tableRow {
-    transition: background-color 0.2s ease-in-out;
-    cursor: pointer;
+    @apply hover:bg-indigo-500/5 cursor-pointer transition-all duration-300;
 }
 
-.tableRow:hover {
-    background-color: var(--color-hover-light);
-}
-
-.tableRowDark:hover {
-    background-color: var(--color-dark-hover);
-}
-
-.tableRow:last-child td {
-    border-bottom: none;
-}
-
-.actionsHeader {
-    text-align: right !important;
-    width: 60px;
-}
-
-.actionsCell {
-    position: relative;
-}
-
-.actionsButton {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: var(--color-text-muted);
-    border-radius: 0.25rem;
-    transition: background-color 0.15s ease-in-out;
-}
-
-.actionsButton:hover {
-    background-color: var(--color-bg-gray);
-    color: var(--color-text-dark);
-}
-
-.actionsButtonDark {
-    color: var(--color-dark-text-secondary);
-}
-
-.actionsButtonDark:hover {
-    background-color: var(--color-dark-bg-secondary);
-    color: var(--color-dark-text-primary);
-}
-
-.actionsMenu {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background-color: var(--color-bg-light);
-    border: 1px solid var(--color-border-light);
-    border-radius: 0.375rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    min-width: 120px;
-}
-
-.actionsMenuDark {
-    background-color: var(--color-dark-bg-secondary);
-    border: 1px solid var(--color-dark-border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.menuButton {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    transition: background-color 0.15s ease-in-out;
-    font-size: 0.9rem;
-    color: var(--color-text-dark);
-}
-
-.menuButton:hover {
-    background-color: var(--color-bg-gray);
-}
-
-.menuButton i {
-    margin-right: 0.5rem;
-    width: 12px;
-}
-
-.menuButton.update:hover {
-    background-color: var(--color-info-bg);
-    color: var(--color-info);
-}
-
-.menuButton.delete:hover {
-    background-color: var(--color-danger-bg);
-    color: var(--color-danger);
-}
-
-.menuButtonDark {
-    color: var(--color-dark-text-primary);
-}
-
-.menuButtonDark:hover {
-    background-color: var(--color-dark-hover);
-}
-
-.menuButtonDark.update:hover {
-    background-color: var(--color-dark-info-bg);
-    color: var(--color-dark-info);
-}
-
-.menuButtonDark.delete:hover {
-    background-color: var(--color-dark-danger-bg);
-    color: var(--color-dark-danger);
-}
-
-/* === Badge Styles === */
+/* === Badges & Statuses === */
 .badge {
-    display: inline-block;
-    padding: 0.35em 0.65em;
-    font-size: 0.75em;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    @apply px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border shadow-sm;
 }
 
-/* Payment Status Badges */
 .badgePaid {
-    color: var(--color-success);
-    background-color: var(--color-success-bg);
+    @apply bg-emerald-500/10 text-emerald-500 border-emerald-500/20;
 }
 
 .badgeUnpaid {
-    color: var(--color-danger);
-    background-color: var(--color-danger-bg);
+    @apply bg-rose-500/10 text-rose-500 border-rose-500/20;
 }
 
 .badgePartpaid {
-    color: var(--color-warning);
-    background-color: var(--color-warning-bg);
-}
-
-/* User Role Badges */
-.badgeCreator {
-    color: var(--color-info);
-    background-color: var(--color-info-bg);
-}
-
-.badgeExecutor {
-    color: var(--color-secondary);
-    background-color: var(--color-secondary-bg);
-}
-
-/* Order Status Badges */
-.badgeOrderPending {
-    color: #856404;
-    background-color: #fff3cd;
-}
-
-.badgeOrderProcessing {
-    color: #0c5460;
-    background-color: #d1ecf1;
-}
-
-.badgeOrderShipped {
-    color: #0f5132;
-    background-color: #88F3C1FF;
+    @apply bg-amber-500/10 text-amber-500 border-amber-500/20;
 }
 
 .badgeProcessing {
-    color: #0c5460;
-    background-color: #d1ecf1;
+    @apply bg-indigo-500/10 text-indigo-500 border-indigo-500/20;
 }
 
 .badgeShipped {
-    color: #0f5132;
-    background-color: #88F3C1FF;
+    @apply bg-blue-500/10 text-blue-500 border-blue-500/20;
 }
 
-/* Dark mode badge adjustments */
-.darkMode .badgePaid {
-    color: var(--color-dark-success);
-    background-color: var(--color-dark-success-bg);
+.badgeCreator,
+.badgeExecutor {
+    @apply ml-2 bg-indigo-500/5 text-indigo-500 border-indigo-500/10 normal-case tracking-normal py-0.5;
 }
 
-.darkMode .badgeUnpaid {
-    color: var(--color-dark-danger);
-    background-color: var(--color-dark-danger-bg);
+/* === Actions Menu === */
+.actionsCell {
+    @apply relative text-right;
 }
 
-.darkMode .badgePartpaid {
-    color: var(--color-dark-warning);
-    background-color: var(--color-dark-warning-bg);
+.actionsButton {
+    @apply w-10 h-10 flex items-center justify-center rounded-2xl transition-all duration-300 hover:bg-primary/10 text-muted-foreground hover:text-primary;
 }
 
-.darkMode .badgeCreator {
-    color: var(--color-dark-info);
-    background-color: var(--color-dark-info-bg);
+.actionsMenu {
+    @apply absolute right-0 top-full mt-2 min-w-[200px] glass rounded-[1.5rem] shadow-2xl z-[100] p-2 overflow-hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.darkMode .badgeExecutor {
-    color: var(--color-dark-secondary);
-    background-color: var(--color-dark-secondary-bg);
+:global(.dark) .actionsMenu {
+    border-color: hsl(var(--border));
 }
 
-/* === Modal Styles === */
-.modalBackdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1050;
+:global(.dark) .menuButton {
+    color: hsl(var(--foreground));
 }
 
-.modalContent {
-    background-color: var(--color-bg-light);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 500px;
-    max-height: 90vh;
-    overflow-y: auto;
+:global(.dark) .menuButton:hover {
+    color: hsl(var(--primary));
 }
 
-.modalContentDark {
-    background-color: var(--color-dark-bg-primary);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-.modalHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--color-border-light);
+.menuButton {
+    @apply flex items-center gap-3 w-full px-4 py-3 text-sm font-bold rounded-2xl text-muted-foreground hover:bg-primary/5 transition-all text-left border-none bg-transparent;
 }
 
-.modalHeaderDark {
-    border-bottom: 1px solid var(--color-dark-border);
+.menuButton i {
+    @apply w-5 text-center;
 }
 
-.modalTitle {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--color-text-dark);
+.menuButton:hover {
+    @apply text-foreground translate-x-1;
 }
 
-.modalTitleDark {
-    color: var(--color-dark-text-primary);
+.menuButton.update {
+    @apply hover:text-emerald-500 hover:bg-emerald-500/5;
 }
 
-.btnClose {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-    color: var(--color-text-muted);
-    width: 1.5rem;
-    height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.menuButton.delete {
+    @apply hover:text-rose-500 hover:bg-rose-500/5;
 }
 
-.btnClose::before {
-    content: "×";
+/* Dark mode overrides */
+:global(.dark) .cardHeader {
+    background-color: hsla(var(--card), 0.8);
 }
 
-.btnClose:hover {
-    color: var(--color-text-dark);
+:global(.dark) .tableResponsive {
+    background-color: hsla(var(--card), 0.6);
 }
 
-.btnCloseDark {
-    color: var(--color-dark-text-secondary);
+:global(.dark) .invoiceTable th {
+    background-color: hsla(var(--muted), 0.6);
+    color: hsl(var(--muted-foreground));
 }
 
-.btnCloseDark:hover {
-    color: var(--color-dark-text-primary);
+/* === RTS & Footer === */
+.footerTitle {
+    @apply text-xl font-black tracking-tighter;
+    color: hsl(var(--foreground));
 }
 
-.modalBody {
-    padding: 1.5rem;
+/* === RTL Adjustments === */
+[dir="rtl"] .invoiceTable th {
+    @apply text-right;
 }
 
-.modalBodyDark {
-    background-color: var(--color-dark-bg-primary);
+[dir="rtl"] .actionsMenu {
+    @apply right-auto left-0;
 }
 
-.modalFooter {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--color-border-light);
+[dir="rtl"] .menuButton {
+    @apply text-right;
 }
 
-.modalFooterDark {
-    border-top: 1px solid var(--color-dark-border);
+[dir="rtl"] .menuButton:hover {
+    @apply -translate-x-1;
 }
 
-.btnSuccess {
-    background-color: #4f46e5;
-    color: #ffffff;
+/* === Responsive === */
+@media (max-width: 1024px) {
+    .filtersGrid {
+        @apply grid-cols-2 gap-4;
+    }
 }
 
-/* Buttons */
-.btn {
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease-in-out;
-}
-
-.btnPrimary {
-    background-color: #0d6efd;
-    border: 1px solid #0d6efd;
-    color: #ffffff;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-}
-
-.btnPrimary:hover {
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
-}
-
-.btnPrimaryDark {
-    background-color: #4338ca;
-    border-color: #4338ca;
-    color: #000000;
-}
-
-.btnPrimaryDark:hover {
-    background-color: #339af0;
-    border-color: #339af0;
-}
-
-.btnSecondary {
-    background-color: #6c757d;
-    border: 1px solid #6c757d;
-    color: #ffffff;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-}
-
-.btnSecondary:hover {
-    background-color: #5c636a;
-    border-color: #565e64;
-}
-
-.btnSecondaryDark {
-    background-color: var(--color-dark-secondary);
-    border-color: var(--color-dark-secondary);
-}
-
-.btnSecondaryDark:hover {
-    background-color: #7f8c8d;
-    border-color: #7f8c8d;
-}
-
-/* === Responsive Design === */
 @media (max-width: 768px) {
-    .listContainer {
-        /* Keep full viewport on mobile */
+
+    .cardHeader,
+    .cardBody,
+    .cardFooter {
+        @apply p-4;
     }
 
     .filtersGrid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        @apply grid-cols-1 gap-3 mb-6;
     }
 
     .invoiceTable th,
     .invoiceTable td {
-        padding: 8px;
-        font-size: 0.9rem;
+        @apply px-4 py-4;
     }
 
-    .modalContent {
-        width: 95%;
-        margin: 1rem;
+    .tableResponsive {
+        @apply rounded-3xl;
     }
 }

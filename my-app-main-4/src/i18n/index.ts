@@ -9,10 +9,12 @@ import navigationEN from './locales/en/navigation.json';
 import navigationFR from './locales/fr/navigation.json';
 import account from './locales/ar/account.json';
 import product from './locales/ar/product.json';
+import productEN from './locales/en/product.json';
 import order_invoice from './locales/ar/order_invoice.json';
 import order_invoice_en from './locales/en/order_invoice.json';
 import order_invoice_fr from './locales/fr/order_invoice.json';
 import notification from './locales/ar/notification.json';
+import notificationEN from './locales/en/notification.json';
 import authAR from './locales/ar/auth.json';
 import genericActionButtonsAR from './locales/ar/generic_action_buttons.json';
 import accountEN from './locales/en/account.json';
@@ -30,7 +32,16 @@ import expiredProductFormFR from './locales/fr/expired_product_form.json';
 
 
 // English translations
-const enTranslations = { ...en, ...accountEN, ...activityLogEN, ...genericActionButtonsEN, ...navigationEN, ...order_invoice_en };
+const enTranslations = {
+    ...en,
+    ...accountEN,
+    ...activityLogEN,
+    ...genericActionButtonsEN,
+    ...navigationEN,
+    ...order_invoice_en,
+    ...productEN,
+    ...notificationEN
+};
 
 // Arabic translations
 const arTranslations = {

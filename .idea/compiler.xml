@@ -6,6 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="security-core" />
+        <module name="Security-Service" />
+        <module name="gateway-service" />
+        <module name="Payment-Service" />
+        <module name="Eureka-Server" />
+        <module name="Notification-Service" />
+        <module name="Sales-Order-Service" />
+        <module name="model-Entities-Library" />
+        <module name="Purchase-Order-Service" />
+        <module name="SupplierClient-Service" />
+        <module name="Product-Service" />
       </profile>
     </annotationProcessing>
   </component>

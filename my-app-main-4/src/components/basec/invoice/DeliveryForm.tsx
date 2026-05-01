@@ -35,7 +35,7 @@ const DeliveryForm = ({ initialData, onSave }: DeliveryFormProps) => {
         onSave(deliveryData);
     };
 
-    const inputClasses = `form-control ${isDarkMode ? 'bg-dark text-white border-secondary' : ''}`;
+    const inputClasses = `form-control ${isDarkMode ? 'input-dark-theme' : ''}`;
 
     return (
         <form onSubmit={handleSubmit}>

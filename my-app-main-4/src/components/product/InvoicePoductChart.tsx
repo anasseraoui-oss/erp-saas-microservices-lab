@@ -5,7 +5,7 @@ import { getAllOrdersOrInvoices } from '../../api/OrderInvoiceService';
 import { useDarkMode } from '../DarkModeProvider';
 import '../../Css/product/InvoiceProductChart.css';
 import { Invoice } from '../../classe/Invoice';
-import {getAllLines} from "../../api/lineApiService";
+import { getAllLinesAllContexts } from "../../api/lineApiService";
 
 interface Line {
     productId: number;
@@ -48,8 +48,8 @@ const InvoiceProductChart = ({ productId }: { productId: number }) => {
                 const [salesInvs, purchaseInvs, salesLinesRes, purchaseLinesRes] = await Promise.all([
                     getAllOrdersOrInvoices('sales', 'Invoice'),
                     getAllOrdersOrInvoices('purchases', 'Invoice'),
-                    getAllLines('sales', "line"),
-                    getAllLines('purchases', "lineReturn")
+                    getAllLinesAllContexts('sales', "line"),
+                    getAllLinesAllContexts('purchases', "lineReturn")
                 ]);
 
                 if (!active || !salesLinesRes || !purchaseLinesRes) return;

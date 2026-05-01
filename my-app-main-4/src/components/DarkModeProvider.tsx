@@ -28,14 +28,13 @@ export const DarkModeProvider: React.FC<DarkModeProviderProps> = ({ children }) 
 
     useEffect(() => {
         const html = document.documentElement;
-        // Keep existing data-theme attribute for compatibility
+        // Sync dark mode to html for all components (AccountDashboard, CategoryFilter, etc.)
         if (isDarkMode) {
             html.setAttribute('data-theme', 'dark');
-            // Also add the `dark` class so Tailwind's class-based dark styles apply immediately
-            html.classList.add('dark');
+            html.classList.add('dark', 'dark-mode');
         } else {
             html.removeAttribute('data-theme');
-            html.classList.remove('dark');
+            html.classList.remove('dark', 'dark-mode');
         }
         
         try {

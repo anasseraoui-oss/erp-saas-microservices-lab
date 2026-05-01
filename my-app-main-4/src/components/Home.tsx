@@ -30,11 +30,9 @@ const Home: React.FC<HomeProps> = ({ menuItems }) => {
 
     // @ts-ignore
     const { isDarkMode } = useDarkMode();
-    const containerClass = `${styles.homepageContainer} ${isDarkMode ? styles.dark : ''}`;
-
     return (
-        <div className={containerClass}>
-        <Navbar />
+        <div className={`${styles.homepageContainer} ${isDarkMode ? 'dark' : ''}`}>
+            <Navbar />
             <header className={styles.homepageHeader}>
                 <h1>Application Dashboard</h1>
                 <p>Select a module to begin your journey</p>

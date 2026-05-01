@@ -130,6 +130,5 @@
   "noPermissionsToDisplay": "No permissions to display as the user has no roles.",
   "permissionsOverview": "Permissions Overview",
   "noSpecificPermissions": "No specific permissions for this role.",
-  "activityDetailsFor": "تفاصيل النشاط لـ"
-
+  "activityDetailsFor": "Activity details for"
 }

@@ -2,7 +2,7 @@ import {searchOrdersOrInvoices} from "../../../api/OrderInvoiceService";
 import {searchSProducts} from "../../../api/product/productService";
 import {searchSupplierClient} from "../../../api/supplierClientService";
 import {searchUsersAndRoles} from "../../../api/authService";
-import {searchLines} from "../../../api/lineApiService";
+import { searchLinesAllContexts } from "../../../api/lineApiService";
 
 
 export interface FullSearchResults {
@@ -28,10 +28,10 @@ export const searchInAllComponents = async (query: string): Promise<FullSearchRe
         searchSProducts(query),
         searchSupplierClient(query),
         searchUsersAndRoles(query),
-        searchLines(query, "sales", "line"),
-        searchLines(query, "purchases", "line"),
-        searchLines(query, "sales", "lineReturn"),
-        searchLines(query, "purchases", "lineReturn")
+        searchLinesAllContexts(query, "sales", "line"),
+        searchLinesAllContexts(query, "purchases", "line"),
+        searchLinesAllContexts(query, "sales", "lineReturn"),
+        searchLinesAllContexts(query, "purchases", "lineReturn")
     ];
 
     const results = await Promise.allSettled(promises);

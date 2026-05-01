@@ -4,7 +4,8 @@
 :root {
     /* Backgrounds */
     --bg-primary: #ffffff;
-    --bg-primary-dark: #111827; /* Darker, more modern dark */
+    --bg-primary-dark: #111827;
+    /* Darker, more modern dark */
     --bg-secondary: #f9fafb;
     --bg-secondary-dark: #1f2937;
     --bg-header: #f9fafb;
@@ -41,6 +42,8 @@
 /* --- MAIN CONTAINER --- */
 .linesContainer {
     padding: 24px;
+    padding-bottom: 10rem;
+    /* Space for action dropdowns in the last row */
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     transition: background-color 0.3s, color 0.3s;
@@ -120,20 +123,23 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    align-items: flex-end; /* Align items to the bottom */
+    align-items: flex-end;
+    /* Align items to the bottom */
 }
 
 .filterInputGroup {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    flex: 1 1 180px; /* Flex-grow, flex-shrink, basis */
+    flex: 1 1 180px;
+    /* Flex-grow, flex-shrink, basis */
 }
 
 .filterActions {
     display: flex;
     gap: 8px;
-    padding-bottom: 2px; /* Align with inputs */
+    padding-bottom: 2px;
+    /* Align with inputs */
 }
 
 .filterButton {
@@ -185,7 +191,7 @@
     background-color: var(--bg-primary);
     border-radius: 12px;
     box-shadow: var(--shadow-md);
-    overflow: hidden;
+    overflow: visible;
     border: 1px solid var(--border-color);
 }
 
@@ -234,7 +240,8 @@
 }
 
 .linesContainer.dark .table-hover tbody tr:hover {
-    background-color: #2c3a4f; /* Slightly lighter dark hover */
+    background-color: #2c3a4f;
+    /* Slightly lighter dark hover */
 }
 
 .tableRow td {
@@ -243,11 +250,31 @@
     font-size: 14px;
 }
 
-.idCell, .idColumn { width: 5%; }
-.productCell, .productColumn { width: 25%; }
-.quantityColumn, .priceColumn { width: 10%; }
-.dateColumn, .reasonColumn { width: 15%; }
-.actionsCell, .actionsColumn { width: 15%; text-align: center; }
+.idCell,
+.idColumn {
+    width: 5%;
+}
+
+.productCell,
+.productColumn {
+    width: 25%;
+}
+
+.quantityColumn,
+.priceColumn {
+    width: 10%;
+}
+
+.dateColumn,
+.reasonColumn {
+    width: 15%;
+}
+
+.actionsCell,
+.actionsColumn {
+    width: 15%;
+    text-align: center;
+}
 
 .inputCell {
     padding: 8px 12px;

@@ -1,7 +1,7 @@
 // LinesPage.tsx (Style Corrected)
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import styles from '../../../Css/invoiceOrOrder/Lines.module.css';
 import { useDarkMode } from "../../DarkModeProvider";
 import useLinesActions from "../../hook/useLinesActions";
@@ -14,7 +14,7 @@ import { Product } from "../../../classe/Product";
 import { getSupplerClients } from "../../../api/supplierClientService";
 import { ClientSupplier } from "../../../classe/ClientSupplier";
 import { getAllLines } from "../../../api/lineApiService";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import LinesPdfReport from "./LinesPdfReport";
 
 const LinesPage = ({ ServiceType, OrderType }: { ServiceType: 'sales' | 'purchases', OrderType: 'Invoice' | 'Order' }) => {
@@ -52,28 +52,29 @@ const LinesPage = ({ ServiceType, OrderType }: { ServiceType: 'sales' | 'purchas
         return map;
     }, [products]);
 
+    const fetchDataAndDisplay = useCallback(async () => {
+        try {
+            const [fetchedProducts, fetchedLines, fetchedReturns, fetchedParties] = await Promise.all([
+                getAllProducts(),
+                getAllLines(ServiceType, "line", OrderType),
+                getAllLines(ServiceType, "lineReturn", OrderType),
+                getSupplerClients()
+            ]);
+            setCustomers(fetchedParties);
+            setSuppliers(fetchedParties);
+            setProducts(fetchedProducts);
+            setLines(fetchedLines);
+            setReturns(fetchedReturns);
+        } catch (error) {
+            console.error("Failed to fetch data:", error);
+            setLines([]);
+            setReturns([]);
+        }
+    }, [ServiceType, OrderType]);
+
     useEffect(() => {
-        const fetchDataAndDisplay = async () => {
-            try {
-                const [fetchedProducts, fetchedLines, fetchedReturns, fetchedParties] = await Promise.all([
-                    getAllProducts(),
-                    getAllLines(ServiceType, "line"),
-                    getAllLines(ServiceType, "lineReturn"),
-                    getSupplerClients()
-                ]);
-                setCustomers(fetchedParties);
-                setSuppliers(fetchedParties);
-                setProducts(fetchedProducts);
-                setLines(fetchedLines);
-                setReturns(fetchedReturns);
-            } catch (error) {
-                console.error("Failed to fetch data:", error);
-                setLines([]);
-                setReturns([]);
-            }
-        };
         fetchDataAndDisplay();
-    }, [ServiceType]);
+    }, [fetchDataAndDisplay]);
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -174,7 +175,10 @@ const LinesPage = ({ ServiceType, OrderType }: { ServiceType: 'sales' | 'purchas
     const themedInputClass = `form-control ${styles.themedInput} ${isDarkMode ? styles.dark : ''}`;
     const themedSelectClass = `form-select ${styles.themedSelect} ${isDarkMode ? styles.dark : ''}`;
     const isInvoiceMode = OrderType === 'Invoice';
-    const idField: keyof Item = isInvoiceMode ? 'salesInvoiceId' : 'salesOrderId';
+    const idField: keyof Item =
+        ServiceType === 'sales'
+            ? (isInvoiceMode ? 'salesInvoiceId' : 'salesOrderId')
+            : (isInvoiceMode ? 'purchaseInvoiceId' : 'purchaseOrderId');
     const isReturnMode = typeHeader === 'return';
     const idHeader = isInvoiceMode
         ? t('table_header_invoice_id')
@@ -252,7 +256,7 @@ const LinesPage = ({ ServiceType, OrderType }: { ServiceType: 'sales' | 'purchas
                                 onClick={async () => {
                                     try {
                                         const dateObj = filterDate ? new Date(filterDate) : undefined;
-                                        const result = await (await import('../../../api/lineApiService')).filterLines(ServiceType, { id: selectedPartyId, date: dateObj, type: filterType || undefined });
+                                        const result = await (await import('../../../api/lineApiService')).filterLines(ServiceType, OrderType, { id: selectedPartyId, date: dateObj, type: filterType || undefined });
                                         if (typeHeader === 'return') {
                                             setReturns(result);
                                         } else {
@@ -272,7 +276,7 @@ const LinesPage = ({ ServiceType, OrderType }: { ServiceType: 'sales' | 'purchas
                                     setSelectedPartyId(null);
                                     setFilterDate(''); setFilterType('');
                                     try {
-                                        const fetched = await getAllLines(ServiceType, typeHeader === 'return' ? 'lineReturn' : 'line');
+                                        const fetched = await getAllLines(ServiceType, typeHeader === 'return' ? 'lineReturn' : 'line', OrderType);
                                         if (typeHeader === 'return') setReturns(fetched); else setLines(fetched);
                                     } catch (err) { console.error(err); }
                                 }}
@@ -329,146 +333,186 @@ const LinesPage = ({ ServiceType, OrderType }: { ServiceType: 'sales' | 'purchas
                 <div className="table-responsive">
                     <table className={`table table-hover ${isDarkMode ? 'table-dark' : ''} ${styles.dataTable}`}>
                         <thead className={styles.tableHeader}>
-                        <tr>
-                            <th scope="col" className={styles.idColumn}>{t('id_header')}</th>
-                            <th scope="col" className={styles.productColumn}>  {t('title', { ns: 'common' })}</th>
-                            <th scope="col" className={styles.quantityColumn}>{t('quantity')}</th>
-                            <th scope="col" className={styles.priceColumn}>{t('price')}</th>
-                            <th scope="col" className={styles.idColumn}>{idHeader}</th>
-                            {isReturnMode && (
-                                <>
-                                    <th scope="col" className={styles.dateColumn}>{t('return_date')}</th>
-                                    <th scope="col" className={styles.reasonColumn}>{t('return_reason')}</th>
-                                </>
-                            )}
-                            <th scope="col" className={`text-center ${styles.actionsColumn}`}>{t('actions')}</th>
-                        </tr>
+                            <tr>
+                                <th scope="col" className={styles.idColumn}>{t('id_header')}</th>
+                                <th scope="col" className={styles.productColumn}>  {t('title', { ns: 'common' })}</th>
+                                <th scope="col" className={styles.quantityColumn}>{t('quantity')}</th>
+                                <th scope="col" className={styles.priceColumn}>{t('price')}</th>
+                                <th scope="col" className={styles.idColumn}>{idHeader}</th>
+                                {isReturnMode && (
+                                    <>
+                                        <th scope="col" className={styles.dateColumn}>{t('return_date')}</th>
+                                        <th scope="col" className={styles.reasonColumn}>{t('return_reason')}</th>
+                                    </>
+                                )}
+                                <th scope="col" className={`text-center ${styles.actionsColumn}`}>{t('actions')}</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {displayData.length === 0 ? (
-                            <tr>
-                                <td
-                                    colSpan={isReturnMode ? 8 : 6}
-                                    className={`text-center ${styles.emptyState}`}
-                                >
-                                    {isReturnMode
-                                        ? t('empty_state_returns')
-                                        : t('empty_state_lines')}                                </td>
-                            </tr>
-                        ) : (
-                            displayData.map((item: any) => {
-                                const currentItem = isReturnMode
-                                    ? returns.find(r => r.id === item.id)
-                                    : lines.find(l => l.id === item.id);
+                            {displayData.length === 0 ? (
+                                <tr>
+                                    <td
+                                        colSpan={isReturnMode ? 8 : 6}
+                                        className={`text-center ${styles.emptyState}`}
+                                    >
+                                        {isReturnMode
+                                            ? t('empty_state_returns')
+                                            : t('empty_state_lines')}                                </td>
+                                </tr>
+                            ) : (
+                                displayData.map((item: any) => {
+                                    const currentItem = isReturnMode
+                                        ? returns.find(r => r.id === item.id)
+                                        : lines.find(l => l.id === item.id);
 
-                                const actions = isReturnMode
-                                    ? [
-                                        {
-                                            label: t('action_restore'),
-                                            onClick: () => restoreLine(item.id, ServiceType),
-                                            className: 'btn btn-outline-secondary btn-sm me-2'
-                                        },
-                                        {
-                                            label: t('common:edit', { ns: 'common' }),
-                                            onClick: () => updateLineOrReturn(item.id, currentItem!, "lineReturn", ServiceType),
-                                            className: 'btn btn-outline-primary btn-sm me-2'
-                                        },
-                                        {
-                                            label: t('common:delete', { ns: 'common' }),
-                                            onClick: () => deleteLineOrReturn(item.id, "lineReturn", ServiceType),
-                                            className: 'btn btn-outline-danger btn-sm'
-                                        }
-                                    ]
-                                    : [
-                                        {
-                                            label: t('returns'),
-                                            onClick: () => moveToReturns(currentItem!, ServiceType),
-                                            className: 'btn btn-outline-warning btn-sm me-2'
-                                        },
-                                        {
-                                            label: t('common:edit', { ns: 'common' }),
-                                            onClick: () => updateLineOrReturn(item.id, currentItem!, "line", ServiceType),
-                                            className: 'btn btn-outline-primary btn-sm me-2'
-                                        },
-                                        {
-                                            label: t('common:delete', { ns: 'common' }),
-                                            onClick: () => deleteLineOrReturn(item.id, "line", ServiceType),
-                                            className: 'btn btn-outline-danger btn-sm'
-                                        }
-                                    ];
+                                    const actions = isReturnMode
+                                        ? [
+                                            {
+                                                label: t('action_restore'),
+                                                onClick: () => restoreLine(item.id, ServiceType),
+                                                className: 'btn btn-outline-secondary btn-sm me-2'
+                                            },
+                                            {
+                                                label: t('common:edit', { ns: 'common' }),
+                                                onClick: async () => {
+                                                    try {
+                                                        await updateLineOrReturn(item.id, currentItem!, "lineReturn", ServiceType, OrderType);
+                                                        fetchDataAndDisplay();
+                                                    } catch (e) {
+                                                        console.error(e);
+                                                    }
+                                                },
+                                                className: 'btn btn-outline-primary btn-sm me-2'
+                                            },
+                                            {
+                                                label: t('common:delete', { ns: 'common' }),
+                                                onClick: async () => {
+                                                    try {
+                                                        await deleteLineOrReturn(item.id, "lineReturn", ServiceType, OrderType);
+                                                        fetchDataAndDisplay();
+                                                    } catch (e) {
+                                                        console.error(e);
+                                                    }
+                                                },
+                                                className: 'btn btn-outline-danger btn-sm'
+                                            }
+                                        ]
+                                        : [
+                                            {
+                                                label: t('returns'),
+                                                onClick: async () => {
+                                                    const qty = prompt(t('prompt_return_quantity', 'Enter return quantity:'), String(currentItem?.quantity));
+                                                    if (qty === null) return;
+                                                    const reason = prompt(t('prompt_return_reason', 'Reason for return:'), '');
+                                                    if (reason === null) return;
 
-                                return (
-                                    <tr key={item.id} className={styles.tableRow}>
-                                        <td className={styles.idCell}>{item.id}</td>
-                                        <td className={styles.productCell}>
-                                            {productNameMap[item.productId] || t('product_id_fallback', { id: item.productId })}
-                                        </td>
-                                        <td className={styles.inputCell}>
-                                            <input
-                                                type="number"
-                                                className={themedInputClass}
-                                                value={item.quantity ?? ''}
-                                                onChange={(e) => handleInputChange(e, item.id, 'quantity')}
-                                                readOnly={isReturnMode}
-                                                min="0"
-                                                step="1"
-                                                aria-label={t('quantity_for_item_aria', {id: item.id})}
-                                            />
-                                        </td>
-                                        <td className={styles.inputCell}>
-                                            <input
-                                                type="number"
-                                                className={themedInputClass}
-                                                value={item.price ?? ''}
-                                                onChange={(e) => handleInputChange(e, item.id, 'price')}
-                                                readOnly={isReturnMode}
-                                                min="0"
-                                                step="0.01"
-                                                aria-label={t('price_for_item_aria', {id: item.id})}
-                                            />
-                                        </td>
-                                        <td className={styles.inputCell}>
-                                            <input
-                                                type="number"
-                                                className={themedInputClass}
-                                                value={item[idField] ?? ''}
-                                                onChange={(e) => handleInputChange(e, item.id, idField)}
-                                                readOnly={isReturnMode}
-                                                min="1"
-                                                step="1"
-                                                aria-label={t('id_for_item_aria', {idHeader: idHeader, id: item.id})}
-                                            />
-                                        </td>
-                                        {isReturnMode && (
-                                            <>
-                                                <td className={styles.inputCell}>
-                                                    <input
-                                                        type="date"
-                                                        className={themedInputClass}
-                                                        value={item.returnDate || ''}
-                                                        onChange={(e) => handleInputChange(e, item.id, 'returnDate')}
-                                                        aria-label={t('return_date_for_item_aria', {id: item.id})}
-                                                    />
-                                                </td>
-                                                <td className={styles.inputCell}>
-                                                    <input
-                                                        type="text"
-                                                        className={themedInputClass}
-                                                        value={item.returnReason || ''}
-                                                        onChange={(e) => handleInputChange(e, item.id, 'returnReason')}
-                                                        placeholder={t('return_reason')}
-                                                        aria-label={t('return_reason_for_item_aria', {id: item.id})}
-                                                    />
-                                                </td>
-                                            </>
-                                        )}
-                                        <td className={`text-center ${styles.actionsCell}`}>
-                                            <GenericActionButtons actions={actions} />
-                                        </td>
-                                    </tr>
-                                );
-                            })
-                        )}
+                                                    try {
+                                                        await moveToReturns(currentItem!, parseInt(qty), reason, ServiceType, OrderType);
+                                                        fetchDataAndDisplay();
+                                                    } catch (e) {
+                                                        console.error(e);
+                                                    }
+                                                },
+                                                className: 'btn btn-outline-warning btn-sm me-2'
+                                            },
+                                            {
+                                                label: t('common:edit', { ns: 'common' }),
+                                                onClick: async () => {
+                                                    try {
+                                                        await updateLineOrReturn(item.id, currentItem!, "line", ServiceType, OrderType);
+                                                        fetchDataAndDisplay();
+                                                    } catch (e) {
+                                                        console.error(e);
+                                                    }
+                                                },
+                                                className: 'btn btn-outline-primary btn-sm me-2'
+                                            },
+                                            {
+                                                label: t('common:delete', { ns: 'common' }),
+                                                onClick: async () => {
+                                                    try {
+                                                        await deleteLineOrReturn(item.id, "line", ServiceType, OrderType);
+                                                        fetchDataAndDisplay();
+                                                    } catch (e) {
+                                                        console.error(e);
+                                                    }
+                                                },
+                                                className: 'btn btn-outline-danger btn-sm'
+                                            }
+                                        ];
+
+                                    return (
+                                        <tr key={item.id} className={styles.tableRow}>
+                                            <td className={styles.idCell}>{item.id}</td>
+                                            <td className={styles.productCell}>
+                                                {productNameMap[item.productId] || t('product_id_fallback', { id: item.productId })}
+                                            </td>
+                                            <td className={styles.inputCell}>
+                                                <input
+                                                    type="number"
+                                                    className={themedInputClass}
+                                                    value={item.quantity ?? ''}
+                                                    onChange={(e) => handleInputChange(e, item.id, 'quantity')}
+                                                    readOnly={isReturnMode}
+                                                    min="0"
+                                                    step="1"
+                                                    aria-label={t('quantity_for_item_aria', { id: item.id })}
+                                                />
+                                            </td>
+                                            <td className={styles.inputCell}>
+                                                <input
+                                                    type="number"
+                                                    className={themedInputClass}
+                                                    value={item.price ?? ''}
+                                                    onChange={(e) => handleInputChange(e, item.id, 'price')}
+                                                    readOnly={isReturnMode}
+                                                    min="0"
+                                                    step="0.01"
+                                                    aria-label={t('price_for_item_aria', { id: item.id })}
+                                                />
+                                            </td>
+                                            <td className={styles.inputCell}>
+                                                <input
+                                                    type="number"
+                                                    className={themedInputClass}
+                                                    value={item[idField] ?? ''}
+                                                    onChange={(e) => handleInputChange(e, item.id, idField)}
+                                                    readOnly={isReturnMode}
+                                                    min="1"
+                                                    step="1"
+                                                    aria-label={t('id_for_item_aria', { idHeader: idHeader, id: item.id })}
+                                                />
+                                            </td>
+                                            {isReturnMode && (
+                                                <>
+                                                    <td className={styles.inputCell}>
+                                                        <input
+                                                            type="date"
+                                                            className={themedInputClass}
+                                                            value={item.returnDate || ''}
+                                                            onChange={(e) => handleInputChange(e, item.id, 'returnDate')}
+                                                            aria-label={t('return_date_for_item_aria', { id: item.id })}
+                                                        />
+                                                    </td>
+                                                    <td className={styles.inputCell}>
+                                                        <input
+                                                            type="text"
+                                                            className={themedInputClass}
+                                                            value={item.returnReason || ''}
+                                                            onChange={(e) => handleInputChange(e, item.id, 'returnReason')}
+                                                            placeholder={t('return_reason')}
+                                                            aria-label={t('return_reason_for_item_aria', { id: item.id })}
+                                                        />
+                                                    </td>
+                                                </>
+                                            )}
+                                            <td className={`text-center ${styles.actionsCell}`}>
+                                                <GenericActionButtons actions={actions} />
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            )}
                         </tbody>
                     </table>
                 </div>

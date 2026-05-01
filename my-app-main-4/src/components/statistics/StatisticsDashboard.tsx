@@ -3,7 +3,7 @@ import { useGlobalDarkMode } from "../hook/useGlobalDarkMode"; // Add this impor
 import {getAllOrdersOrInvoices, OrderType, ServiceType} from "../../api/OrderInvoiceService";
 import { getSupplerClients } from "../../api/supplierClientService";
 import { getAllProducts } from "../../api/product/productService";
-import { getAllLines } from "../../api/lineApiService";
+import { getAllLinesAllContexts } from "../../api/lineApiService";
 import DashboardSidebar from "./DashboardSidebar";
 import {ChartDataPoint, ProductChartData, ProductViewMode, styles, SupplierClientData} from './basec';
 import InvoicesOrdersChart from "./InvoicesOrdersChart";
@@ -63,8 +63,8 @@ const StatisticsDashboard = () => {
                     setRawSupplierClientData(data);
                 } else if (selectedStatistic === 'products') {
                     const [products, salesLines, purchaseLines, salesReturnLines, purchaseReturnLines] = await Promise.all([
-                        getAllProducts(), getAllLines('sales', 'line'), getAllLines('purchases', 'line'),
-                        getAllLines('sales', 'lineReturn'), getAllLines('purchases', 'lineReturn')
+                        getAllProducts(), getAllLinesAllContexts('sales', 'line'), getAllLinesAllContexts('purchases', 'line'),
+                        getAllLinesAllContexts('sales', 'lineReturn'), getAllLinesAllContexts('purchases', 'lineReturn')
                     ]);
                     setRawProducts(products);
                     setRawSalesLines(salesLines);

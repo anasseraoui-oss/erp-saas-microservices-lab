@@ -21,20 +21,16 @@ interface AppHeaderProps {
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({ allRoutes }) => {
-    // State for the offcanvas menu
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-    // State for the draggable button
     const [isDragging, setIsDragging] = useState<boolean>(false);
-    const [position, setPosition] = useState({ x: 20, y: 20 }); // Default position in pixels
+    const [position, setPosition] = useState({ x: 20, y: 20 });
     const buttonRef = useRef<HTMLButtonElement>(null);
     const offset = useRef({ x: 0, y: 0 });
 
     const location = useLocation();
     const isHome = location.pathname === '/';
-    const [visitedToday, setVisitedToday] = useState<string[]>([]); // History logic state
+    const [visitedToday, setVisitedToday] = useState<string[]>([]);
 
-    // --- Effect to Load Button Position on Mount ---
     useEffect(() => {
         const savedPosition = localStorage.getItem('draggableMenuButtonPosition');
         if (savedPosition) {
@@ -42,22 +38,19 @@ const AppHeader: React.FC<AppHeaderProps> = ({ allRoutes }) => {
         }
     }, []);
 
-    // --- Drag and Drop Handlers ---
     const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (buttonRef.current) {
             setIsDragging(true);
-            // Calculate the mouse click position relative to the button's top-left corner
             offset.current = {
                 x: e.clientX - buttonRef.current.offsetLeft,
                 y: e.clientY - buttonRef.current.offsetTop
             };
-            e.preventDefault(); // Prevent text selection
+            e.preventDefault();
         }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
         if (isDragging) {
-            // Calculate new position based on mouse movement and initial offset
             const newPos = {
                 x: e.clientX - offset.current.x,
                 y: e.clientY - offset.current.y
@@ -70,10 +63,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ allRoutes }) => {
     const handleMouseUp = () => {
         if (isDragging) {
             setIsDragging(false);
-            // Save the final position to localStorage
-            // We use a timeout to ensure the state has updated before saving
             setTimeout(() => {
-                // This is a common pattern to get the most recent state
                 setPosition(currentPos => {
                     localStorage.setItem('draggableMenuButtonPosition', JSON.stringify(currentPos));
                     return currentPos;
@@ -82,29 +72,23 @@ const AppHeader: React.FC<AppHeaderProps> = ({ allRoutes }) => {
         }
     };
 
-    // --- Effect to Add/Remove Global Event Listeners for Dragging ---
     useEffect(() => {
         if (isDragging) {
             window.addEventListener('mousemove', handleMouseMove);
             window.addEventListener('mouseup', handleMouseUp);
         }
-
-        // Cleanup function to remove listeners
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseup', handleMouseUp);
         };
     }, [isDragging]);
 
-    // --- Logic for opening the menu (preventing drag from opening it) ---
     const handleButtonClick = () => {
-        // Only open the menu if the button was not being dragged
         if (!isDragging) {
             setIsMenuOpen(true);
         }
     };
 
-    // History-related logic (no changes)
     useEffect(() => {
         const today = new Date().toDateString();
         const allVisited: Record<string, string[]> = JSON.parse(localStorage.getItem('visitedPagesWithDate') || '{}');
@@ -134,118 +118,164 @@ const AppHeader: React.FC<AppHeaderProps> = ({ allRoutes }) => {
         setVisitedToday([]);
     };
 
+    const isRTL = document.documentElement.dir === 'rtl';
+
     if (isHome) {
         return null;
     }
 
     return (
         <>
-            {/* Draggable Menu Button */}
+            {/* Draggable Menu Button - Premium Glass Style */}
             <button
                 ref={buttonRef}
-                className="btn btn-dark z-3"
+                className="z-50 glass group shadow-xl hover:shadow-indigo-500/30 active:scale-90 transition-all duration-300 flex items-center justify-center border-indigo-500/20"
                 style={{
                     position: 'fixed',
                     top: `${position.y}px`,
                     left: `${position.x}px`,
                     cursor: isDragging ? 'grabbing' : 'grab',
-                    touchAction: 'none', // Important for touch devices
+                    touchAction: 'none',
+                    width: '54px',
+                    height: '54px',
+                    borderRadius: '18px',
+                    color: 'hsl(var(--primary))',
                 }}
                 onMouseDown={handleMouseDown}
-                onClick={handleButtonClick} // Use custom click handler
+                onClick={handleButtonClick}
                 data-bs-toggle="offcanvas"
                 data-bs-target="#appOffcanvas"
                 aria-controls="appOffcanvas"
             >
-                <Icon as={FaBars} size={20} />
+                <Icon as={FaBars} size={24} className="group-hover:scale-110 transition-transform duration-300" />
             </button>
 
-            {/* Bootstrap Offcanvas Element */}
+            {/* Premium Sidebar - Glassmorphism */}
             <div
-                className={`offcanvas offcanvas-start bg-dark text-white ${isMenuOpen ? 'show' : ''}`}
+                className={`offcanvas ${isRTL ? 'offcanvas-end' : 'offcanvas-start'} glass border-indigo-500/10 shadow-2xl ${isMenuOpen ? 'show' : ''}`}
+                style={{
+                    width: '320px',
+                    transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    visibility: isMenuOpen ? 'visible' : 'hidden'
+                }}
                 tabIndex={-1}
                 id="appOffcanvas"
                 aria-labelledby="appOffcanvasLabel"
-                // This allows us to sync our state when Bootstrap tries to close it
-                onTransitionEnd={() => {
-                    const el = document.getElementById('appOffcanvas');
-                    if (el && !el.classList.contains('show')) {
-                        setIsMenuOpen(false);
-                    }
-                }}
             >
-                {/* Offcanvas Header */}
-                <div className="offcanvas-header border-bottom border-secondary">
-                    <h5 className="offcanvas-title" id="appOffcanvasLabel">Menu</h5>
+                {/* Header with High-End aesthetic */}
+                <div className="offcanvas-header border-b border-indigo-500/10 px-6 py-4 flex items-center justify-between">
+                    <div>
+                        <h5 className="offcanvas-title font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 text-xl" id="appOffcanvasLabel">
+                            Navigatio
+                        </h5>
+                        <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold opacity-70">Control Center</p>
+                    </div>
                     <button
                         type="button"
-                        className="btn-close btn-close-white"
-                        onClick={() => setIsMenuOpen(false)} // Controlled close
+                        className="btn-close dark:btn-close-white opacity-40 hover:opacity-100 transition-all duration-300 hover:rotate-90"
+                        onClick={() => setIsMenuOpen(false)}
                         data-bs-dismiss="offcanvas"
                         aria-label="Close"
                     ></button>
                 </div>
 
-                {/* Offcanvas Body */}
-                <div className="offcanvas-body">
-                    {/* (All the content inside the offcanvas remains the same) */}
-                    <div className="mb-4">
-                        <div className="d-flex justify-content-between align-items-center mb-2">
-                            <h6 className="text-secondary d-flex align-items-center mb-0">
-                                <Icon as={FaHistory} className="me-2"/> Today's History
+                {/* Scrollable body with custom stylized scrollbar */}
+                <div className="offcanvas-body scrollbar-premium px-4">
+                    {/* History Section - Styled as premium cards */}
+                    <div className="mb-6 animate-premium-in" style={{ animationDelay: '0.1s' }}>
+                        <div className="flex justify-between items-center mb-4 px-2">
+                            <h6 className="text-sm font-bold flex items-center gap-2 text-indigo-500/80">
+                                <Icon as={FaHistory} /> Today's History
                             </h6>
-                            <button onClick={clearHistory} className="btn btn-sm btn-outline-danger p-1"
-                                    title="Clear today's history">
-                                <Icon as={FaTrash}/>
+                            <button
+                                onClick={clearHistory}
+                                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-rose-500/10 hover:text-rose-500 text-muted-foreground transition-all duration-200"
+                                title="Clear history"
+                            >
+                                <Icon as={FaTrash} size={14} />
                             </button>
                         </div>
-                        <ul className="list-unstyled">
+                        <div className="space-y-2">
                             {visitedToday.length > 0 ? (
-                                visitedToday.map((path) => (
-                                    <li key={path}>
-                                        <Link to={path} onClick={() => setIsDragging(false)}
-                                              className="d-block p-2 rounded text-light text-decoration-none hover-bg-secondary">
+                                visitedToday.map((path, idx) => (
+                                    <Link
+                                        key={path}
+                                        to={path}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="block p-3 rounded-xl border border-transparent hover:border-indigo-500/20 hover:bg-indigo-500/5 text-sm font-medium transition-all duration-200 group no-underline"
+                                        style={{ animationDelay: `${0.1 + idx * 0.05}s` }}
+                                    >
+                                        <span className="text-muted-foreground group-hover:text-foreground transition-colors">
                                             {path.replace('/', '').replace(/-/g, ' ') || 'Home'}
-                                        </Link>
-                                    </li>
+                                        </span>
+                                    </Link>
                                 ))
                             ) : (
-                                <li className="p-2 text-muted">No history yet.</li>
+                                <div className="text-center py-4 bg-muted/30 rounded-xl text-xs text-muted-foreground border border-dashed border-muted">
+                                    No browsing activity yet
+                                </div>
                             )}
-                        </ul>
+                        </div>
                     </div>
-                    <div>
-                        <h6 className="text-secondary d-flex align-items-center mb-2">
-                            <Icon as={FaTh} className="me-2"/> All Pages
+
+                    {/* Navigation Links - Grouped by Category */}
+                    <div className="animate-premium-in" style={{ animationDelay: '0.3s' }}>
+                        <h6 className="text-sm font-bold flex items-center gap-2 mb-4 px-2 text-indigo-500/80">
+                            <Icon as={FaTh} /> Explore Workspace
                         </h6>
-                        <ul className="list-unstyled">
-                            <li>
-                                <Link to="/" onClick={() => setIsDragging(false)} className="d-flex align-items-center p-2 rounded text-light text-decoration-none hover-bg-secondary">
-                                    <Icon as={FaHome} className="me-3" />
-                                    Home
-                                </Link>
-                            </li>
-                            {allRoutes.map((category) => (
-                                <li key={category.category}>
-                                    <p className="p-2 pt-3 text-primary fw-bold mb-1">{category.category}</p>
-                                    <ul className="list-unstyled ps-3">
-                                        {category.items.map((item) => (
-                                            <li key={item.name}>
-                                                <Link to={item.link} onClick={() => setIsDragging(false)} className="d-flex align-items-center p-2 rounded text-light text-decoration-none hover-bg-secondary">
-                                                    <span className="me-3"><Icon as={item.icon} /></span>
+                        <div className="space-y-6">
+                            <Link
+                                to="/"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="flex items-center gap-3 p-3 rounded-xl bg-indigo-500 text-white shadow-lg shadow-indigo-500/20 hover:scale-[1.02] active:scale-95 transition-all no-underline"
+                            >
+                                <Icon as={FaHome} size={20} />
+                                <span className="font-semibold">Dashboard Home</span>
+                            </Link>
+
+                            {allRoutes.map((category, catIdx) => (
+                                <div key={category.category} className="space-y-2">
+                                    <p className="px-3 text-[10px] uppercase tracking-[0.2em] font-black text-indigo-500/40">
+                                        {category.category}
+                                    </p>
+                                    <div className="space-y-1">
+                                        {category.items.map((item: any, itemIdx: number) => (
+                                            <Link
+                                                key={item.name}
+                                                to={item.link}
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="flex items-center gap-3 p-3 rounded-xl hover:bg-indigo-500/5 border border-transparent hover:border-indigo-500/10 transition-all no-underline group"
+                                            >
+                                                <span className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover:bg-indigo-500/10 group-hover:text-indigo-500 transition-colors">
+                                                    <Icon as={item.icon} size={16} />
+                                                </span>
+                                                <span className="text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
                                                     {item.name}
-                                                </Link>
-                                            </li>
+                                                </span>
+                                            </Link>
                                         ))}
-                                    </ul>
-                                </li>
+                                    </div>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Footer branding inside sidebar */}
+                <div className="p-6 border-t border-indigo-500/10 bg-indigo-500/5">
+                    <div className="flex items-center gap-3 opacity-60">
+                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span className="text-[10px] font-bold uppercase tracking-widest">System Operational</span>
                     </div>
                 </div>
             </div>
 
-            {isMenuOpen && <div className="offcanvas-backdrop fade show"></div>}
+            {isMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-500"
+                    onClick={() => setIsMenuOpen(false)}
+                ></div>
+            )}
         </>
     );
 };

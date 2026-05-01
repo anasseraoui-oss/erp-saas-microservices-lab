@@ -1,19 +1,19 @@
-
 .searchModal {
     /* Uses Modal base styles, we can override sizing and position here if needed */
 }
+
 
 .modalContentContainer {
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
-    background-color: #f9fafb;
+    background-color: hsl(var(--background));
 }
 
 .modalContentContainer.dark {
-    background-color: #1f2937;
-    color: #f9fafb;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
 }
 
 .contentWrapper {
@@ -38,12 +38,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 16px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid hsla(var(--border), 0.5);
     flex-shrink: 0;
 }
 
 .filterBar.dark {
-    border-bottom-color: #374151;
+    border-bottom-color: hsla(var(--border), 0.5);
 }
 
 .filtersContainer {
@@ -55,8 +55,8 @@
     padding: 6px 12px;
     border: 1px solid transparent;
     border-radius: 6px;
-    background-color: #f3f4f6;
-    color: #374151;
+    background-color: hsla(var(--muted), 0.3);
+    color: hsl(var(--foreground));
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -64,18 +64,18 @@
 }
 
 .filterTab.dark {
-    background-color: #374151;
-    color: #d1d5db;
+    background-color: hsla(var(--muted), 0.3);
+    color: hsl(var(--muted-foreground));
 }
 
 .filterTab:hover {
-    background-color: #e5e7eb;
-    color: #1f2937;
+    background-color: hsla(var(--muted), 0.5);
+    color: hsl(var(--foreground));
 }
 
 .filterTab.dark:hover {
-    background-color: #4b5563;
-    color: #f9fafb;
+    background-color: hsla(var(--muted), 0.5);
+    color: hsl(var(--foreground));
 }
 
 .activeFilterTab {
@@ -97,7 +97,7 @@
 .filterCount {
     margin-left: 6px;
     font-size: 12px;
-    color: #6b7280;
+    color: hsl(var(--muted-foreground));
 }
 
 .activeFilterTab .filterCount {
@@ -105,7 +105,7 @@
 }
 
 .filterTab.dark .filterCount {
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
 }
 
 .activeFilterTab.dark .filterCount {
@@ -114,11 +114,11 @@
 
 .resultsSummary {
     font-size: 14px;
-    color: #6b7280;
+    color: hsl(var(--muted-foreground));
 }
 
 .resultsSummary.dark {
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
 }
 
 /* Scrollable Results */
@@ -137,11 +137,11 @@
     height: 100%;
     text-align: center;
     padding: 20px;
-    color: #6b7280;
+    color: hsl(var(--muted-foreground));
 }
 
 .noResultsContainer.dark {
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
 }
 
 .noResults {
@@ -158,13 +158,14 @@
 .draggableGroup {
     margin-bottom: 12px;
     border-radius: 8px;
-    background-color: #ffffff;
+    background-color: hsl(var(--card));
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     overflow: hidden;
+    border: 1px solid hsla(var(--border), 0.2);
 }
 
 .draggableGroup.dark {
-    background-color: #374151;
+    background-color: hsl(var(--card));
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -174,9 +175,10 @@
     padding: 10px 12px;
     font-size: 16px;
     font-weight: 600;
-    background-color: #f9fafb;
-    border-bottom: 1px solid #e5e7eb;
+    background-color: hsla(var(--muted), 0.1);
+    border-bottom: 1px solid hsla(var(--border), 0.2);
     cursor: grab;
+    color: hsl(var(--foreground));
 }
 
 .resultsGroupTitle:active {
@@ -184,15 +186,15 @@
 }
 
 .resultsGroupTitle.dark {
-    background-color: #4b5563;
-    border-bottom-color: #374151;
-    color: #f9fafb;
+    background-color: hsla(var(--muted), 0.2);
+    border-bottom-color: hsla(var(--border), 0.2);
+    color: hsl(var(--foreground));
 }
 
 .dragHandle {
     margin-right: 10px;
     font-size: 18px;
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
     cursor: grab;
 }
 
@@ -216,28 +218,28 @@
 }
 
 .resultItemClickable:hover {
-    background-color: #f3f4f6;
+    background-color: hsla(var(--muted), 0.2);
 }
 
 .resultItemClickable.dark:hover {
-    background-color: #4b5563;
+    background-color: hsla(var(--muted), 0.3);
 }
 
 .itemText {
     font-size: 14px;
-    color: #1f2937;
+    color: hsl(var(--foreground));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .itemText.dark {
-    color: #d1d5db;
+    color: hsl(var(--foreground));
 }
 
 .itemArrow {
     font-size: 16px;
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
     transition: transform 0.2s ease-in-out;
 }
 

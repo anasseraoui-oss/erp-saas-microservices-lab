@@ -1,7 +1,7 @@
-import axios from "axios";
 import {User} from "../classe/types";
 import activityLogger from "../classe/ActivityLoggerService";
 import {getUserName} from "../axiosBasec/storagByUser";
+import axiosInstance from "../axiosBasec/axiosInstance";
 
 // ====================================================================
 //   Axios Interceptor
@@ -10,39 +10,7 @@ interface LoginCredentials {
     email: string;
     password: string;
 }
-const API_BASE_URL = 'http://localhost:9055'; //Gateway Port
 export const username = localStorage.getItem('username');
-export const axiosInstance = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-        "Content-Type": "application/json"
-    }
-});
-
-axiosInstance.interceptors.request.use(
-    config => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            config.headers['Authorization'] = 'Bearer ' + token;
-        }
-        return config;
-    },
-    error => {
-        return Promise.reject(error);
-    }
-);
-
-// Interceptor  ( 401 Unauthorized)
-axiosInstance.interceptors.response.use(
-    response => response,
-    error => {
-        if (error.response && error.response.status === 401) {
-            console.error("Unauthorized Access - 401. Your session may have expired. Please log in again.");
-            // window.location.href = '/login';
-        }
-        return Promise.reject(error);
-    }
-);
 
 // ====================================================================
 //  (Authentication)
