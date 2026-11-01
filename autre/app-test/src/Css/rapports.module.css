@@ -1,0 +1,94 @@
+/* rapports.module.css - Redesigned for Premium Experience */
+
+/* Summary Container */
+.summaryContainer {
+    @apply mb-8 p-6 rounded-[var(--radius)] transition-all duration-500;
+    background-color: hsla(var(--card), 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsla(var(--border), 0.5);
+}
+
+/* Summary Grid */
+.summaryGrid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch;
+}
+
+/* Summary Cards */
+.summaryCard {
+    @apply glass-card p-6 flex flex-col justify-center border-l-4 transition-all duration-300;
+    border-left-color: hsl(var(--primary));
+}
+
+.summaryCard:hover {
+    @apply -translate-y-1 shadow-2xl shadow-indigo-500/10;
+}
+
+/* Dark mode: solid card background, clear text contrast (triggered by ancestor .dark) */
+:global(.dark) .summaryCard {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+}
+
+:global(.dark) .cardTitle,
+:global(.dark) .cardValue {
+    color: hsl(var(--foreground));
+}
+
+:global(.dark) .cardTitle {
+    opacity: 0.8;
+}
+
+.cardHeader {
+    @apply flex items-center gap-4;
+}
+
+/* Card Icons */
+.cardIcon {
+    @apply w-12 h-12 rounded-2xl flex items-center justify-center text-xl text-white flex-shrink-0 shadow-lg;
+}
+
+.countIcon {
+    @apply bg-gradient-to-br from-indigo-500 to-purple-600 shadow-indigo-500/20;
+}
+
+.amountIcon {
+    @apply bg-gradient-to-br from-rose-500 to-orange-600 shadow-rose-500/20;
+}
+
+.soldIcon {
+    @apply bg-gradient-to-br from-emerald-500 to-cyan-600 shadow-emerald-500/20;
+}
+
+/* Card Content */
+.cardContent {
+    @apply flex-1;
+}
+
+.cardTitle {
+    @apply m-0 mb-1 text-[10px] font-black uppercase tracking-widest opacity-60;
+    color: hsl(var(--foreground));
+}
+
+.cardValue {
+    @apply m-0 text-2xl font-black tracking-tight;
+    color: hsl(var(--foreground));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .summaryGrid {
+        @apply grid-cols-1 gap-4;
+    }
+
+    .summaryContainer {
+        @apply p-4 mb-6;
+    }
+
+    .summaryCard {
+        @apply p-4;
+    }
+
+    .cardValue {
+        @apply text-xl;
+    }
+}

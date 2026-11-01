@@ -1,0 +1,234 @@
+/* === InvoiceForm.module.css - Redesigned for a High-End Visual Experience === */
+
+.container {
+    @apply min-h-screen px-6 py-10 transition-colors duration-500;
+    padding-top: calc(72px + 2rem);
+    background-color: hsl(var(--background));
+}
+
+.formWrapper {
+    @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 max-w-7xl mx-auto h-[calc(100vh-140px)];
+}
+
+.mainForm {
+    @apply flex flex-col h-full overflow-y-auto pr-4 gap-8;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+    transition: transform 220ms cubic-bezier(.2,.9,.2,1), height 220ms ease, width 220ms ease;
+    will-change: transform, height, width;
+}
+
+.pageTitle {
+    @apply text-3xl font-black tracking-tighter mb-2;
+    background: linear-gradient(to bottom right, hsl(var(--foreground)), hsla(var(--foreground), 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* === Sidebar Styling === */
+.categorySidebar {
+    @apply glass p-6 rounded-3xl flex flex-col h-full border-indigo-500/5 transition-all duration-300;
+    position: sticky;
+    top: 72px;
+    overflow: auto;
+    max-height: calc(100vh - 96px);
+}
+
+.sidebarTitle {
+    @apply text-xs font-black uppercase tracking-widest mb-6 opacity-60 text-indigo-500;
+}
+
+.categoryList {
+    @apply flex flex-col gap-2 list-none p-0 m-0;
+    overflow-y: auto;
+    max-height: calc(100vh - 220px);
+}
+
+.categoryItem {
+    @apply px-4 py-3 rounded-xl font-bold text-sm transition-all duration-200 cursor-pointer border border-transparent;
+    color: hsl(var(--muted-foreground));
+}
+
+.categoryItem:hover {
+    @apply bg-indigo-500/5 text-indigo-500;
+}
+
+.categoryItem.active {
+    @apply bg-indigo-500 text-white shadow-xl shadow-indigo-500/20 scale-[1.02];
+}
+
+/* === Section & Line Items === */
+.sectionTitle {
+    @apply text-lg font-black tracking-tight mb-6 pb-2 border-b;
+    border-color: hsla(var(--border), 0.5);
+    color: hsl(var(--foreground));
+}
+
+.lineItemRow {
+    @apply grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr_auto] gap-4 p-5 rounded-2xl border mb-4;
+    background-color: hsla(var(--card), 0.5);
+    border-color: hsla(var(--border), 0.3);
+    align-items: center;
+    min-height: 64px;
+    transition: box-shadow 220ms cubic-bezier(.2,.9,.2,1), transform 220ms cubic-bezier(.2,.9,.2,1), border-color 180ms ease;
+    will-change: transform, box-shadow;
+}
+
+.lineItemRow:hover {
+    box-shadow: 0 10px 30px -12px rgba(59,130,246,0.12);
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.25);
+}
+
+/* === Inputs & Controls === */
+
+.formControl,
+.formSelect {
+    @apply w-full px-4 py-2.5 rounded-xl border transition-all duration-200 outline-none;
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+}
+
+.formControl:focus,
+.formSelect:focus {
+    @apply ring-2 ring-indigo-500/20 border-indigo-500;
+}
+
+/* Dark mode - overrides Bootstrap white inputs */
+.inputDark,
+.inputDark.form-control,
+.inputDark.form-select {
+    background-color: hsl(var(--input-bg)) !important;
+    border-color: hsl(var(--border)) !important;
+    color: hsl(var(--foreground)) !important;
+}
+
+.inputDark::placeholder {
+    color: hsl(var(--muted-foreground)) !important;
+}
+
+/* Dark-mode using global selector so theme toggle applies across modules */
+:global(.dark) .container {
+    background-color: hsl(var(--background));
+}
+
+:global(.dark) .lineItemRow {
+    background-color: hsla(var(--card), 0.7);
+    border-color: hsla(var(--border), 0.5);
+}
+
+:global(.dark) .suggestionsList {
+    background-color: hsla(var(--card), 0.95);
+    border-color: hsla(var(--border), 0.5);
+}
+
+:global(.dark) .suggestionItem {
+    color: hsl(var(--foreground));
+}
+
+/* === Actions === */
+.bottomActionsWrapper {
+    @apply flex items-center justify-center gap-4 mt-8 pt-8 border-t;
+    border-color: hsla(var(--border), 0.5);
+}
+
+.actionButton {
+    @apply btn-premium shadow-xl hover:shadow-2xl transition-all duration-300;
+}
+
+.actionButtonSmall {
+    @apply px-4 py-2 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-200;
+}
+
+/* === Suggestions List === */
+.suggestionsList {
+    @apply absolute top-full left-0 right-0 mt-2 glass rounded-2xl shadow-2xl z-[1000] p-2 max-h-[250px] overflow-y-auto;
+    transition: opacity 180ms ease, transform 180ms ease;
+    transform-origin: top center;
+}
+
+/* Modal styles used by inline modals inside this form (Delivery, ExpiredProducts, PaymentDetails) */
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.45);
+    z-index: var(--z-modal);
+    padding: 1rem;
+}
+
+.modalContent {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border) / 0.6);
+    color: hsl(var(--foreground));
+    border-radius: var(--radius);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    max-width: 980px;
+    width: 100%;
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+    padding: 1rem 1.25rem;
+}
+
+.closeBtn,
+.closeBtnNoTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+    color: hsl(var(--muted-foreground));
+}
+
+.closeBtn:hover,
+.closeBtnNoTitle:hover {
+    background: rgba(220,38,38,0.06);
+    color: hsl(var(--danger));
+}
+
+.suggestionItem {
+    @apply px-4 py-3 rounded-xl cursor-pointer transition-all duration-200 font-bold text-sm;
+}
+
+.suggestionItem:hover {
+    @apply bg-indigo-500/10 text-indigo-500;
+}
+
+/* Normalize card sizes inside sidebar and content to avoid jumping layout */
+.categorySidebar, .card {
+    min-height: 120px;
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+    .formWrapper {
+        @apply grid-cols-1 h-auto overflow-visible;
+    }
+
+    .categorySidebar {
+        @apply h-auto mb-8;
+    }
+
+    .mainForm {
+        @apply pr-0 h-auto overflow-visible;
+    }
+}
+
+/* RTL Adjustments */
+[dir="rtl"] .pageTitle {
+    @apply tracking-normal;
+}
+
+[dir="rtl"] .mainForm {
+    @apply pr-0 pl-4;
+}
+
+[dir="rtl"] .suggestionsList {
+    @apply text-right;
+}

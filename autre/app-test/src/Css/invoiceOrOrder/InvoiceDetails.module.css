@@ -1,0 +1,458 @@
+/* InvoiceDetails.module.css - Optimized for a Premium Visual Experience with Theme Support */
+
+.modalOverlay {
+    @apply fixed inset-0 flex items-center justify-center z-[1050] p-4 box-border;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* When dark mode is active make overlay slightly less aggressive so modal content remains readable */
+.darkOverlay {
+    background-color: rgba(0, 0, 0, 0.36);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modalContainer {
+    @apply w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col relative transition-all duration-300;
+    background-color: hsla(var(--card), 0.96);
+    border: 1px solid hsla(var(--border), 0.6);
+    border-radius: calc(var(--radius) * 2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(16px);
+    animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modalHeader {
+    @apply flex items-center justify-between px-8 py-5 border-b shrink-0;
+    border-color: hsla(var(--border), 0.5);
+    background-color: hsla(var(--card), 0.4);
+    transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.modalTitle {
+    @apply m-0 text-2xl font-black tracking-tighter;
+    color: hsl(var(--foreground));
+}
+
+.closeButton {
+    @apply w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 hover:scale-105;
+    background: transparent;
+    border: 1px solid transparent;
+    color: hsl(var(--muted-foreground));
+}
+
+.closeButton:hover {
+    background: hsl(var(--danger) / 0.1);
+    color: hsl(var(--danger));
+}
+
+.modalBody {
+    @apply flex-1 overflow-y-auto p-8;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+}
+
+.modalBody::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modalBody::-webkit-scrollbar-thumb {
+    @apply bg-[hsl(var(--muted))] rounded-full;
+}
+
+/* Dark mode support - applied when component has .dark class */
+.modalContainer.dark {
+    background-color: hsla(var(--card), 0.92);
+    border-color: hsla(var(--border), 0.7);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+/* Dark mode support for header */
+.modalContainer.dark .modalHeader {
+    background-color: hsla(var(--card), 0.7);
+    border-color: hsla(var(--border), 0.7);
+}
+
+/* make sure the close button remains visible on dark backgrounds */
+.modalContainer.dark .closeButton {
+    color: hsl(var(--foreground));
+    border-color: hsla(var(--border), 0.2);
+}
+
+.modalContainer.dark .closeButton:hover {
+    background: hsla(var(--danger), 0.06);
+    color: hsl(var(--danger));
+}
+
+.modalContainer.dark .infoItem {
+    background-color: hsla(var(--card), 0.9);
+    border: 1px solid hsla(var(--border), 0.6);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.modalContainer.dark .label {
+    opacity: 0.95;
+    color: hsl(var(--muted-foreground));
+}
+
+.modalContainer.dark .text,
+.modalContainer.dark .entityDisplay {
+    color: hsl(var(--foreground));
+}
+
+.modalContainer.dark .tableCell {
+    color: hsl(var(--foreground));
+}
+
+.modalContainer.dark .contentTable th {
+    background-color: hsla(var(--muted), 0.4);
+    color: hsl(var(--muted-foreground));
+}
+
+.modalContainer.dark .accordionItem {
+    background-color: hsla(var(--card), 0.8);
+    border: 1px solid hsla(var(--border), 0.5);
+}
+
+.modalContainer.dark .contentTable th {
+    background-color: hsla(var(--muted), 0.4);
+    color: hsl(var(--muted-foreground));
+}
+
+.modalContainer.dark .contentTable .tableCell {
+    color: hsl(var(--foreground));
+}
+
+/* Info Grid Styling */
+.infoGrid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10;
+}
+
+.infoItem {
+    @apply p-5 rounded-2xl border transition-all duration-300;
+    background-color: hsla(var(--muted), 0.22);
+    border-color: hsla(var(--border), 0.32);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+}
+
+.infoItem:hover {
+    @apply border-indigo-500/30 -translate-y-1 shadow-lg shadow-indigo-500/5;
+}
+
+/* Ensure smooth transitions for all properties when theme changes */
+.infoItem {
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 300ms ease;
+}
+
+.label {
+    @apply text-[10px] font-black uppercase tracking-widest mb-2;
+    color: hsl(var(--foreground));
+    opacity: 0.7;
+}
+
+.text {
+    @apply text-base font-bold;
+    color: hsl(var(--foreground));
+}
+
+/* Accordion Enhancements */
+.accordionItem {
+    @apply border border-indigo-500/10 rounded-2xl mb-4 overflow-hidden transition-all duration-500;
+    background-color: hsla(var(--card), 0.3);
+}
+
+.accordionItem.open {
+    @apply border-indigo-500/30 shadow-xl shadow-indigo-500/5;
+}
+
+/* Dark mode support for accordion */
+.modalContainer.dark .accordionItem {
+    background-color: hsla(var(--card), 0.8);
+    border: 1px solid hsla(var(--border), 0.5);
+}
+
+.accordionHeader {
+    @apply px-6 py-4 flex items-center justify-between cursor-pointer transition-colors duration-300 hover:bg-indigo-500/5;
+}
+
+.accordionTitle {
+    @apply text-sm font-black uppercase tracking-wider text-indigo-500/80;
+}
+
+.accordionToggleIcon {
+    @apply transition-transform duration-500 text-muted-foreground;
+}
+
+.accordionItem.open .accordionToggleIcon {
+    @apply rotate-180 text-indigo-500;
+}
+
+.accordionContent {
+    @apply max-h-0 overflow-hidden transition-all duration-500;
+}
+
+
+.accordionItem.open .accordionContent {
+    @apply max-h-[2000px] border-t border-indigo-500/10;
+}
+
+.accordionContentInner {
+    @apply p-6;
+}
+
+/* Table Enhancements */
+.tableResponsive {
+    @apply overflow-x-auto rounded-2xl border border-indigo-500/10;
+}
+
+.contentTable {
+    @apply w-full border-collapse text-sm;
+}
+
+.contentTable th {
+    @apply px-5 py-3 text-left font-black uppercase tracking-widest text-[10px] opacity-40;
+    background-color: hsla(var(--muted), 0.5);
+}
+
+.tableCell {
+    @apply px-5 py-4 border-b border-indigo-500/5 transition-colors duration-200;
+    color: hsl(var(--foreground));
+}
+
+.tableRow:hover {
+    @apply bg-indigo-500/5;
+}
+
+/* RTL Adjustments */
+[dir="rtl"] .modalTitle {
+    @apply tracking-normal;
+}
+
+[dir="rtl"] .contentTable th {
+    @apply text-right;
+}
+
+[dir="rtl"] .accordionHeader {
+    @apply flex-row-reverse;
+}
+
+@media (max-width: 768px) {
+    .modalContainer {
+        @apply max-h-screen rounded-none;
+    }
+
+    .modalBody {
+        @apply p-4;
+    }
+
+    .infoGrid {
+        @apply gap-4 mb-6;
+    }
+}
+
+/* Input Fields Styling */
+.inputField {
+    @apply w-full px-3 py-2 rounded-lg border border-indigo-500/20 transition-all duration-200 outline-none;
+    background-color: hsla(var(--card), 0.5);
+    color: hsl(var(--foreground));
+}
+
+.inputField:focus {
+    @apply ring-2 ring-indigo-500/20 border-indigo-500 bg-[hsl(var(--card))];
+}
+
+.readOnlyInput {
+    @apply w-full px-3 py-2 rounded-lg border-none bg-transparent font-medium opacity-80 outline-none cursor-default;
+    color: hsl(var(--foreground));
+}
+
+.actionsContainer {
+    @apply flex items-center gap-2;
+}
+
+.actionButton {
+    @apply transition-transform duration-200 hover:scale-105;
+}
+
+/* New missing classes for InvoiceDetails.tsx */
+.amountValue {
+    @apply text-lg font-black tracking-tight;
+    color: hsl(var(--primary));
+}
+
+.statusBadge {
+    @apply px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider;
+    background-color: hsla(var(--muted), 0.3);
+    color: hsl(var(--foreground));
+}
+
+.statusBadge.paid,
+.statusBadge.confirmed,
+.statusBadge.success {
+    @apply bg-emerald-500/10 text-emerald-500;
+}
+
+.statusBadge.unpaid,
+.statusBadge.canceled,
+.statusBadge.destructive {
+    @apply bg-rose-500/10 text-rose-500;
+}
+
+.statusBadge.partpaid,
+.statusBadge.pending,
+.statusBadge.warning {
+    @apply bg-amber-500/10 text-amber-500;
+}
+
+.statusBadge.shipped {
+    @apply bg-blue-500/10 text-blue-500;
+}
+
+.entityDisplay {
+    @apply text-base font-bold;
+    color: hsl(var(--foreground));
+}
+
+.entityId {
+    @apply ml-1 text-xs font-medium opacity-50;
+}
+
+.loadingText {
+    @apply text-sm italic opacity-50;
+}
+
+/* User Info & Tooltip */
+.userInfoContainer {
+    @apply flex items-center gap-2;
+}
+
+.userIdText {
+    @apply text-xs font-bold opacity-70;
+}
+
+.infoIconContainer {
+    @apply relative flex items-center;
+}
+
+.infoIcon {
+    @apply cursor-pointer opacity-40 hover:opacity-100 transition-opacity;
+    color: hsl(var(--primary));
+}
+
+.tooltip {
+    @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-3 rounded-xl shadow-2xl z-[1100] min-w-[150px];
+    backdrop-filter: blur(12px);
+    animation: fadeInScale 0.2s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 10px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+}
+
+.tooltipLight {
+    @apply bg-white/90 border border-gray-200 text-gray-800;
+}
+
+.tooltipDark {
+    @apply bg-[hsl(var(--card))/0.9] border border-[hsla(var(--border),0.5)] text-[hsl(var(--foreground))];
+}
+
+.tooltipName {
+    @apply block font-black text-xs uppercase tracking-tighter;
+}
+
+.tooltipEmail {
+    @apply block text-[10px] opacity-60;
+}
+
+.tooltipLoading {
+    @apply text-[10px] italic;
+}
+
+/* Sections */
+.orderSection,
+.deliverySection {
+    @apply space-y-4;
+}
+
+.sectionTitle {
+    @apply text-xs font-black uppercase tracking-[0.2em] opacity-40 mb-4;
+}
+
+.statusChangeSection {
+    @apply flex flex-col gap-2 mt-6 p-4 rounded-xl border border-indigo-500/10;
+    background-color: hsla(var(--muted), 0.1);
+}
+
+.selectLabel {
+    @apply text-[10px] font-black uppercase tracking-widest opacity-60;
+}
+
+.statusSelect {
+    @apply w-full px-3 py-2 rounded-lg border border-indigo-500/20 bg-transparent text-sm font-bold outline-none transition-all focus:border-indigo-500;
+    color: hsl(var(--foreground));
+}
+
+.statusSelect option {
+    @apply bg-[hsl(var(--card))] text-[hsl(var(--foreground))];
+}
+
+/* Responsive Grid Layout */
+@media (max-width: 1024px) {
+    .infoGrid {
+        @apply grid-cols-2;
+    }
+}
+
+@media (max-width: 768px) {
+    .modalContainer {
+        @apply max-h-screen rounded-none;
+    }
+
+    .modalBody {
+        @apply p-4;
+    }
+
+    .infoGrid {
+        @apply grid-cols-1 gap-4 mb-6;
+    }
+
+    .infoItem {
+        min-height: 100px;
+    }
+}

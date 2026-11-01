@@ -1,0 +1,257 @@
+/*
+ * SupplierClientList.module.css
+ * Modern, clean, and professional theme with scoped variables.
+ */
+
+.listContainer {
+    /* --- Scoped CSS Variables --- */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* Light Theme */
+    --bg-primary: #f7f8fa;
+    --bg-secondary: #ffffff;
+    --text-primary: #1a1d21;
+    --text-secondary: #5a6169;
+    --border-color: #e1e4e8;
+    --accent-primary: #007aff;
+    --accent-primary-hover: #0056b3;
+    --accent-danger: #ff3b30;
+    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.07);
+
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+:global(html[data-theme="dark"]) .listContainer {
+    /* Dark Theme */
+    --bg-primary: #0f1419;
+    --bg-secondary: #1a1f2e;
+    --text-primary: #f0f6fc;
+    --text-secondary: #8b949e;
+    --border-color: #30363d;
+    --accent-primary: #1f6feb;
+    --accent-primary-hover: #388bfd;
+    --accent-danger: #f85149;
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mainContent {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- HEADER --- */
+.header {
+    background-color: var(--bg-secondary);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.headerActions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* --- FILTERS & SEARCH --- */
+.filtersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.searchAndFilters {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.searchInputWrapper {
+    position: relative;
+    flex: 1 1 300px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.searchInputWrapper i {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.filterSelect {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    flex: 1 1 180px;
+}
+
+/* --- BUTTONS --- */
+.addButton {
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.addButton:hover {
+    background-color: var(--accent-primary-hover);
+    transform: translateY(-2px);
+}
+
+/* --- TABLE --- */
+.tableResponsive {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.contentTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contentTable th, .contentTable td {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+}
+
+.contentTable th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contentTable tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contentTable tbody tr:last-child {
+    border-bottom: none;
+}
+
+.contentTable tbody tr:hover {
+    background-color: var(--bg-primary);
+}
+
+/* --- FOOTER --- */
+.summaryFooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    border-top: 1px solid var(--border-color);
+    z-index: 100;
+}
+
+:global(html[data-theme="dark"]) .summaryFooter {
+    background-color: rgba(15, 20, 25, 0.8);
+}
+
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.summaryCard {
+    text-align: center;
+}
+
+.summaryLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.summaryValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.sales { color: #34c759 !important; }
+.purchases { color: var(--accent-primary) !important; }
+.credit { color: #ff9500 !important; }
+.debt { color: var(--accent-danger) !important; }
+
+/* --- MODAL --- */
+.modalContent {
+    padding: 2rem;
+}
+
+.modalTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* --- UTILITY & STATES --- */
+.loadingState, .emptyState, .errorState {
+    text-align: center;
+    padding: 4rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* --- STATS CONTAINER --- */
+.statsContainer {
+    background-color: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.activeTab {
+    background-color: var(--accent-primary-hover) !important;
+}

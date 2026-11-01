@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.store.presentation.controller.PurchaseInvoiceListController"
+      spacing="15" style="-fx-background-color: white;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Purchase Management (Stock Arrival)" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10">
+        <Button text="Record New Purchase" onAction="#showCreatePurchase" style="-fx-background-color: #e67e22; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="table" VBox.vgrow="ALWAYS" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="colDate" text="Date" prefWidth="120"/>
+            <TableColumn fx:id="colSupplier" text="Supplier ID" prefWidth="150"/>
+            <TableColumn fx:id="colTotal" text="Total Amount" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <Button text="View Details" onAction="#showDetails"/>
+        <Button text="Delete Record" onAction="#deleteSelected" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,105 @@
+/* Home.module.css - Redesigned for a High-End Visual Experience */
+
+
+.homepageContainer {
+    @apply min-h-screen px-6 py-10 transition-colors duration-500;
+    padding-top: calc(72px + 4rem);
+    background-color: hsl(var(--background));
+    background-image:
+        radial-gradient(circle at 10% 20%, hsla(var(--primary), 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, hsla(var(--primary), 0.05) 0%, transparent 40%);
+}
+
+.homepageHeader {
+    @apply text-center mb-16 animate-premium-in;
+}
+
+.homepageHeader h1 {
+    @apply text-5xl md:text-6xl font-black mb-4 tracking-tighter;
+    background: linear-gradient(to bottom right, hsl(var(--foreground)), hsla(var(--foreground), 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.homepageHeader p {
+    @apply text-xl text-muted-foreground max-w-2xl mx-auto font-medium;
+}
+
+.homepageGrid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto;
+}
+
+.menuSection {
+    @apply glass-card p-6 flex flex-col h-full border-indigo-500/5 hover:border-indigo-500/20 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2 transition-all duration-500;
+}
+
+.dark .sectionTitle {
+    color: hsl(var(--primary));
+}
+
+.dark .homepageHeader p {
+    color: hsl(var(--muted-foreground));
+}
+
+.dark .menuSection {
+    background-color: hsla(var(--card), 0.8);
+    border-color: hsla(var(--border), 0.5);
+    backdrop-filter: blur(12px);
+}
+
+.menuSectionHeader {
+    @apply flex items-center justify-between mb-6;
+}
+
+.sectionTitle {
+    @apply text-xl font-bold tracking-tight text-[hsl(var(--primary))];
+}
+
+.menuList {
+    @apply flex flex-col gap-3 list-none p-0 m-0;
+}
+
+.menuItem {
+    @apply transition-all duration-300;
+}
+
+.menuLink {
+    @apply flex items-center gap-4 p-3 rounded-2xl no-underline transition-all duration-300 bg-transparent hover:bg-indigo-500/5;
+}
+
+
+.iconContainer {
+    @apply w-12 h-12 flex items-center justify-center rounded-xl bg-[hsla(var(--primary),0.1)] text-[hsl(var(--primary))] transition-all duration-300 group-hover:bg-[hsl(var(--primary))] group-hover:text-white group-hover:scale-110 group-hover:rotate-6;
+}
+
+.menuName {
+    @apply text-base font-semibold text-muted-foreground transition-colors duration-300 group-hover:text-foreground;
+}
+
+/* RTL Adjustments */
+[dir="rtl"] .homepageHeader h1 {
+    @apply tracking-normal;
+}
+
+[dir="rtl"] .iconContainer {
+    @apply group-hover:-rotate-6;
+}
+
+@media (max-width: 768px) {
+    .homepageContainer {
+        @apply px-4 py-8;
+        padding-top: calc(72px + 2rem);
+    }
+
+    .homepageHeader {
+        @apply mb-10;
+    }
+
+    .homepageHeader h1 {
+        @apply text-4xl;
+    }
+
+    .homepageGrid {
+        @apply gap-4;
+    }
+}

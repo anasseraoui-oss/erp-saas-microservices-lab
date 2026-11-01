@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.store.presentation.controller.ProductController"
+      spacing="15" style="-fx-background-color: white;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Product Management" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Search by name..." prefWidth="250" onKeyReleased="#search"/>
+        <Button text="Search" onAction="#search"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Add Product" onAction="#showAddDialog" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="table" VBox.vgrow="ALWAYS" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="colBarcode" text="Barcode" prefWidth="120"/>
+            <TableColumn fx:id="colQuantity" text="Quantity" prefWidth="80"/>
+            <TableColumn fx:id="colPrice" text="Price" prefWidth="100"/>
+            <TableColumn fx:id="colCategory" text="Category" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <Button text="Edit" onAction="#editSelected" fx:id="btnEdit"/>
+        <Button text="Delete" onAction="#deleteSelected" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

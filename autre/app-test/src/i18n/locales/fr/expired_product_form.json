@@ -1,0 +1,15 @@
+{
+  "title": "Ajouter les Informations des Produits Expirés",
+  "description": "Ajoutez les informations d'expiration pour les produits qui pourraient bientôt expirer ou qui sont déjà expirés.",
+  "product_id": "ID du Produit",
+  "purchased_qty": "Qté Achetée",
+  "expiry_date_label": "Date d'Expiration",
+  "expired_qty_label": "Quantité Expirée",
+  "lot_number_label": "Numéro de Lot (Optionnel)",
+  "lot_number_placeholder": "Entrez le numéro de lot",
+  "sub_barcode_label": "Sous-code-barres (Optionnel)",
+  "sub_barcode_placeholder": "Entrez le sous-code-barres",
+  "skip_button": "Passer",
+  "saving_button": "Enregistrement...",
+  "save_button": "Enregistrer les Produits Expirés"
+}

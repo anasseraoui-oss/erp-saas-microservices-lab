@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 API Testing Dashboard - Microservices Monitor</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚀 API Testing Dashboard</h1>
+            <p>Comprehensive testing and monitoring for all microservices with Feign communication tracking</p>
+        </div>
+
+        <!-- Overall Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-tests">0</div>
+                <div class="stat-label">Total Tests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="successful-tests">0</div>
+                <div class="stat-label">Successful</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="failed-tests">0</div>
+                <div class="stat-label">Failed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="success-rate">0%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <button class="btn btn-primary" id="test-all-btn">
+                🧪 Test All Services
+            </button>
+            <button class="btn btn-secondary" id="refresh-status-btn">
+                🔄 Refresh Status
+            </button>
+            <button class="btn btn-success" id="export-html-btn">
+                📄 Export HTML Report
+            </button>
+            <button class="btn btn-success" id="export-json-btn">
+                📊 Export JSON Report
+            </button>
+        </div>
+
+        <!-- Test Scenarios -->
+        <div class="scenarios-section">
+            <h2>🔄 Complex Transaction Scenarios</h2>
+            <p style="color: #666; margin-bottom: 20px;">Test complete workflows with Feign communications between services</p>
+            
+            <div class="scenario-card">
+                <h4>📦 Complete Sales Order Flow</h4>
+                <p>Create sales order → Check product stock (Feign) → Process payment (Feign) → Verify supplier (Feign)</p>
+                <button class="btn btn-primary" id="scenario-sales-btn">
+                    ▶️ Run Sales Order Scenario
+                </button>
+            </div>
+
+            <div class="scenario-card">
+                <h4>🛒 Complete Purchase Order Flow</h4>
+                <p>Create purchase order → Update product stock (Feign) → Record payment (Feign) → Link supplier (Feign)</p>
+                <button class="btn btn-primary" id="scenario-purchase-btn">
+                    ▶️ Run Purchase Order Scenario
+                </button>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-section">
+            <h2 style="color: white; margin-bottom: 20px;">📡 Microservices Status</h2>
+            <div class="services-grid" id="services-container">
+                <!-- Service cards will be dynamically generated here -->
+            </div>
+        </div>
+
+        <!-- Test Results -->
+        <div class="test-results" id="test-results">
+            <h3>📊 Test Results</h3>
+            <p style="color: #666;">Run tests to see results here...</p>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-message">Testing in progress...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api-tester.js"></script>
+    <script src="js/feign-tracker.js"></script>
+    <script src="js/report-generator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+/* Navbar.module.css */
+
+/* =============================================== */
+/* ===         PRO-LEVEL NAVBAR STYLING        === */
+/* =============================================== */
+
+/* --- 1. Main Navbar Container (Glassmorphism) --- */
+/* --- 1. Main Navbar Container (Glassmorphism) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 2.5rem;
+    height: 72px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* The Glass Effect */
+    background-color: hsla(var(--card), 0.65);
+    backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid hsla(var(--border), 0.6);
+}
+
+.dark {
+    background-color: hsla(var(--background), 0.65);
+    border-bottom: 1px solid hsla(var(--border), 0.6);
+}
+
+/* --- 2. Logo --- */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: hsl(var(--foreground));
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.dark .logo {
+    color: hsl(var(--foreground));
+}
+
+.logo span {
+    color: hsl(var(--primary));
+}
+
+/* --- 3. Search Bar --- */
+.searchContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-grow: 1;
+    max-width: 550px;
+    margin: 0 3rem;
+    position: relative;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.625rem 1.25rem;
+    padding-right: 3rem;
+    border: 1px solid hsla(var(--border), 0.6);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    background-color: hsla(var(--card), 0.5);
+    transition: all 0.3s ease;
+    color: hsl(var(--foreground));
+}
+
+.dark .searchInput {
+    background-color: hsla(var(--card), 0.5);
+    border-color: hsla(var(--border), 0.6);
+    color: hsl(var(--foreground));
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    background-color: hsl(var(--card));
+    box-shadow: 0 0 0 4px hsla(var(--primary), 0.15);
+}
+
+.dark .searchInput:focus {
+    background-color: hsl(var(--card));
+}
+
+.searchButton {
+    position: absolute;
+    right: 4px;
+    padding: 0.5rem 1rem;
+    background: hsl(var(--primary));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.searchButton:hover {
+    background: hsl(var(--primary));
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px hsla(var(--primary), 0.3);
+}
+
+/* --- 4. Action Buttons --- */
+.actionsContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.themeToggleBtn,
+.logoutLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    color: hsl(var(--muted-foreground));
+}
+
+.dark .themeToggleBtn,
+.dark .logoutLink {
+    color: hsl(var(--muted-foreground));
+}
+
+.themeToggleBtn:hover,
+.logoutLink:hover {
+    background-color: hsla(var(--muted), 0.5);
+    color: hsl(var(--foreground));
+}
+
+.dark .themeToggleBtn:hover,
+.dark .logoutLink:hover {
+    background-color: hsla(var(--muted), 0.5);
+    color: hsl(var(--foreground));
+}
+
+.logoutLink {
+    text-decoration: none;
+    width: auto;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    gap: 0.5rem;
+}
+
+/* --- 5. Responsive Design --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 1rem 1.5rem;
+    }
+
+    .searchContainer {
+        order: 3;
+        width: 100%;
+        margin: 1rem 0 0 0;
+        max-width: 100%;
+    }
+
+    .logo,
+    .actionsContainer {
+        width: auto;
+    }
+}

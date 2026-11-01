@@ -1,0 +1,214 @@
+/* Modal Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modalOverlay.darkMode {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Content */
+.modalContent {
+    background: white;
+    border-radius: 12px;
+    padding: 0;
+    min-width: 400px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: modalSlideIn 0.3s ease-out;
+    transform-origin: center;
+}
+
+.darkMode .modalContent {
+    background: #2d3748;
+    color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Title */
+.modalTitle {
+    margin: 0;
+    padding: 20px 24px 16px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.darkMode .modalTitle {
+    color: #f7fafc;
+    border-bottom-color: #4a5568;
+}
+
+/* Modal Body */
+.modalBody {
+    padding: 20px 24px;
+}
+
+.modalInput {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.modalInput:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.darkMode .modalInput {
+    background: #4a5568;
+    border-color: #718096;
+    color: white;
+}
+
+.darkMode .modalInput:focus {
+    border-color: #63b3ed;
+    box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.1);
+}
+
+.darkMode .modalInput::placeholder {
+    color: #a0aec0;
+}
+
+/* Modal Footer */
+.modalFooter {
+    padding: 16px 24px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid #e2e8f0;
+    background: #f7fafc;
+}
+
+.darkMode .modalFooter {
+    border-top-color: #4a5568;
+    background: #1a202c;
+}
+
+/* Modal Buttons */
+.modalBtn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid;
+    min-width: 80px;
+}
+
+.modalBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.modalBtnCancel {
+    background: white;
+    color: #4a5568;
+    border-color: #cbd5e0;
+}
+
+.modalBtnCancel:hover:not(:disabled) {
+    background: #f7fafc;
+    border-color: #a0aec0;
+}
+
+.darkMode .modalBtnCancel {
+    background: #4a5568;
+    color: #e2e8f0;
+    border-color: #718096;
+}
+
+.darkMode .modalBtnCancel:hover:not(:disabled) {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+.modalBtnSubmit {
+    background: #3182ce;
+    color: white;
+    border-color: #3182ce;
+}
+
+.modalBtnSubmit:hover:not(:disabled) {
+    background: #2c5282;
+    border-color: #2c5282;
+}
+
+.darkMode .modalBtnSubmit {
+    background: #63b3ed;
+    color: #1a202c;
+    border-color: #63b3ed;
+}
+
+.darkMode .modalBtnSubmit:hover:not(:disabled) {
+    background: #4299e1;
+    border-color: #4299e1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .modalContent {
+        min-width: 320px;
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+
+    .modalTitle {
+        padding: 16px 20px 12px;
+        font-size: 1.125rem;
+    }
+
+    .modalBody {
+        padding: 16px 20px;
+    }
+
+    .modalFooter {
+        padding: 12px 20px 16px;
+        flex-direction: column;
+    }
+
+    .modalBtn {
+        width: 100%;
+    }
+}

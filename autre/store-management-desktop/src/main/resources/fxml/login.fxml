@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.store.presentation.controller.LoginController"
+      alignment="CENTER" spacing="20" style="-fx-background-color: #2c3e50;">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <Label text="Store Management" style="-fx-text-fill: white; -fx-font-size: 28; -fx-font-weight: bold;"/>
+    <Label text="Please login to continue" style="-fx-text-fill: #bdc3c7; -fx-font-size: 14;"/>
+
+    <VBox spacing="10" maxWidth="300" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+        <Label text="Username:"/>
+        <TextField fx:id="usernameField" promptText="admin"/>
+        
+        <Label text="Password:"/>
+        <PasswordField fx:id="passwordField" promptText="admin"/>
+        
+        <Region prefHeight="10"/>
+        
+        <Button text="Login" onAction="#handleLogin" prefWidth="300"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-cursor: hand;"/>
+        
+        <Label fx:id="errorLabel" style="-fx-text-fill: #e74c3c; -fx-font-size: 12;" wrapText="true"/>
+    </VBox>
+</VBox>

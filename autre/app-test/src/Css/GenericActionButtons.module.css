@@ -1,0 +1,136 @@
+/* GenericActionButtons.module.css - Themed and Enhanced */
+
+/* Global variables are defined in index.css */
+/* We map local usage to global variables for consistency */
+
+/* 2. Container */
+.actionsWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* 3. Three Dots Button */
+.dotsButton {
+    background: transparent;
+    border: 1px solid transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    line-height: 1;
+    color: hsl(var(--muted-foreground));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dotsButton:hover {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+}
+
+.dotsButton.dark {
+    color: hsl(var(--muted-foreground));
+}
+
+.dotsButton.dark:hover {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+}
+
+/* 4. Dropdown Menu */
+.dropdownMenu {
+    position: absolute;
+    top: calc(100% + 5px);
+    /* Position below the button with a small gap */
+    left: 0;
+    /* Align to the left of the wrapper */
+    right: auto;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 1050;
+    padding: 0.5rem 0;
+    min-width: 180px;
+
+    /* Animation Settings */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdownMenu.dark {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Show menu when .open class is added */
+.dropdownMenu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* 5. Menu Items (Buttons) */
+.dropdownItem {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    text-align: left;
+    border: none;
+    background: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    white-space: nowrap;
+}
+
+.dropdownMenu.dark .dropdownItem {
+    color: hsl(var(--foreground));
+}
+
+.dropdownItem:hover {
+    background-color: hsl(var(--muted));
+}
+
+.dropdownMenu.dark .dropdownItem:hover {
+    background-color: hsl(var(--muted));
+}
+
+.dropdownItem:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: transparent !important;
+}
+
+/* 6. Variant Colors */
+.variantPrimary {
+    color: hsl(var(--primary)) !important;
+}
+
+.variantDanger {
+    color: hsl(var(--destructive)) !important;
+}
+
+.variantWarning {
+    color: hsl(var(--warning)) !important;
+}
+
+.variantSuccess {
+    color: hsl(var(--success)) !important;
+}
+
+.variantSecondary {
+    color: hsl(var(--muted-foreground)) !important;
+}
+
+.dropdownMenu.dark .variantSecondary {
+    color: hsl(var(--muted-foreground)) !important;
+}

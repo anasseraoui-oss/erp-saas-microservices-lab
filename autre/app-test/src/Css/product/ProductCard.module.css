@@ -1,0 +1,370 @@
+/* ProductCard.module.css - Fixed Dark Mode Version */
+
+/* CSS Variables for theming */
+:root {
+    --bg-element: #ffffff;
+    --bg-element-dark: #2d3748;
+    --bg-actions: #f8f9fa;
+    --bg-actions-dark: #1a202c;
+    --border-color: #e2e8f0;
+    --border-color-dark: #4a5568;
+    --text-primary: #1a202c;
+    --text-primary-dark: #f7fafc;
+    --text-secondary: #4a5568;
+    --text-secondary-dark: #a0aec0;
+    --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-dark: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --image-bg: #f1f5f9;
+    --image-bg-dark: #4a5568;
+}
+
+/* --- 1. Main Card Container --- */
+.productCard {
+    background-color: var(--bg-element);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    overflow: hidden;
+}
+
+/* Dark mode base styles */
+.productCard.darkMode {
+    background-color: var(--bg-element-dark);
+    border-color: var(--border-color-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.clickableCard {
+    cursor: pointer;
+}
+
+.clickableCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.clickableCard.darkMode:hover {
+    box-shadow: var(--shadow-dark);
+}
+
+/* --- 2. Card Image --- */
+.imageContainer {
+    height: 200px;
+    position: relative;
+    background-color: var(--image-bg);
+    overflow: hidden;
+}
+
+.productCard.darkMode .imageContainer {
+    background-color: var(--image-bg-dark);
+}
+
+.productImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.clickableCard:hover .productImage {
+    transform: scale(1.05);
+}
+
+/* --- 3. Card Body & Details --- */
+.cardBody {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+}
+
+.productCard.darkMode .title {
+    color: var(--text-primary-dark);
+}
+
+.details {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    flex-grow: 1;
+}
+
+.productCard.darkMode .details {
+    color: var(--text-secondary-dark);
+}
+
+.details p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.productCard.darkMode .details p {
+    border-color: var(--border-color-dark);
+}
+
+.details p:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.details p strong {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-right: 8px;
+}
+
+.productCard.darkMode .details p strong {
+    color: var(--text-primary-dark);
+}
+
+/* --- 4. Card Actions --- */
+.actions {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-actions);
+    display: flex;
+    gap: 0.75rem;
+}
+
+.productCard.darkMode .actions {
+    background-color: var(--bg-actions-dark);
+    border-top-color: var(--border-color-dark);
+}
+
+.actionButton {
+    flex-grow: 1;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Button variants - Info */
+.infoButton {
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
+.infoButton:hover {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+.productCard.darkMode .infoButton {
+    color: #6edff6;
+    border-color: #6edff6;
+}
+
+.productCard.darkMode .infoButton:hover {
+    background-color: #6edff6;
+    color: #1a202c;
+}
+
+/* Button variants - Primary */
+.primaryButton {
+    color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.primaryButton:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.productCard.darkMode .primaryButton {
+    color: #6ea8fe;
+    border-color: #6ea8fe;
+}
+
+.productCard.darkMode .primaryButton:hover {
+    background-color: #6ea8fe;
+    color: #1a202c;
+}
+
+/* Button variants - Danger */
+.dangerButton {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.dangerButton:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.productCard.darkMode .dangerButton {
+    color: #ea868f;
+    border-color: #ea868f;
+}
+
+.productCard.darkMode .dangerButton:hover {
+    background-color: #ea868f;
+    color: #1a202c;
+}
+
+/* --- 5. Modal & Chart Styles --- */
+.chartModalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(10, 25, 47, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+.chartModalOverlay.darkMode {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.chartModalContent {
+    background-color: var(--bg-element);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.chartModalOverlay.darkMode .chartModalContent {
+    background-color: var(--bg-element-dark);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.chartModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chartModalOverlay.darkMode .chartModalHeader {
+    border-color: var(--border-color-dark);
+}
+
+.chartModalTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.chartModalOverlay.darkMode .chartModalTitle {
+    color: var(--text-primary-dark);
+}
+
+.chartModalCloseButton {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.chartModalCloseButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+.chartModalOverlay.darkMode .chartModalCloseButton {
+    color: var(--text-secondary-dark);
+}
+
+.chartModalOverlay.darkMode .chartModalCloseButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary-dark);
+}
+
+/* --- 6. Responsive Design --- */
+@media (max-width: 768px) {
+    .cardBody {
+        padding: 1rem;
+    }
+
+    .actions {
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+    }
+
+    .actionButton {
+        margin-bottom: 0.5rem;
+    }
+
+    .actionButton:last-child {
+        margin-bottom: 0;
+    }
+
+    .chartModalContent {
+        width: 95%;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .chartModalTitle {
+        font-size: 1.25rem;
+    }
+}
+
+/* --- 7. Animation keyframes --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.productCard {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* --- 8. Focus states for accessibility --- */
+.actionButton:focus {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+.productCard.darkMode .actionButton:focus {
+    outline-color: #6ea8fe;
+}
+
+.chartModalCloseButton:focus {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+.chartModalOverlay.darkMode .chartModalCloseButton:focus {
+    outline-color: #6ea8fe;
+}

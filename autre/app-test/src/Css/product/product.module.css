@@ -1,0 +1,236 @@
+/* =================================================================== */
+/* ===       PRODUCT LIST - MODERN UI & DARK MODE STYLES         === */
+/* =================================================================== */
+
+/* --- 1. Main Container --- */
+.productListContainer {
+    padding-top: 70px; /* Space for the fixed header */
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.dark.productListContainer {
+    background-color: #0f172a; /* Deeper dark background */
+}
+
+/* --- 2. Page Header --- */
+.pageHeader {
+    padding: 1.5rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 1.5rem;
+}
+
+.dark .pageHeader {
+    background-color: #1e293b;
+    border-bottom: 1px solid #334155;
+}
+
+.pageTitle {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.dark .pageTitle {
+    color: #f1f5f9;
+}
+
+.searchAndActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* --- 3. Search Input --- */
+.searchInput {
+    flex-grow: 1;
+    min-width: 250px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #334155;
+    transition: all 0.2s ease-in-out;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.dark .searchInput {
+    background-color: #334155;
+    border-color: #475569;
+    color: #e2e8f0;
+    placeholder-color: #94a3b8;
+}
+
+.dark .searchInput:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+/* --- 4. Add Product Button --- */
+.addProductBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    background-image: linear-gradient(to right, #4f46e5, #6366f1);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.addProductBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 10px rgba(79, 70, 229, 0.25);
+}
+
+.addProductBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+}
+
+.dark .addProductBtn {
+    background-image: linear-gradient(to right, #6366f1, #818cf8);
+}
+
+/* --- 5. Reports Bar --- */
+.reportsBar {
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.dark .reportsBar {
+    background-color: #1e293b;
+    border-bottom-color: #334155;
+}
+
+.reportsBarTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #334155;
+    margin: 0;
+}
+
+.dark .reportsBarTitle {
+    color: #cbd5e1;
+}
+
+.reportsBarButtons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.reportButton {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background-color: #f8f9fa;
+    color: #475569;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.reportButton:hover {
+    background-color: #e2e8f0;
+    border-color: #94a3b8;
+    color: #1e293b;
+}
+
+.dark .reportButton {
+    background-color: #334155;
+    border-color: #475569;
+    color: #cbd5e1;
+}
+
+.dark .reportButton:hover {
+    background-color: #475569;
+    border-color: #64748b;
+    color: #f1f5f9;
+}
+
+
+/* --- 6. Category Filter Bar --- */
+.categoryFilterBar {
+    padding: 0 2rem 1.5rem;
+}
+
+/* =================================================================== */
+/* ===       GRID & OTHER ELEMENTS (FROM PREVIOUS RESPONSE)      === */
+/* =================================================================== */
+.productGridContainer { /* Renamed for clarity */
+    padding: 0 2rem;
+}
+
+.productGridHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.productCount {
+    font-size: 1rem;
+    color: #64748b;
+}
+.dark .productCount {
+    color: #94a3b8;
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.noProductsContainer {
+    text-align: center;
+    padding: 4rem 1rem;
+    border: 2px dashed #e2e8f0;
+    border-radius: 12px;
+    margin: 1rem 2rem;
+}
+.dark .noProductsContainer {
+    border-color: #334155;
+    color: #94a3b8;
+}
+
+.noProductsLead {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .pageHeader, .reportsBar, .categoryFilterBar, .productGridContainer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .searchAndActions, .reportsBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

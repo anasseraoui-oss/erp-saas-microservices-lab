@@ -1,0 +1,387 @@
+/* === InvoiceList.module.css - Optimized for Premium Experience === */
+
+.listContainer {
+    @apply min-h-screen transition-all duration-500 flex flex-col;
+    background-color: hsl(var(--background));
+    padding-top: 72px;
+}
+
+/* === Layout Sections === */
+.cardHeader {
+    @apply px-8 py-8 border-b transition-all duration-300;
+    background-color: hsla(var(--card), 0.5);
+    backdrop-filter: blur(16px);
+    border-color: hsla(var(--border), 0.5);
+}
+
+.cardBody {
+    @apply flex-1 p-8 transition-all duration-300;
+    background-color: transparent;
+}
+
+.cardFooter {
+    @apply p-8 border-t mt-auto transition-all duration-300;
+    background-color: hsla(var(--card), 0.3);
+    border-color: hsla(var(--border), 0.5);
+}
+
+/* === Filters & Search === */
+.filtersGrid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10;
+}
+
+.formGroup {
+    @apply flex flex-col gap-2;
+}
+
+.formLabel {
+    @apply text-[10px] font-black uppercase tracking-widest opacity-60 ml-1;
+    color: hsl(var(--foreground));
+}
+
+.inputGroup {
+    @apply relative flex items-center max-w-md;
+}
+
+.inputGroupText {
+    @apply absolute left-4 text-muted-foreground z-10;
+}
+
+.formControl,
+.formSelect {
+    @apply w-full px-4 py-3 rounded-2xl border transition-all duration-300 outline-none font-semibold text-sm;
+    background-color: hsla(var(--card), 0.8);
+    border-color: hsla(var(--border), 0.5);
+    color: hsl(var(--foreground));
+}
+
+.formControl:focus,
+.formSelect:focus {
+    @apply ring-4 ring-indigo-500/10 border-indigo-500/50 bg-[hsl(var(--card))];
+}
+
+.inputGroup .formControl {
+    @apply pl-12;
+}
+
+.btnOutline {
+    @apply px-6 py-3 rounded-2xl border font-bold text-xs uppercase tracking-widest transition-all duration-300;
+    border-color: hsla(var(--border), 0.8);
+    color: hsl(var(--foreground));
+}
+
+.btnOutline:hover {
+    @apply bg-indigo-500/5 border-indigo-500/30 text-indigo-500 scale-105;
+}
+
+/* === Specialized Table Styling === */
+.tableResponsive {
+    @apply overflow-hidden rounded-[2rem] border border-indigo-500/10 shadow-2xl transition-all duration-500;
+    background-color: hsla(var(--card), 0.4);
+    backdrop-filter: blur(8px);
+}
+
+.invoiceTable {
+    @apply w-full border-collapse text-sm;
+}
+
+.invoiceTable th {
+    @apply px-6 py-5 text-left font-black uppercase tracking-widest text-[10px] opacity-40 sticky top-0 z-20;
+    background-color: hsla(var(--muted), 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsla(var(--border), 0.5);
+}
+
+.invoiceTable td {
+    @apply px-6 py-5 border-b border-indigo-500/5 align-middle transition-colors duration-200;
+    color: hsl(var(--foreground));
+}
+
+.tableRow {
+    @apply hover:bg-indigo-500/5 cursor-pointer transition-all duration-300;
+}
+
+/* === Badges & Statuses === */
+.badge {
+    @apply px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border shadow-sm;
+}
+
+.badgePaid {
+    @apply bg-emerald-500/10 text-emerald-500 border-emerald-500/20;
+}
+
+.badgeUnpaid {
+    @apply bg-rose-500/10 text-rose-500 border-rose-500/20;
+}
+
+.badgePartpaid {
+    @apply bg-amber-500/10 text-amber-500 border-amber-500/20;
+}
+
+.badgeProcessing {
+    @apply bg-indigo-500/10 text-indigo-500 border-indigo-500/20;
+}
+
+.badgeShipped {
+    @apply bg-blue-500/10 text-blue-500 border-blue-500/20;
+}
+
+.badgeCreator,
+.badgeExecutor {
+    @apply ml-2 bg-indigo-500/5 text-indigo-500 border-indigo-500/10 normal-case tracking-normal py-0.5;
+}
+
+/* === Actions Menu === */
+.actionsCell {
+    @apply relative text-right;
+}
+
+.actionsButton {
+    @apply w-10 h-10 flex items-center justify-center rounded-2xl transition-all duration-300 hover:bg-primary/10 text-muted-foreground hover:text-primary;
+}
+
+.actionsMenu {
+    @apply absolute right-0 top-full mt-2 min-w-[200px] glass rounded-[1.5rem] shadow-2xl z-[100] p-2 overflow-hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+:global(.dark) .actionsMenu {
+    border-color: hsl(var(--border));
+}
+
+:global(.dark) .menuButton {
+    color: hsl(var(--foreground));
+}
+
+:global(.dark) .menuButton:hover {
+    color: hsl(var(--primary));
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.menuButton {
+    @apply flex items-center gap-3 w-full px-4 py-3 text-sm font-bold rounded-2xl text-muted-foreground hover:bg-primary/5 transition-all text-left border-none bg-transparent;
+}
+
+.menuButton i {
+    @apply w-5 text-center;
+}
+
+.menuButton:hover {
+    @apply text-foreground translate-x-1;
+}
+
+.menuButton.update {
+    @apply hover:text-emerald-500 hover:bg-emerald-500/5;
+}
+
+.menuButton.delete {
+    @apply hover:text-rose-500 hover:bg-rose-500/5;
+}
+
+/* Dark mode overrides */
+:global(.dark) .cardHeader {
+    background-color: hsla(var(--card), 0.8);
+}
+
+:global(.dark) .tableResponsive {
+    background-color: hsla(var(--card), 0.6);
+}
+
+:global(.dark) .invoiceTable th {
+    background-color: hsla(var(--muted), 0.6);
+    color: hsl(var(--muted-foreground));
+}
+
+/* === RTS & Footer === */
+.footerTitle {
+    @apply text-xl font-black tracking-tighter;
+    color: hsl(var(--foreground));
+}
+
+/* === RTL Adjustments === */
+[dir="rtl"] .invoiceTable th {
+    @apply text-right;
+}
+
+[dir="rtl"] .actionsMenu {
+    @apply right-auto left-0;
+}
+
+[dir="rtl"] .menuButton {
+    @apply text-right;
+}
+
+[dir="rtl"] .menuButton:hover {
+    @apply -translate-x-1;
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+    .filtersGrid {
+        @apply grid-cols-2 gap-4;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .cardHeader,
+    .cardBody,
+    .cardFooter {
+        @apply p-4;
+    }
+
+    .filtersGrid {
+        @apply grid-cols-1 gap-3 mb-6;
+    }
+
+    .invoiceTable th,
+    .invoiceTable td {
+        @apply px-4 py-4;
+    }
+
+    .tableResponsive {
+        @apply rounded-3xl;
+    }
+}
+
+/* === Badge Dot Indicator === */
+.badgeDot {
+    @apply inline-block w-1.5 h-1.5 rounded-full mr-1.5;
+    background-color: currentColor;
+}
+
+/* === Invoice ID Cell === */
+.invoiceId {
+    @apply font-black text-xs tracking-tight opacity-60;
+}
+
+.idCell {
+    @apply whitespace-nowrap;
+}
+
+/* === Amount Cell === */
+.amountCell {
+    @apply font-bold tracking-tight;
+}
+
+/* === Date Cell === */
+.dateCell {
+    @apply text-sm opacity-80;
+}
+
+/* === Muted Text === */
+.mutedText {
+    @apply text-sm opacity-30;
+}
+
+/* === Footer Redesign === */
+.footerContent {
+    @apply flex items-center justify-between;
+}
+
+.footerLabel {
+    @apply text-xs font-bold uppercase tracking-widest opacity-40;
+}
+
+.footerAmount {
+    @apply text-2xl font-black tracking-tighter;
+    color: hsl(var(--primary));
+}
+
+/* === Edit Modal Styles === */
+.modalBackdrop {
+    @apply fixed inset-0 flex items-center justify-center z-[1050] p-4;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: editModalFadeIn 0.3s ease-out;
+}
+
+@keyframes editModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.editModalContent {
+    @apply w-full max-w-lg rounded-2xl overflow-hidden flex flex-col;
+    background-color: hsl(var(--card));
+    border: 1px solid hsla(var(--border), 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: editModalSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes editModalSlideUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.editModalHeader {
+    @apply flex items-center justify-between px-6 py-4 border-b;
+    border-color: hsla(var(--border), 0.5);
+    background-color: hsla(var(--card), 0.5);
+}
+
+.editModalTitle {
+    @apply m-0 text-lg font-bold tracking-tight;
+    color: hsl(var(--foreground));
+}
+
+.editModalCloseBtn {
+    @apply w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-200;
+    background: transparent;
+    border: none;
+    color: hsl(var(--muted-foreground));
+    font-size: 1.25rem;
+}
+
+.editModalCloseBtn:hover {
+    @apply bg-rose-500/10 text-rose-500;
+}
+
+.editModalBody {
+    @apply p-6 space-y-4 overflow-y-auto;
+    max-height: 60vh;
+}
+
+.editModalFooter {
+    @apply flex items-center justify-end gap-3 px-6 py-4 border-t;
+    border-color: hsla(var(--border), 0.5);
+    background-color: hsla(var(--card), 0.3);
+}
+
+/* === Edit Modal Buttons === */
+.btn {
+    @apply px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200;
+}
+
+.btnSuccess {
+    @apply bg-emerald-500 text-white hover:bg-emerald-600 active:scale-95;
+}
+
+.btnSecondary {
+    @apply border bg-transparent hover:bg-muted/30;
+    border-color: hsla(var(--border), 0.8);
+    color: hsl(var(--foreground));
+}
+
+/* === Download button in actions menu === */
+.menuButton.download {
+    @apply hover:text-indigo-500 hover:bg-indigo-500/5;
+}
+
+/* === formGroupAuto === */
+.formGroupAuto {
+    @apply flex items-end;
+}

@@ -1,0 +1,202 @@
+/* Central theme variables for Light and Dark modes
+   - Provides color tokens (H S L triplets) so existing components using
+     `hsl(var(--...))` keep working.
+   - Z-index scale, spacing and typography variables included.
+   - Design system v2: complete radius, weight, and color scale.
+*/
+
+:root {
+  /* Color palette (H S L triplets) */
+  --background: 210 20% 98%;        /* very light */
+  --card: 0 0% 100%;                /* white */
+  --border: 220 10% 88%;
+  --foreground: 220 14% 12%;
+  --muted: 220 8% 60%;
+  --muted-foreground: 220 8% 40%;
+  --primary: 238 95% 52%;           /* indigo */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 220 14% 12%;
+  --success: 140 60% 35%;
+  --success-foreground: 0 0% 100%;
+  --danger: 350 70% 45%;
+  --destructive: 350 70% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 100%;
+  --accent: 238 95% 97%;
+  --accent-foreground: 238 95% 52%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 14% 12%;
+  --ring: 238 95% 52%;
+  --input: 220 10% 88%;
+  --card-foreground: 220 14% 12%;
+
+  /* Surfaces */
+  --input-bg: 0 0% 100%;
+  --input-border: 220 10% 88%;
+
+  /* Layout */
+  --radius: 0.5rem;
+  --container-max: 1200px;
+
+  /* Radius scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* Spacing scale (4px base) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-8: 3rem;      /* 48px */
+  --space-10: 4rem;     /* 64px */
+
+  /* Typography */
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --base-font-size: 16px;
+  --h1-size: 1.5rem;
+  --font-weight-normal: 500;
+  --font-weight-medium: 550;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+
+  /* Z-index scale */
+  --z-base: 0;
+  --z-dropdown: 900;
+  --z-sticky: 950;
+  --z-modal: 1050;
+  --z-tooltip: 1100;
+
+  /* Transition presets */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Dark theme overrides */
+[data-theme="dark"], .dark {
+  --background: 220 12% 8%;         /* very dark */
+  --card: 220 10% 12%;              /* dark card */
+  --border: 220 10% 18%;
+  --foreground: 220 14% 96%;
+  --muted: 220 10% 60%;
+  --muted-foreground: 220 8% 74%;
+  --primary: 238 95% 62%;
+  --secondary: 220 10% 16%;
+  --secondary-foreground: 220 14% 96%;
+  --accent: 238 50% 16%;
+  --accent-foreground: 238 95% 72%;
+  --popover: 220 10% 12%;
+  --popover-foreground: 220 14% 96%;
+  --card-foreground: 220 14% 96%;
+  --input: 220 10% 18%;
+  --input-bg: 220 10% 14%;
+  --input-border: 220 10% 18%;
+  --destructive: 350 65% 55%;
+  --warning: 38 92% 55%;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Base element styles so components without specific rules adapt automatically */
+html, body, #root {
+  height: 100%;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  font-size: var(--base-font-size);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 180ms linear, color 180ms linear;
+}
+
+/* Cards and surfaces */
+.card, .panel, .modalContent, .app-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.6);
+  color: hsl(var(--foreground));
+  border-radius: var(--radius);
+}
+
+/* Inputs */
+input, textarea, select {
+  background: hsl(var(--input-bg));
+  border: 1px solid hsl(var(--input-border));
+  color: hsl(var(--foreground));
+  padding: var(--space-2);
+  border-radius: 0.375rem;
+  outline: none;
+  transition: box-shadow 120ms ease, border-color 120ms ease, background-color 120ms ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.12);
+  border-color: hsl(var(--primary));
+}
+
+/* Buttons */
+.btn, button {
+  background: hsl(var(--primary));
+  color: white;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: 0.375rem;
+}
+
+/* Utility for modals and z-index */
+.modalBackdrop {
+  z-index: var(--z-modal);
+}
+
+/* make dropdowns and other overlays respect z scale */
+.dropdown, .popover {
+  z-index: var(--z-dropdown);
+}
+
+/* Small helpers for consistent spacing */
+.gutter-sm { padding: var(--space-2); }
+.gutter { padding: var(--space-3); }
+.gutter-lg { padding: var(--space-4); }
+
+/* Accessibility: ensure focus outlines visible in both themes */
+*:focus {
+  outline: 2px solid hsl(var(--primary) / 0.18);
+  outline-offset: 2px;
+}
+
+/* Form element contrast tweak for small text */
+label, .muted {
+  color: hsl(var(--muted));
+}
+
+/* Ensure scrollbars are visible on dark mode where needed */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 999px;
+}

@@ -1,0 +1,202 @@
+/* src/Css/SupplierClient/SupplierClientForm.module.css */
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #343a40;
+    font-size: 0.9rem;
+}
+
+/* Unified style for all inputs */
+.input {
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #212529;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.input:disabled {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Error message styling */
+.error {
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Button group */
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.submitBtn {
+    flex: 1;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.submitBtn:hover:not(:disabled) {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.cancelBtn {
+    padding: 12px 24px;
+    border: 1px solid #6c757d;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #6c757d;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.cancelBtn:hover:not(:disabled) {
+    background-color: #6c757d;
+    color: white;
+}
+
+.cancelBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ================== DARK MODE STYLES ================== */
+.darkMode {
+    background-color: #1a1a2e;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+}
+
+.darkMode .formGroup label {
+    color: #e0e0e0;
+}
+
+.darkMode .input {
+    background-color: #2c2c3e;
+    border-color: #4a4a6a;
+    color: #e0e0e0;
+}
+
+.darkMode .input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
+}
+
+.darkMode .input:disabled {
+    background-color: #1a1a2e;
+}
+
+.darkMode .error {
+    background-color: #2d1b1e;
+    color: #f8d7da;
+    border-color: #5a2a2a;
+}
+
+.darkMode .submitBtn {
+    background-color: #0056b3;
+}
+
+.darkMode .submitBtn:hover:not(:disabled) {
+    background-color: #004494;
+}
+
+.darkMode .cancelBtn {
+    border-color: #e0e0e0;
+    color: #e0e0e0;
+}
+
+.darkMode .cancelBtn:hover:not(:disabled) {
+    background-color: #e0e0e0;
+    color: #1a1a2e;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .formContainer {
+        padding: 1rem;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+    }
+
+    .cancelBtn {
+        order: -1;
+    }
+    .formSection {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .formSection h3 {
+        margin-bottom: 1rem;
+        color: #333;
+        font-size: 1.2rem;
+    }
+
+    .formRow {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .formSection.darkMode {
+        border-color: #555;
+    }
+
+    .formSection.darkMode h3 {
+        color: #fff;
+    }
+}

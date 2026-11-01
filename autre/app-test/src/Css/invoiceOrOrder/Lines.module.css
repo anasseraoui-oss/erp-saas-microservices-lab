@@ -1,0 +1,305 @@
+/* Lines.module.css - Refined and Modernized */
+/* Theme variables are centralized in theme.css — do NOT redeclare here */
+
+/* --- MAIN CONTAINER --- */
+.linesContainer {
+    padding: var(--space-5);
+    padding-top: calc(72px + var(--space-5));
+    padding-bottom: 10rem;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+    min-height: 100vh;
+}
+
+.linesContainer.dark {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+/* --- HEADER --- */
+.header {
+    padding: var(--space-4);
+    margin-bottom: var(--space-5);
+    background-color: hsla(var(--card), 0.8);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid hsla(var(--border), 0.5);
+    backdrop-filter: blur(8px);
+    transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.linesContainer.dark .header {
+    background-color: hsla(var(--card), 0.6);
+    border-color: hsla(var(--border), 0.6);
+}
+
+.headerControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.controlGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.controlLabel {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: hsl(var(--muted-foreground));
+    transition: color var(--transition-fast);
+}
+
+.linesContainer.dark .controlLabel {
+    color: hsl(var(--muted-foreground));
+}
+
+.buttonGroup {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.statsButton {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-4);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-xs);
+    font-size: 0.85rem;
+}
+
+.statsButton:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.buttonIcon {
+    font-size: 1rem;
+}
+
+/* --- FILTER STYLES --- */
+.filtersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: flex-end;
+}
+
+.filterInputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1 1 180px;
+}
+
+.partySearchWrapper {
+    position: relative;
+}
+
+.filterActions {
+    display: flex;
+    gap: var(--space-2);
+    padding-bottom: 2px;
+}
+
+.filterButton {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.85rem;
+}
+
+/* --- SUGGESTIONS LIST --- */
+.suggestionsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background-color: hsl(var(--card));
+    border: 1px solid hsla(var(--border), 0.6);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-dropdown);
+    list-style: none;
+    padding: var(--space-1);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestionsList li {
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    border-radius: var(--radius-xs);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-normal);
+    transition: background-color var(--transition-fast);
+    color: hsl(var(--foreground));
+}
+
+.suggestionsList li:hover {
+    background-color: hsl(var(--primary) / 0.08);
+    color: hsl(var(--primary));
+}
+
+/* --- FORM CONTROLS --- */
+.themedInput,
+.themedSelect {
+    background-color: hsl(var(--input-bg));
+    color: hsl(var(--foreground));
+    border: 1px solid hsla(var(--border), 0.6);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.875rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.themedInput::placeholder {
+    color: hsl(var(--muted-foreground));
+}
+
+.themedInput:focus,
+.themedSelect:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.12);
+}
+
+.linesContainer.dark .themedInput,
+.linesContainer.dark .themedSelect {
+    background-color: hsl(var(--input-bg));
+    color: hsl(var(--foreground));
+    border-color: hsla(var(--border), 0.6);
+}
+
+.linesContainer.dark .themedInput::placeholder {
+    color: hsl(var(--muted-foreground));
+}
+
+.linesContainer.dark .themedSelect {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+/* --- TABLE --- */
+.tableContainer {
+    background-color: hsla(var(--card), 0.8);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: visible;
+    border: 1px solid hsla(var(--border), 0.5);
+    transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.linesContainer.dark .tableContainer {
+    background-color: hsla(var(--card), 0.6);
+    border-color: hsla(var(--border), 0.6);
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableHeader th {
+    background-color: hsla(var(--muted), 0.15);
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.65rem;
+    font-weight: var(--font-weight-black);
+    color: hsl(var(--muted-foreground));
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: left;
+    border-bottom: 1px solid hsla(var(--border), 0.5);
+    transition: background-color var(--transition-smooth);
+}
+
+.linesContainer.dark .tableHeader th {
+    background-color: hsla(var(--muted), 0.08);
+    color: hsl(var(--muted-foreground));
+    border-bottom-color: hsla(var(--border), 0.5);
+}
+
+.tableRow {
+    transition: background-color var(--transition-fast);
+}
+
+.tableRow:not(:last-child) {
+    border-bottom: 1px solid hsla(var(--border), 0.3);
+}
+
+.linesContainer.dark .tableRow:not(:last-child) {
+    border-bottom-color: hsla(var(--border), 0.3);
+}
+
+.tableRow:hover {
+    background-color: hsl(var(--primary) / 0.04);
+}
+
+.linesContainer.dark .tableRow:hover {
+    background-color: hsl(var(--primary) / 0.06);
+}
+
+.tableRow td {
+    padding: var(--space-4);
+    vertical-align: middle;
+    font-size: 0.875rem;
+    color: hsl(var(--foreground));
+}
+
+.idCell,
+.idColumn {
+    width: 5%;
+}
+
+.productCell,
+.productColumn {
+    width: 25%;
+}
+
+.quantityColumn,
+.priceColumn {
+    width: 10%;
+}
+
+.dateColumn,
+.reasonColumn {
+    width: 15%;
+}
+
+.actionsCell,
+.actionsColumn {
+    width: 15%;
+    text-align: center;
+}
+
+.inputCell {
+    padding: var(--space-2) var(--space-3);
+}
+
+/* Empty State */
+.emptyState {
+    padding: var(--space-8);
+    text-align: center;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+.linesContainer.dark .emptyState {
+    color: hsl(var(--muted-foreground));
+}
+
+/* --- ACTIONS --- */
+.actionsCell .btn {
+    margin: 0 4px;
+}

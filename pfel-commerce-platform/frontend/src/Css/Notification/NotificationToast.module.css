@@ -1,0 +1,48 @@
+.toastWrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 350px;
+    background-color: var(--toast-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.toastWrapper.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toastHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toastSubject {
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.dismissButton {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.toastBody {
+    padding: 15px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}

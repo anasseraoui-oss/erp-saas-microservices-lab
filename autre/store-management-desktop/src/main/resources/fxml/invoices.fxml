@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.store.presentation.controller.InvoiceController"
+      spacing="15" style="-fx-background-color: white;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Invoice Management" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10">
+        <Button text="Create New Invoice" onAction="#showCreateInvoice" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="table" VBox.vgrow="ALWAYS" prefHeight="350">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="colDate" text="Date" prefWidth="120"/>
+            <TableColumn fx:id="colCustomer" text="Customer ID" prefWidth="100"/>
+            <TableColumn fx:id="colTotal" text="Total" prefWidth="120"/>
+            <TableColumn fx:id="colStatus" text="Payment Status" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <Button text="View Details / Add Payment" onAction="#showPaymentOrDetails" fx:id="btnPayment"/>
+        <Button text="Delete Invoice" onAction="#deleteSelected" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

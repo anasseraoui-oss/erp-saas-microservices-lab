@@ -1,0 +1,23 @@
+{
+  "create_title": "Créer {{orderType}} d'{{serviceType}}",
+  "service_sales": "Ventes",
+  "service_purchases": "Achat",
+  "type_invoice": "Facture",
+  "type_order": "Commande",
+  "create_button": "Créer {{orderType}}",
+  "delivery_price": "Prix de Livraison:",
+  "description_label": "Description:",
+  "delivery_date_label": "Date de Livraison:",
+  "delivery_location": "Lieu de Livraison:",
+  "send_delivery_info": "Envoyer les Informations de Livraison",
+  "sidebar_new_product": "Nouveau Produit",
+  "sidebar_new_customer": "Nouveau Client",
+  "sidebar_new_supplier": "Nouveau Fournisseur",
+  "sidebar_add_delivery": "Ajouter Livraison",
+  "sidebar_edit_delivery": "Modifier Livraison",
+  "delivery_form_title_add": "Ajouter les Détails de Livraison",
+  "delivery_form_title_edit": "Modifier les Détails de Livraison",
+  "delivery_form_price": "Prix de Livraison",
+  "delivery_form_description": "Description",
+  "delivery_form_location": "Lieu de Livraison"
+}

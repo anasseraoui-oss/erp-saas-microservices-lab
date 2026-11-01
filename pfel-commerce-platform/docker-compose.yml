@@ -1,0 +1,237 @@
+name: pfel-commerce-platform
+
+x-service-defaults: &service-defaults
+  restart: unless-stopped
+  environment: &service-environment
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka/
+    SECURITY_JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Set JWT_SECRET_KEY in .env}
+  depends_on:
+    discovery-server:
+      condition: service_started
+
+x-mysql-defaults: &mysql-defaults
+  image: mysql:8.4
+  restart: unless-stopped
+  environment:
+    MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+    MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+    MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+  healthcheck:
+    test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "--password=$${MYSQL_ROOT_PASSWORD}"]
+    interval: 10s
+    timeout: 5s
+    retries: 10
+
+services:
+  discovery-server:
+    build:
+      context: .
+      args:
+        MODULE: discovery-server
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: api-gateway
+    ports:
+      - "9055:9055"
+
+  product-service:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: product-service
+    environment:
+      <<: *service-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://product-db:3306/product_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      discovery-server:
+        condition: service_started
+      product-db:
+        condition: service_healthy
+
+  security-service:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: security-service
+    ports:
+      - "8081:8081"
+    environment:
+      <<: *service-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://security-db:3306/security_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+      discovery-server:
+        condition: service_started
+      security-db:
+        condition: service_healthy
+
+  sales-order-service:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: sales-order-service
+    environment:
+      <<: *service-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://sales-db:3306/sales_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+      discovery-server:
+        condition: service_started
+      sales-db:
+        condition: service_healthy
+
+  purchase-order-service:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: purchase-order-service
+    environment:
+      <<: *service-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://purchase-db:3306/purchase_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+      discovery-server:
+        condition: service_started
+      purchase-db:
+        condition: service_healthy
+
+  supplier-client-service:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: supplier-client-service
+    environment:
+      <<: *service-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://supplier-client-db:3306/supplier_client_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+      discovery-server:
+        condition: service_started
+      supplier-client-db:
+        condition: service_healthy
+
+  payment-service:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: payment-service
+    environment:
+      <<: *service-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://payment-db:3306/payment_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      discovery-server:
+        condition: service_started
+      payment-db:
+        condition: service_healthy
+
+  notification-service:
+    <<: *service-defaults
+    build:
+      context: .
+      args:
+        MODULE: notification-service
+    ports:
+      - "9000:9000"
+    environment:
+      <<: *service-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://notification-db:3306/notification_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_MAIL_HOST: ${MAIL_HOST}
+      SPRING_MAIL_PORT: ${MAIL_PORT}
+      SPRING_MAIL_USERNAME: ${MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD}
+    depends_on:
+      discovery-server:
+        condition: service_started
+      notification-db:
+        condition: service_healthy
+
+  product-db:
+    <<: *mysql-defaults
+    environment:
+      MYSQL_DATABASE: product_db
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+  security-db:
+    <<: *mysql-defaults
+    environment:
+      MYSQL_DATABASE: security_db
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+  sales-db:
+    <<: *mysql-defaults
+    environment:
+      MYSQL_DATABASE: sales_db
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+  purchase-db:
+    <<: *mysql-defaults
+    environment:
+      MYSQL_DATABASE: purchase_db
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+  supplier-client-db:
+    <<: *mysql-defaults
+    environment:
+      MYSQL_DATABASE: supplier_client_db
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+  payment-db:
+    <<: *mysql-defaults
+    environment:
+      MYSQL_DATABASE: payment_db
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+  notification-db:
+    <<: *mysql-defaults
+    environment:
+      MYSQL_DATABASE: notification_db
+      MYSQL_USER: ${MYSQL_USER:?Set MYSQL_USER in .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+  kafka:
+    image: confluentinc/cp-kafka:7.3.0
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1

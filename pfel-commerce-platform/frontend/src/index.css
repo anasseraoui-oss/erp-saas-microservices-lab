@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles personnalisés optionnels */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+/* src/index.css - The Single Source of Truth for Theming */
+
+/* 1. Global Resets for consistency across browsers */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Smooth transition for theme changes */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 2. Theme Variables Definition */
+
+/* --- Default Light Theme --- */
+:root {
+  --bg-primary: #f0f8ff;      /* Main page background (e.g., body) */
+  --bg-secondary: #ffffff;    /* Card, modal, and component backgrounds */
+  --bg-hover: #f1f3f5;        /* Hover color for list items or table rows */
+  --text-primary: #1c1c1e;    /* Main text color */
+  --text-secondary: #6c757d;  /* Subtitles and less important text */
+  --border-color: #dee2e6;    /* Borders for components */
+  --accent-color: #0d6efd;    /* Buttons and links */
+
+  /* Status Colors */
+  --color-success: #155724;
+  --color-success-bg: #d4edda;
+  --color-danger: #721c24;
+  --color-danger-bg: #f8d7da;
+  --color-warning: #856404;
+  --color-warning-bg: #fff3cd;
+  --color-info: #0c5460;
+  --color-info-bg: #d1ecf1;
+}
+
+/* --- Dark Theme (applied when <html> has class="dark") --- */
+html.dark {
+  --bg-primary: #1a1a2e;      /* The main dark background for the body */
+  --bg-secondary: #2c2c3e;    /* Darker background for cards, tables */
+  --bg-hover: #3a3a4d;        /* Hover color in dark mode */
+  --text-primary: #e0e0e0;    /* Light text for readability */
+  --text-secondary: #a0a0b8;  /* Muted light text */
+  --border-color: #4a4a5e;    /* Visible but not harsh borders */
+  --accent-color: #4da8ff;    /* A brighter blue for dark mode */
+
+  /* Status Colors Dark */
+  --color-success: #27ae60;
+  --color-success-bg: rgba(39, 174, 96, 0.2);
+  --color-danger: #e74c3c;
+  --color-danger-bg: rgba(231, 76, 60, 0.2);
+  --color-warning: #f1c40f;
+  --color-warning-bg: rgba(241, 196, 15, 0.2);
+  --color-info: #3498db;
+  --color-info-bg: rgba(52, 152, 219, 0.2);
+}
+
+/* 3. Apply the base theme directly to the body using our variables */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* 4. Ensure the main App container can fill the screen */
+#root, .App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
